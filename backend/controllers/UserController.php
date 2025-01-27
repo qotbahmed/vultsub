@@ -249,7 +249,6 @@ class UserController extends BackendController
         $prof->firstname = $profile->firstname;
         $prof->lastname = $profile->lastname ?? null;
         $prof->gender = $profile->gender;
-        $prof->academy_id = $profile->academy_id;
         $prof->avatar_base_url = isset($profile->picture['base_url']) ? $profile->picture['base_url'] : null;
         $prof->avatar_path = isset($profile->picture['path']) ? $profile->picture['path'] : null;
         $prof->save(false);

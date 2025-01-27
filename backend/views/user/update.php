@@ -20,7 +20,6 @@ $this->params['breadcrumbs'][] = ['label'=>Yii::t('backend', 'Update')];
         'mainAcademiesMap' => $mainAcademiesMap,
         'branchesMap' => $branchesMap,
         'selectedBranchId' => $selectedBranchId,
-        'selectedMainAcademyId' => $selectedMainAcademyId,
     ]) ?>
 
 </div>

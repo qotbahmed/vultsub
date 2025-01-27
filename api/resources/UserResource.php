@@ -32,24 +32,12 @@ class UserResource extends \common\models\User
             'picture' => function () {
                 return $this->userProfile->getAvatar();
             },
-            'add_first_contact' => function () {
-                return $this->add_first_contact;
-            },
-            'complete_company_info' => function () {
-                return $this->complete_company_info;
-            },
-            'identity_verified' => function () {
-                return $this->identity_verified;
-            },
             'joined_at' => function () {
                 return date('Y-m-d', $this->created_at);
             },
 
-            'account_type',
 
-            'company_profile' => function () {
-                return $this->companyProfile;
-            },
+
         ];
     }
 }

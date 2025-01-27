@@ -330,30 +330,6 @@ CREATE TABLE `nationality` (
 BEGIN;
 COMMIT;
 
--- ----------------------------
--- Table structure for news
--- ----------------------------
-DROP TABLE IF EXISTS `news`;
-CREATE TABLE `news` (
-                        `id` int NOT NULL AUTO_INCREMENT,
-                        `title` varchar(100) NOT NULL,
-                        `description` text,
-                        `image_path` varchar(255) DEFAULT NULL,
-                        `image_base_url` varchar(255) DEFAULT NULL,
-                        `status` tinyint(1) DEFAULT '1',
-                        `intro` varchar(100) DEFAULT NULL,
-                        `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                        `academy_id` bigint unsigned DEFAULT NULL,
-                        PRIMARY KEY (`id`),
-                        KEY `fk-news-academy_id` (`academy_id`),
-                        CONSTRAINT `fk-news-academy_id` FOREIGN KEY (`academy_id`) REFERENCES `academies` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- ----------------------------
--- Records of news
--- ----------------------------
-BEGIN;
-COMMIT;
 
 -- ----------------------------
 -- Table structure for notifications

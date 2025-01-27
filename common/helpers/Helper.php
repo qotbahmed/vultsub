@@ -5,7 +5,6 @@ namespace common\helpers;
 use Yii;
 use yii\helpers\Html;
 use common\models\User;
-use common\models\Academies;
 use common\models\UserProfile;
 use DateTime;
 use Exception;
@@ -57,29 +56,15 @@ class Helper
         }, $days);
     }
 
-    // list user data belonging to academy
+    // list user data belonging to
     public static function userData($user_type, $select_id, $select_column, $order)
     {
         $controller = Yii::$app->controller;
-        $userAcademyId = $controller->academyMainObj->id;
 
-        // Determine academy IDs
-        $academy = Academies::findOne($userAcademyId);
-        $academyIds = [$userAcademyId];
-
-        if ($academy && $academy->main == 1) {
-            $subBranchIds = Academies::find()
-                ->select('id')
-                ->where(['parent_id' => $userAcademyId])
-                ->column();
-            $academyIds = array_merge($academyIds, $subBranchIds);
-        }
-
-        // Fetch coaches based on filtered academy IDs
+        // Fetch coaches based on filtered  IDs
         return UserProfile::find()
             ->joinWith('user')
             ->where(['user.user_type' => $user_type])
-            ->andWhere(['academy_id' => $academyIds])
             ->select([$select_id, $select_column])
             ->orderBy($order)
             ->asArray()
@@ -172,7 +157,7 @@ class Helper
         return $query->all();
     }
     
-    public static function renderItemList($academyId, $modelClass, $relations, $conditions, $type, $attributeCallback, $modalTitle) {
+    public static function renderItemList( $modelClass, $relations, $conditions, $type, $attributeCallback, $modalTitle) {
         // Fetch items
         $items = self::fetchItems($modelClass, $relations, $conditions);        
     
@@ -190,7 +175,6 @@ class Helper
             User::class, 
             ['userProfile'], 
             [
-                'user_profile.academy_id' => $model->id,
                 'user.user_type' => $userType,
             ], 
             $type, 
@@ -217,59 +201,14 @@ class Helper
         ];
     }
 
-    // public static function searchItems($modelClass, $selectColumns, $filterColumn, $q, $join = null, $type)
-    // {
-    //     $user_type = $type;
-    //     $userAcademyId = Yii::$app->controller->academyMainObj->id;
-    //     //$userAcademyId = Yii::$app->controller->academy_id;
-
-    //     $academy = Academies::findOne($userAcademyId);
-    //     $academyIds = [$userAcademyId];
-
-    //     if ($academy && $academy->main == 1) {
-    //         $subBranchIds = Academies::find()
-    //             ->select('id')
-    //             ->where(['parent_id' => $userAcademyId])
-    //             ->column();
-    //         $academyIds = array_merge($academyIds, $subBranchIds);
-    //     }
-
-    //     $query = $modelClass::find()
-    //         ->where(['user.user_type' => $user_type])
-    //         ->andWhere(['academy_id' => $academyIds])
-    //         ->andFilterWhere(['like', $filterColumn, $q]);
-
-    //     if ($join) {
-    //         $query->joinWith($join);
-    //     }
-
-    //     $query = $query->select($selectColumns)
-    //         ->orderBy($filterColumn)
-    //         ->asArray()
-    //         ->all();
-
-    //     return \yii\helpers\Json::encode($query);
-    // }
     public static function searchItems($modelClass, $selectColumns, $filterColumn, $q, $join = null, $type)
     {
         $user_type = $type;
-        $userAcademyId = Yii::$app->controller->academyMainObj->id;
-    
-        $academyIds = [$userAcademyId];
-    
-        // التحقق من وجود الأكاديمية
-        $academy = Academies::findOne($userAcademyId);
-        if ($academy && $academy->main == 1) {
-            $subBranchIds = Academies::find()
-                ->select('id')
-                ->where(['parent_id' => $userAcademyId])
-                ->column();
-            $academyIds = array_merge($academyIds, $subBranchIds);
-        }
-    
+
+
+
         $query = $modelClass::find()
             ->where(['user.user_type' => $user_type])
-            ->andWhere(['academy_id' => $academyIds])
             ->andFilterWhere(['like', $filterColumn, $q]);
     
         if ($join) {
@@ -283,93 +222,5 @@ class Helper
     
         return $results; // يمكنك إرجاع المصفوفة مباشرة أو تشفيرها بـ JSON حسب الحاجة
     }
-    
-    // public static function searchItems($modelClass, $selectColumns, $filterColumn, $q, $join = null, $type)
-    // {
-    //     $user_type = $type;
-    //     $userAcademyId = Yii::$app->controller->academy_id;
-
-    //     // Get the current academy information
-    //     $academy = Academies::findOne($userAcademyId);
-    //     $academyIds = [$userAcademyId];
-        
-    //     // If the academy is a main academy, get all sub-branch academies
-    //     if ($academy && $academy->main == 1) {
-    //         $subBranchIds = Academies::find()
-    //             ->select('id')
-    //             ->where(['parent_id' => $userAcademyId])
-    //             ->column();
-    //         $academyIds = array_merge($academyIds, $subBranchIds);
-    //     }
-
-    //     // Main query for users directly linked to the academy
-    //     $query = $modelClass::find()
-    //         ->where(['user.user_type' => $user_type])
-    //         ->andWhere(['academy_id' => $academyIds])
-    //         ->andFilterWhere(['like', $filterColumn, $q]);
-
-    //     if ($join) {
-    //         $query->joinWith($join);
-    //     }
-
-    //     // Query for users linked via subscription
-    //     $subscriptionQuery = (new \yii\db\Query())
-    //         ->select($selectColumns)
-    //         ->from('user')
-    //         ->leftJoin('user_profile', 'user.id = user_profile.user_id')
-    //         ->where(['user_profile.academy_id' => null])
-    //         ->andFilterWhere(['like', $filterColumn, $q]);
-
-    //     if ($user_type == User::USER_TYPE_PARENT) {
-    //         $subscriptionQuery->andWhere([
-    //             'user.id' => (new \yii\db\Query())
-    //                 ->select('parent_id')
-    //                 ->distinct()
-    //                 ->from('subscription')
-    //                 ->where(['academy_id' => $userAcademyId])
-    //         ]);
-            
-    //         // If the academy is a main academy, include users from sub-branches
-    //         if ($academy && $academy->main == 1) {
-    //             $subscriptionQuery->orWhere([
-    //                 'user.id' => (new \yii\db\Query())
-    //                     ->select('parent_id')
-    //                     ->distinct()
-    //                     ->from('subscription')
-    //                     ->where(['academy_id' => $academyIds])
-    //             ]);
-    //         }
-    //     } elseif ($user_type == User::USER_TYPE_PLAYER) {
-    //         $subscriptionQuery->andWhere([
-    //             'user.parent_id' => (new \yii\db\Query())
-    //                 ->select('parent_id')
-    //                 ->distinct()
-    //                 ->from('subscription')
-    //                 ->where(['academy_id' => $userAcademyId])
-    //         ]);
-            
-    //         // If the academy is a main academy, include players from sub-branches
-    //         if ($academy && $academy->main == 1) {
-    //             $subscriptionQuery->orWhere([
-    //                 'user.parent_id' => (new \yii\db\Query())
-    //                     ->select('parent_id')
-    //                     ->distinct()
-    //                     ->from('subscription')
-    //                     ->where(['academy_id' => $academyIds])
-    //             ]);
-    //         }
-    //     }
-
-    //     // Combine both queries using UNION
-    //     $query = $query->union($subscriptionQuery);
-
-    //     // Fetch results and encode as JSON
-    //     $result = $query->select($selectColumns)
-    //         ->orderBy($filterColumn)
-    //         ->asArray()
-    //         ->all();
-
-    //     return \yii\helpers\Json::encode($result);
-    // }
 
 }

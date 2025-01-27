@@ -7,7 +7,6 @@ use yii\base\Model;
 
 class DateRangeForm extends Model
 {
-public $academy_id;
 
     public $from;
     public $to;

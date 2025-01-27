@@ -38,7 +38,6 @@ use yii\helpers\ArrayHelper;
  * @property string $permit_path
  * @property string $permit_base_url
  * @property integer $to_days
- * @property int|null $academy_id
  * @property integer|null $reward
  * @property integer|null $sport_id
  * @property integer|null $identification_number

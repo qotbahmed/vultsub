@@ -37,7 +37,6 @@ return [
     'State' => 'المدينة',
     'Country' => 'الدولة',
     'Create User' => 'إضافة مستخدم ',
-    'Academy Sports' => 'أنشطة الأكاديمية',
     'Age Group' => 'الفئة العمرية',
     'schedules' => 'المواعيد',
     'Key-Value Storage' => 'الاعدادات',

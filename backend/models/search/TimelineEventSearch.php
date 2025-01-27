@@ -41,9 +41,6 @@ class TimelineEventSearch extends TimelineEvent
     public function search($params)
     {
         $query = TimelineEvent::find();
-        $currentAcademyId = Yii::$app->session->get('current_academy_id') ?? Yii::$app->user->identity->userProfile->academy_id;
-
-        $query->andWhere(['academy_id' => $currentAcademyId]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

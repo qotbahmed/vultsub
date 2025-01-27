@@ -23,7 +23,6 @@ class AddToTimelineCommand extends BaseObject implements SelfHandlingCommand
 
     public $user_id;
 
-    public $academy_id;
     /**
      * @var mixed
      */
@@ -35,14 +34,12 @@ class AddToTimelineCommand extends BaseObject implements SelfHandlingCommand
      */
     public function handle($command)
     {
-        $model = TimelineEvent::find()->where(['event' =>  $command->event, 'user_id' => $command->user_id,
-            'academy_id' => $command->academy_id])->one();
+        $model = TimelineEvent::find()->where(['event' =>  $command->event, 'user_id' => $command->user_id])->one();
         if (!$model)
             $model = new TimelineEvent();
         $model->application = Yii::$app->id;
         $model->category = $command->category;
         $model->user_id = $command->user_id;
-        $model->academy_id = $command->academy_id;
         $model->event = $command->event;
         $model->data = json_encode($command->data, JSON_UNESCAPED_UNICODE);
         return $model->save(false);
