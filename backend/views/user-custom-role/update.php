@@ -1,0 +1,20 @@
+<?php
+
+use yii\helpers\Html;
+
+/* @var $this yii\web\View */
+/* @var $model backend\modules\rbac\models\RbacAuthItem */
+
+
+$this->params['breadcrumbs'][] = ['label' => 'صلاحيات المديرين', 'url' => ['index']];
+$this->title =  'تحديث ' . $model->description;
+
+$this->params['breadcrumbs'][] =  $this->title;
+?>
+<div class="rbac-auth-item-update">
+    <?php echo $this->render('_form', [
+        'model' => $model,
+        'modules'=> $modules,
+    ]) ?>
+
+</div>

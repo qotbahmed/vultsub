@@ -1,0 +1,16 @@
+<IfModule mod_headers.c>
+    <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|svg|webfont|webp)$">
+        Header set Access-Control-Allow-Origin "*"
+    </FilesMatch>
+</IfModule>
+
+RewriteEngine On
+
+# Exclude font files from being rewritten
+RewriteCond %{REQUEST_URI} \.(woff|woff2|ttf|otf|eot)$ [NC]
+RewriteRule . - [L]
+
+# Continue with the existing rules
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php [L]

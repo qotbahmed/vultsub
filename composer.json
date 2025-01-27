@@ -1,0 +1,133 @@
+{
+  "name": "yii2-starter-kit/yii2-starter-kit",
+  "description": "Yii2 Starter Kit Application Template",
+  "keywords": [
+    "yii2",
+    "framework",
+    "start",
+    "cms",
+    "application template",
+    "yii2 advanced"
+  ],
+  "authors": [
+    {
+      "name": "Yevhen Terentiev",
+      "email": "yevhen.terentiev@gmail.com"
+    },
+    {
+      "name": "Victor Gonzalez",
+      "email": "victor@vgr.cl",
+      "homepage": "https://vgr.cl"
+    }
+  ],
+  "type": "project",
+  "license": "BSD-3-Clause",
+  "support": {
+    "issues": "https://github.com/yii2-starter-kit/yii2-starter-kit/issues?state=open",
+    "source": "https://github.com/yii2-starter-kit/yii2-starter-kit"
+  },
+  "require": {
+    "php": ">=7.4 || ^8.0",
+    "ext-intl": "*",
+    "ext-gd": "*",
+    "yiisoft/yii2": "^2.0.13",
+    "yiisoft/yii2-swiftmailer": "^2.0.0",
+    "yiisoft/yii2-authclient": "^2.0.0",
+    "yiisoft/yii2-bootstrap4": "^2.0",
+    "yiisoft/yii2-jui": "^2.0.0",
+    "yiisoft/yii2-debug": "^2.0.0",
+    "yii2-starter-kit/yii2-file-kit": "^2.1.0",
+    "trntv/yii2-aceeditor": "^2.0",
+    "trntv/probe": "^1.0",
+    "trntv/yii2-glide": "^1.2",
+    "trntv/yii2-datetime-widget": "dev-master@dev",
+    "trntv/cheatsheet": "^0.1@dev",
+    "trntv/yii2-command-bus": "^3.0",
+    "intervention/image": "^2.7",
+    "vlucas/phpdotenv": "^5.3.0",
+    "almasaeed2010/adminlte": "^3.0",
+    "npm-asset/font-awesome": "^5.0",
+    "npm-asset/html5shiv": "^3.0",
+    "npm-asset/jquery-slimscroll": "^1.3",
+    "npm-asset/flot": "^3.2",
+    "symfony/process": "^4.0",
+    "guzzlehttp/guzzle": "^6.5",
+    "alexantr/yii2-elfinder": "^1.3",
+    "yii2mod/yii2-swagger": "^1.1",
+    "rmrevin/yii2-fontawesome": "^3.4",
+    "kartik-v/yii2-widgets": "^3.4",
+    "kartik-v/yii2-detail-view": "@dev",
+    "kartik-v/yii2-grid": "^3.5",
+    "engmohamedamer/yii2-enhanced-gii": "@dev",
+    "kartik-v/yii2-mpdf": "dev-master",
+    "kartik-v/yii2-tree-manager": "@dev",
+    "webvimark/multilanguage": "*",
+    "newerton/yii2-fancybox-3": "@dev ",
+    "kartik-v/yii2-widget-depdrop": "@dev",
+    "kartik-v/yii2-field-range": "dev-master",
+    "kartik-v/yii2-widget-growl": "*",
+    "kartik-v/yii2-number": "dev-master",
+    "kartik-v/yii2-editable": "@dev",
+    "kartik-v/yii2-password": "dev-master",
+    "kartik-v/yii2-bootstrap4-dropdown": "@dev",
+    "demi/sort": "~1.0",
+    "twilio/sdk": "^6.36",
+    "asofter/yii2-imperavi-redactor": "*",
+    "kartik-v/yii2-widget-rating": "dev-master",
+    "kartik-v/yii2-editors": "@dev",
+    "himiklab/yii2-recaptcha-widget": "*",
+    "kartik-v/yii2-datecontrol": "@dev",
+    "aksafan/yii2-fcm-both-api": "^0.10.0",
+    "curl/curl": "^2.5",
+    "thamtech/yii2-uuid": "^1.2",
+    "omnilight/yii2-scheduling": "*",
+    "prokhonenkov/yii2-repeater": "^1.0",
+    "yiisoft/yii2-bootstrap": "^2.0",
+    "wbraganca/yii2-dynamicform": "^2.0",
+    "unclead/yii2-multiple-input": "^2.30",
+    "pigochu/yii2-jquery-locationpicker": "^0.2.5",
+    "kartik-v/yii2-widget-colorinput": "*",
+    "edofre/yii2-fullcalendar": "V1.0.11",
+    "npm-asset/bs-stepper": "^1.7",
+    "npm-asset/jquery-validation": "^1.21",
+    "npm-asset/sweetalert2": "^11.11",
+    "newerton/yii2-fancybox": "^1.0",
+    "2amigos/yii2-chartjs-widget": "^3.0",
+    "philippfrenzel/yii2fullcalendar":"*",
+    "edofre/yii2-fullcalendar-scheduler": "^1.1",
+    "npm-asset/momentjs": "^2.0",
+    "endroid/qr-code": "^5.1",
+    "miloschuman/yii2-highcharts-widget": "^11.0"
+  },
+  "require-dev": {
+    "yiisoft/yii2-gii": "^2.0.0",
+    "yiisoft/yii2-faker": "^2.0.0"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "tests\\": "tests/",
+      "prokhonenkov\\yii2repeater\\": "vendor/prokhonenkov/yii2-repeater/src/"
+
+    }
+  },
+  "suggest": {
+    "trntv/yii2-debug-xhprof": "dev-master@dev"
+  },
+  "config": {
+    "process-timeout": 1800,
+    "optimize-autoloader": true,
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "archive": {
+    "exclude": ["docs"]
+  }
+
+}

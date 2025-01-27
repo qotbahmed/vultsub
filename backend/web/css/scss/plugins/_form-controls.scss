@@ -1,0 +1,249 @@
+[class*=-form] {
+    .card {
+
+        // input,
+        // select {
+        //     height: 47px;
+        //     line-height: 47px;
+        //     background-color: transparent !important;
+        //     border: 0 !important;
+        //     padding: 10px 25px !important;
+        //     color: #81879f;
+        //     font-weight: 400;
+        //     font-size: 14px !important;
+        //     width: 100%;
+        //     display: block;
+        //     border-radius: 10px !important;
+        //     border: 1px solid #e5ecff !important;
+        //     margin: 10px 0;
+        // }
+
+        // textarea {
+        //     background-color: transparent !important;
+        //     border: 0 !important;
+        //     padding: 10px 25px !important;
+        //     color: #81879f;
+        //     font-weight: 400;
+        //     font-size: 14px !important;
+        //     width: 100%;
+        //     display: block;
+        //     border-radius: 10px !important;
+        //     border: 1px solid #e5ecff !important;
+        //     margin: 10px 0;
+        // }
+
+        .upload-kit-input {
+            color: #e5ecff;
+            border: 2px dashed #e5ecff;
+        }
+
+
+
+        .card-footer {
+            background-color: transparent;
+        }
+
+        // label {
+        //     position: absolute;
+        //     font-size: 10px;
+        //     background: #fff;
+        //     right: 20px;
+        //     top: 2px;
+        //     padding: 2px 15px;
+        //     z-index: 9;
+        //     left: unset;
+        // }
+
+        .customCheckbox {
+            label {
+                position: unset;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            input {
+                height: 20px;
+                width: 20px;
+            }
+        }
+
+        .date {
+            .input-group-prepend [class*="kv-datetime-remove"] {
+                position: absolute;
+                left: 0;
+                top: 10px;
+                width: 35px;
+                height: 47px;
+                z-index: 9;
+                border-radius: 0 10px 10px 0;
+                border: 1px solid #e5ecff !important;
+                background-color: #e5ecff;
+            }
+
+            .input-group-prepend [class*="kv-datetime-picker"] {
+                position: absolute;
+                left: 35px;
+                top: 10px;
+                width: 37px;
+                height: 47px;
+                z-index: 9;
+                border: 1px solid #e5ecff !important;
+                background-color: #e5ecff;
+
+            }
+        }
+    }
+}
+
+
+.datetimepicker {
+    // right: unset !important;
+    // left: 0;
+}
+
+
+.bootstrap-timepicker {
+    input {
+        direction: ltr;
+    }
+}
+
+
+.bootstrap-timepicker input {
+
+    @if($isRTL==true) {
+        border-top-right-radius: $input-border-radius !important;
+        border-bottom-right-radius: $input-border-radius !important;
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+    }
+
+    @else {
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+        border-top-left-radius: $input-border-radius !important;
+        border-bottom-left-radius: $input-border-radius !important;
+    }
+}
+
+.was-validated .form-check-input:valid~.form-check-label,
+.form-check-input.is-valid~.form-check-label,
+.was-validated .custom-control-input:valid~.custom-control-label,
+.custom-control-input.is-valid~.custom-control-label {
+    color: $body-color;
+
+}
+
+
+.TP{
+
+    &{
+        position: relative;
+    }
+    .close_icon{
+        position: absolute;
+        right: 10px;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        bottom: calc($input-height / 4);
+        z-index: 2;
+        cursor: pointer;
+    }
+}
+
+
+input[type="radio"],
+input[type="checkbox"] {
+    &+label {
+        cursor: pointer;
+    }
+}
+
+.bootstrap-timepicker-widget.dropdown-menu {
+    padding: 20px;
+    direction: ltr;
+
+    input {
+
+        @extend .form-control-sm;
+        @extend .rounded;
+        width: 60px;
+
+        &:valid,
+        &:invalid {
+            background: none !important;
+            padding-left: $input-padding-x-sm !important;
+            border-color: $input-border-color !important;
+        }
+
+        @if($isRTL==true) {}
+
+        @else {}
+    }
+}
+
+
+.form-control[type="checkbox"] {
+    width: auto;
+    display: inline-block;
+}
+
+.vp-repeater {
+    & {
+        .new-item {
+            @extend .btn;
+            @extend .btn-warning;
+            @extend .text-white;
+        }
+    }
+
+    .repeater-item {
+        .remove {
+            width: 30px;
+            height: 30px;
+            background: $danger;
+            color: $white !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+    }
+
+    .repeater-content {
+        width: 100%;
+    }
+}
+
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+    border: 1px solid $danger !important;
+}
+
+.was-validated .form-control.is-valid {
+    border: 1px solid $success !important;
+}
+
+
+label.required {
+    & {
+        position: relative;
+        // padding-inline-start: 8px;
+    }
+
+    &::after {
+        content: "*";
+        color: $danger;
+        // position: absolute;
+        // inset-inline-start: 0;
+        // top: 0;
+        // bottom: 0;
+        padding: 0 3px;
+        float: right;
+        margin: auto;
+    }
+}

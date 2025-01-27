@@ -1,0 +1,127 @@
+//
+// Component: Nav
+//
+
+.nav-pills {
+  .nav-link {
+    color: $gray-600;
+
+    &:not(.active):hover {
+      color: theme-color('primary');
+    }
+  }
+
+  .nav-item {
+    &.dropdown.show {
+      .nav-link:hover {
+        color: $dropdown-link-active-color;
+      }
+    }
+  }
+}
+
+// Vertical Tabs
+.nav-tabs.flex-column {
+  border-bottom: 0;
+
+  @if($isRTL==true) {
+    border-left: $nav-tabs-border-width solid $nav-tabs-border-color;
+  }
+
+  @else {
+    border-right: $nav-tabs-border-width solid $nav-tabs-border-color;
+  }
+
+  .nav-link {
+    @if($isRTL==true) {
+      border-bottom-right-radius: $nav-tabs-border-radius;
+      border-top-left-radius: 0;
+      margin-left: -$nav-tabs-border-width;
+    }
+
+    @else {
+      border-bottom-left-radius: $nav-tabs-border-radius;
+      border-top-right-radius: 0;
+      margin-right: -$nav-tabs-border-width;
+    }
+
+    @include hover-focus {
+      border-color: $gray-200 transparent $gray-200 $gray-200;
+    }
+  }
+
+  .nav-link.active,
+  .nav-item.show .nav-link {
+    border-color: $gray-300 transparent $gray-300 $gray-300;
+  }
+
+  &.nav-tabs-right {
+    @if($isRTL ==true){
+      border-right: $nav-tabs-border-width solid $nav-tabs-border-color;
+      border-left: 0;
+    }@else{
+      border-left: $nav-tabs-border-width solid $nav-tabs-border-color;
+      border-right: 0;
+    }
+
+    .nav-link {
+      @if($isRTL ==true){
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: $nav-tabs-border-radius;
+        border-top-right-radius: 0;
+        border-top-left-radius: $nav-tabs-border-radius;
+        margin-right: -$nav-tabs-border-width;
+      }@else{
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: $nav-tabs-border-radius;
+        border-top-left-radius: 0;
+        border-top-right-radius: $nav-tabs-border-radius;
+        margin-left: -$nav-tabs-border-width;
+      }
+
+      @include hover-focus {
+        border-color: $gray-200 $gray-200 $gray-200 transparent;
+      }
+    }
+
+    .nav-link.active,
+    .nav-item.show .nav-link {
+      border-color: $gray-300 $gray-300 $gray-300 transparent;
+    }
+  }
+}
+
+.navbar-no-expand {
+  flex-direction: row;
+
+  .nav-link {
+    padding-left: $navbar-nav-link-padding-x;
+    padding-right: $navbar-nav-link-padding-x;
+  }
+}
+
+// Color variants
+@each $color,
+$value in $theme-colors {
+  @if $color==dark or $color==light {
+    .navbar-#{$color} {
+      background-color: $value;
+    }
+  }
+}
+
+@each $color,
+$value in $theme-colors {
+  @if $color !=dark and $color !=light {
+    .navbar-#{$color} {
+      background-color: $value;
+    }
+  }
+}
+
+@each $color,
+$value in $colors {
+  .navbar-#{$color} {
+    background-color: $value;
+  }
+}

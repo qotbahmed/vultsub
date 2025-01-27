@@ -1,0 +1,412 @@
+.kv-grid-toolbar {
+    gap: 10px;
+}
+
+.gridview .kv-panel-before .btn-toolbar .btn-group .btn {
+    background-color: #f8f9fa;
+    border-color: $body-color;
+    color: $body-color;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 6px 15px;
+}
+
+.gridview .kv-panel-before .btn-toolbar .btn-group .btn:hover,
+.gridview .kv-panel-before .btn-toolbar .btn-group .btn:active {
+    background-color: $secondary !important;
+    border-color: $secondary !important;
+    color: #fff;
+}
+
+
+
+.gridview,
+.grid-view {
+
+    .card{
+        background-color: transparent;
+        box-shadow: none;
+
+        .card-header{
+            @extend .rounded-lg;
+        }
+    }
+
+    table,
+    tr,
+    th,
+    td {
+        color: $body-color;
+    }
+
+
+
+    table,
+    table.table-sm {
+        & {
+            border: 1px solid $border-color !important;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 8px;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            -ms-border-radius: 8px;
+            -o-border-radius: 8px;
+        }
+
+        &.table-bordered td {
+            border: none;
+            position: relative;
+
+            &:not(:last-child) {
+                // border-left: 1px solid $border-color;
+            }
+        }
+
+        &.table-striped tbody tr:nth-of-type(2n+1) {
+            background-color: #fff;
+        }
+
+        thead {
+
+            & {}
+
+            th {
+                border-left: 0;
+                border-right: 0;
+                background-color: transparent;
+                color: $body-color !important;
+                border-bottom: 1px solid $border-color !important;
+
+                a {
+                    color: $body-color !important;
+                }
+            }
+
+
+
+            .filters {
+
+
+                // display: none;
+                td {
+                    padding: 3px 8px !important;
+                    background-color: #F2F3F5 !important;
+                }
+
+                .input-group {
+                    position: relative;
+                    display: flex;
+                    flex-wrap: nowrap;
+                    align-items: stretch;
+                    width: 100%;
+                }
+
+                @mixin grid_control_styles {
+                    display: block;
+                    width: 100%;
+                    height: 30px;
+                    border-radius: $border-radius;
+                    -webkit-border-radius: $border-radius;
+                    -moz-border-radius: $border-radius;
+                    -ms-border-radius: $border-radius;
+                    -o-border-radius: $border-radius;
+                    max-width: 125px;
+                    min-width: 130px;
+                    background-color: #f9f9f9;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 1.5;
+                }
+
+                .form-control {
+                    @include grid_control_styles;
+
+                    padding: 0 0.75rem;
+
+
+                }
+
+                .select2-container--krajee-bs4 .select2-selection--single {
+                    @include grid_control_styles;
+                    padding: 0 0.5rem 0 0.5rem;
+                    display: flex;
+
+                    .select2-selection__arrow {
+                        border: none;
+                        border-right: none;
+                        inset-inline-end: 1px;
+                        inset-inline-start: auto;
+                    }
+                }
+            }
+
+            th,
+            td {
+
+                font-size: 14px;
+                font-weight: bold;
+                color: $body-color;
+                white-space: nowrap;
+                text-transform: none;
+                position: relative;
+
+                &:first-child {
+                    border-right: none !important;
+                }
+
+                &:last-child {
+                    border-left: none !important;
+                }
+            }
+        }
+
+       tr th,
+       tr td {
+            &:last-child {
+               text-align: center;
+            }
+        }
+
+        tr:hover td {
+            background-color: rgba($color: $primary, $alpha: .1);
+        }
+
+        td:has(.btn) {
+            text-align: center;
+        }
+
+        th:not(:last-child):before,
+        td:not(:last-child):before {
+            content: "";
+            position: absolute;
+            inset-inline-end: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 30%;
+            width: .5px;
+            background-color: $border-color;
+            display: inline-block;
+        }
+
+        td {
+            vertical-align: middle;
+            padding: 5px 10px;
+        }
+
+        td {
+            font-size: 14px;
+
+            .fas,
+            .glyphicon {
+                background: none;
+                color: $primary;
+            }
+        }
+
+        // .btn {
+        //     background: none;
+        //     border: none;
+
+        //     i {
+        //         background: none;
+        //         color: $primary;
+        //     }
+        // }
+    }
+
+    .card.border {
+        margin: 0;
+        border: none !important;
+        position: unset !important;
+
+        .card-footer {
+            display: none;
+        }
+
+        .kv-panel-after {
+            display: none;
+        }
+    }
+
+    .kv-panel-before {
+        & {
+            padding: unset;
+            border-bottom: unset;
+            // background-color: #F2F3F5;
+            margin-bottom: 10px;
+            padding: 0;
+            border-radius: 8px;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            -ms-border-radius: 8px;
+            -o-border-radius: 8px;
+        }
+
+        .btn-toolbar {
+            .btn-group {
+                .btn {
+                    margin: 8px;
+                    background-color: #f8f9fa;
+                    border-color: #ddd;
+                    color: #8b8b8b;
+
+                    &:hover,
+                    &:active {
+                        background-color: $secondary;
+                        border-color: $secondary;
+                        color: #fff;
+                    }
+                }
+            }
+
+            .dropdown-menu {
+                padding-top: 0 !important;
+                border-radius: 0 0 10px 10px;
+                box-shadow: 0 10px 20px rgba(244, 91, 15, .03);
+                padding: 52px 0 0;
+                background-color: #fff;
+
+            }
+
+            .kv-checkbox-list {
+
+                .custom-control-label {
+                    font-weight: normal !important;
+                    font-size: 12px;
+
+                    .kv-toggle-all {
+                        color: $secondary;
+                    }
+
+                    &::before {
+                        border-color: $secondary;
+                        background-color: $secondary;
+                    }
+                }
+            }
+        }
+
+        .btn-outline-secondary:not(:disabled):not(.disabled).active,
+        .btn-outline-secondary:not(:disabled):not(.disabled):active,
+        .show>.btn-outline-secondary.dropdown-toggle {
+            background-color: $secondary;
+            border-color: $secondary;
+            color: #fff;
+        }
+    }
+
+}
+
+
+.table {
+    .SortingColC {
+        text-align: center;
+
+        &:before {
+            content: "Sorting ";
+        }
+    }
+
+    td {
+        a {
+
+
+            &:not(.btn) {
+
+                .fa,
+                .fas,
+                .far {
+                    @extend .circle_icon;
+                    background-color: $dark !important;
+                    color: $white;
+
+                    text-align: center;
+                }
+
+                .fa-pencil-alt,
+                .fa-edit {
+                    background-color: $secondary !important;
+                }
+
+                .fa-eye {
+                    background-color: $primary !important;
+                }
+
+                .fa-trash,
+                .fa-trash-alt {
+                    background-color: $danger !important;
+                }
+
+            }
+
+            .fa,
+            .fas,
+            .far {
+                color: $white;
+            }
+
+            .fa-pencil-alt,
+            .fa-edit {
+                // background-color: $secondary;
+                color: $white;
+                // width: 32px;
+                // height: 32px;
+                // line-height: 32px;
+                // text-align: center;
+
+                &::before {
+                    content: "\ea2f";
+                    font-family: 'iconsax' !important;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-variant: normal;
+                    text-transform: none;
+                    line-height: 1;
+                }
+            }
+
+            .fa-eye {
+                color: $white;
+                text-align: center;
+
+                &::before {
+                    content: "\ea47";
+                    font-family: 'iconsax' !important;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-variant: normal;
+                    text-transform: none;
+                    line-height: 1;
+                }
+            }
+
+            .fa-trash,
+            .fa-trash-alt {
+                color: $white;
+                text-align: center;
+
+                &::before {
+                    content: "\ec44";
+                    font-family: 'iconsax' !important;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-variant: normal;
+                    text-transform: none;
+                    line-height: 1;
+                }
+            }
+        }
+    }
+}
+
+.gridview .kv-panel-before .btn-outline-secondary:not(:disabled):not(.disabled).active,
+.gridview .kv-panel-before .btn-outline-secondary:not(:disabled):not(.disabled):active,
+.gridview .kv-panel-before .show>.btn-outline-secondary.dropdown-toggle {
+    background-color: $light;
+    border-color: $light;
+    color: $body-color;
+}
+
+

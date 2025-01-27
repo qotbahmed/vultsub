@@ -1,0 +1,1 @@
+ sass --watch  --style=expanded  ./backend/web/css/style-ar.scss:./backend/web/css/style-ar.css

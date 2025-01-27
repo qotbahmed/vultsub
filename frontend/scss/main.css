@@ -1,0 +1,1405 @@
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #0E0849;
+  background-color: #fff;
+  font-size: 17px;
+  padding-top: 100px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Manrope", sans-serif;
+  font-weight: bolder;
+}
+
+a:hover, a:focus {
+  color: #0072CE;
+}
+
+.btn {
+  height: 50px;
+  min-width: 160px;
+  color: #0E0849;
+  font-family: "Manrope", sans-serif;
+  border-radius: 10px;
+  border: 1px solid #0E0849;
+  font-weight: 700;
+  line-height: 38px;
+}
+.btn.btn-primary {
+  background-color: #0072CE;
+  color: #fff;
+  border: 0;
+}
+.btn.btn-success {
+  background-color: #3BAE7C;
+  color: #fff;
+  border: 0;
+}
+.btn.btn-danger {
+  background-color: #D80027;
+  color: #fff;
+  border: 0;
+}
+.btn.btn-light {
+  background-color: #fff;
+  color: #0E0849;
+  border: 0;
+  box-shadow: 0 0 7px 0 rgba(8, 15, 87, 0.12);
+}
+.btn.btn-blueGrid {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#0072ce+0,00cbfe+100 */
+  background: #0072ce;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(45deg, #0072ce 0%, #00cbfe 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0072ce", endColorstr="#00cbfe", GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+  color: #fff;
+  border: 0;
+}
+
+.color-lightBlue {
+  color: #00C3FE;
+}
+
+header {
+  height: 100px;
+  border-bottom: 1px solid #E6E6EC;
+  background-color: #fff;
+}
+@media (max-width: 480px) {
+  header .mainLogo img {
+    width: 165px;
+  }
+}
+header .nav-pills .nav-item .nav-link {
+  color: #0E0849;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  border-bottom: 3px solid #fff;
+  border-radius: 0;
+  font-weight: 500;
+  font-family: "Manrope";
+  padding: 0 10px;
+  margin: 0 20px;
+}
+header .nav-pills .nav-item .nav-link.active, header .nav-pills .nav-item .nav-link:hover {
+  background-color: transparent;
+  color: #0072CE;
+  border-color: #0072CE;
+  font-weight: 900;
+}
+header .langSwitch .nav-link {
+  font-family: "Tajawal", sans-serif !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  min-width: auto;
+}
+header .langSwitch .nav-link img {
+  margin: 0 15px;
+}
+@media (max-width: 780px) {
+  header .langSwitch {
+    margin-left: auto;
+  }
+}
+header .langSwitch .dropdown-toggle::after {
+  display: none;
+}
+header .langSwitch .dropdown-menu {
+  width: 200px;
+  border-radius: 8px;
+  border: 1px solid #e7e7e7;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+header .langSwitch .dropdown-menu a {
+  display: flex;
+  padding: 15px 20px;
+}
+header .langSwitch .dropdown-menu a img {
+  margin-right: 15px;
+}
+@media (max-width: 780px) {
+  header .menuNav {
+    display: none;
+  }
+}
+header .menuToggle {
+  display: none;
+}
+@media (max-width: 780px) {
+  header .menuToggle {
+    display: flex;
+    align-items: center;
+  }
+}
+header #offcanvasNav {
+  display: block;
+}
+header #offcanvasNav .offcanvas-title {
+  padding: 20px;
+}
+header #offcanvasNav ul {
+  display: block;
+}
+header #offcanvasNav ul li {
+  display: block;
+}
+header #offcanvasNav ul li a {
+  padding: 20px 0;
+}
+
+.mainSlider .carousel-caption {
+  right: auto;
+  left: 8%;
+  color: #020202;
+  text-align: left;
+  top: 1.25rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+@media (max-width: 780px) {
+  .mainSlider .carousel-caption {
+    left: 10%;
+  }
+}
+.mainSlider .carousel-caption h3 {
+  font-weight: 900;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  font-weight: bolder;
+  margin-bottom: 65px;
+  font-size: 24px;
+}
+@media (max-width: 780px) {
+  .mainSlider .carousel-caption h3 {
+    margin-bottom: 25px;
+  }
+}
+.mainSlider .carousel-caption h5 {
+  font-weight: 900;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  font-weight: bolder;
+  font-size: 45px;
+  line-height: 55px;
+}
+@media (max-width: 780px) {
+  .mainSlider .carousel-caption h5 {
+    font-size: 20px;
+    line-height: 22px;
+  }
+}
+.mainSlider .carousel-caption h6 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  font-weight: 900;
+  margin-top: 20px;
+  font-size: 28px;
+  margin-bottom: 65px;
+}
+@media (max-width: 780px) {
+  .mainSlider .carousel-caption h6 {
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 25px;
+  }
+}
+.mainSlider .carousel-caption .btn {
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+.mainSlider .carousel-indicators {
+  right: 210px;
+  bottom: 120px;
+  left: auto;
+}
+@media (max-width: 780px) {
+  .mainSlider .carousel-indicators {
+    right: 65px;
+    bottom: 0;
+  }
+}
+@media (max-width: 480px) {
+  .mainSlider .carousel-indicators {
+    display: none;
+  }
+}
+.mainSlider .carousel-indicators [data-bs-target] {
+  width: 8px;
+  height: 8px;
+  background-color: transparent;
+  background-clip: padding-box;
+  border: 2px solid #0E0849 !important;
+  border-top: 2px solid #0E0849 !important;
+  border-bottom: 2px solid #0E0849 !important;
+  opacity: 0.5;
+  transition: opacity 0.6s ease;
+  border-radius: 10px;
+  position: relative;
+  margin: 0 6px;
+}
+.mainSlider .carousel-indicators [data-bs-target]:before {
+  content: " ";
+  background-color: #0E0849;
+  width: 3px;
+  height: 15px;
+  position: absolute;
+  bottom: 13px;
+  left: 2px;
+  border-radius: 2px;
+  transition: all 0.5s ease;
+}
+.mainSlider .carousel-indicators .active {
+  opacity: 1;
+  background: #00C3FE !important;
+  border: 2px solid #00C3FE !important;
+  border-top: 2px solid #00C3FE !important;
+  border-bottom: 2px solid #00C3FE !important;
+}
+.mainSlider .carousel-indicators .active:before {
+  background-color: #00C3FE;
+  height: 40px;
+}
+
+.mainTitle {
+  font-size: 35px;
+  text-align: center;
+  font-weight: 400;
+}
+
+.ProductsSection {
+  background-color: #F1F7F9;
+  padding-top: 90px;
+  padding-bottom: 450px;
+}
+@media (max-width: 780px) {
+  .ProductsSection {
+    padding-top: 80px;
+  }
+}
+@media (max-width: 480px) {
+  .ProductsSection {
+    padding-bottom: 400px;
+  }
+}
+.ProductsSection .product {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 0 40px 0 rgba(8, 15, 87, 0.08);
+}
+@media (max-width: 780px) {
+  .ProductsSection .product {
+    margin: 40px 0;
+  }
+}
+.ProductsSection .product.mobileProduct {
+  display: none;
+}
+@media (max-width: 780px) {
+  .ProductsSection .product.mobileProduct {
+    display: block;
+  }
+}
+.ProductsSection .product img {
+  width: auto;
+  margin: auto;
+}
+.ProductsSection .product .dryBadge {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  background-color: #FFE8FF;
+  border: 1px solid #FF00FF;
+  border-radius: 10px;
+  padding: 0 20px;
+}
+.ProductsSection .product .dryBadge img {
+  margin: 5px;
+  margin-right: 15px;
+  width: 35px;
+}
+.ProductsSection .product .productImg {
+  max-width: 100%;
+}
+.ProductsSection .product .healthy {
+  font-family: "Manrope", sans-serif;
+  font-size: 17px;
+  text-transform: uppercase;
+  font-weight: bolder;
+  margin-bottom: 30px;
+}
+.ProductsSection .product .productTitle {
+  font-family: "Manrope", sans-serif;
+  font-size: 35px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+@media (max-width: 780px) {
+  .ProductsSection .product .productTitle {
+    font-size: 28px;
+    line-height: 28px;
+  }
+}
+.ProductsSection .product .sizeBadge {
+  background: url(../img/sizeBadge.png) no-repeat;
+  display: inline-block;
+  font-size: 24px;
+  font-weight: 900;
+  font-family: "Manrope", sans-serif;
+  padding: 13px;
+  height: 48px;
+  min-width: 150px;
+}
+.ProductsSection .product .sizeBadge small {
+  font-size: 17px;
+  color: #fff;
+  font-weight: 100;
+}
+.ProductsSection .product .table {
+  margin-top: 40px;
+}
+.ProductsSection .product .table tr td {
+  font-size: 17px;
+  font-family: "Manrope", sans-serif;
+}
+.ProductsSection .poster-main {
+  position: relative;
+  margin: 100px auto;
+  max-width: 1300px;
+}
+@media (max-width: 780px) {
+  .ProductsSection .poster-main {
+    display: none;
+  }
+}
+.ProductsSection .poster-main .poster-list .poster-item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 0 40px 0 rgba(8, 15, 87, 0.08);
+}
+.ProductsSection .poster-main .poster-btn {
+  top: auto;
+  cursor: pointer;
+  bottom: -37px;
+  height: 80px !important;
+  width: 80px !important;
+  background-color: #fff !important;
+  border-radius: 80px;
+  right: 30% !important;
+  position: absolute;
+  text-align: center;
+  box-shadow: 0 0 40px 0 rgba(8, 15, 87, 0.08);
+}
+.ProductsSection .poster-main .poster-prev-btn {
+  left: 0;
+  background: url("../img/prev.png") no-repeat center center;
+  height: 60px !important;
+  width: 60px !important;
+  left: auto;
+  right: 37% !important;
+  bottom: -29px;
+}
+.ProductsSection .poster-main .poster-next-btn {
+  right: 0;
+  background-image: url("../img/next.png") !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #00C3FE !important;
+  height: 80px !important;
+  width: 80px !important;
+}
+
+.B2BSection {
+  background-image: url(../img/b2b.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: top;
+  background-size: cover;
+}
+.B2BSection .joinB2b {
+  background: #fff;
+  border-radius: 10px;
+  padding: 80px;
+  margin-top: -330px;
+  box-shadow: 0 0 40px 0 rgba(8, 15, 87, 0.08);
+}
+@media (max-width: 480px) {
+  .B2BSection .joinB2b {
+    padding: 30px;
+  }
+}
+.B2BSection .joinB2b h3 {
+  font-size: 45px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 45px;
+  margin-bottom: 25px;
+}
+@media (max-width: 780px) {
+  .B2BSection .joinB2b h3 {
+    font-size: 28px;
+    line-height: 28px;
+    margin-bottom: 10px;
+  }
+}
+.B2BSection .joinB2b h4 {
+  font-size: 28px;
+  font-family: "Manrope", sans-serif;
+  line-height: 28px;
+}
+@media (max-width: 780px) {
+  .B2BSection .joinB2b h4 {
+    font-size: 18px;
+    line-height: 20px;
+  }
+}
+.B2BSection .joinB2b .country {
+  border: 2px solid rgba(14, 8, 73, 0.4);
+  border-radius: 10px;
+  margin-top: 60px;
+  padding: 80px 60px;
+  background-image: url(../img/country1.png);
+  background-repeat: no-repeat;
+  height: 350px;
+  background-position: 32px 165%;
+}
+@media (max-width: 780px) {
+  .B2BSection .joinB2b .country {
+    padding: 30px;
+  }
+}
+.B2BSection .joinB2b .country.Egypt {
+  background-image: url(../img/country2.png);
+  background-position: 32px -62%;
+}
+.B2BSection .joinB2b .country h4 {
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+.B2BSection .joinB2b .country p {
+  font-size: 20px;
+  font-family: "Manrope", sans-serif;
+  line-height: 34px;
+  margin-bottom: 20px;
+  height: 68px;
+  overflow: hidden;
+}
+@media (max-width: 780px) {
+  .B2BSection .joinB2b .country p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+.B2BSection .expandB2b {
+  color: #fff;
+  padding: 100px 0;
+}
+@media (max-width: 780px) {
+  .B2BSection .expandB2b {
+    padding: 80px 0;
+  }
+}
+@media (max-width: 480px) {
+  .B2BSection .expandB2b {
+    padding: 35px 15px;
+  }
+}
+.B2BSection .expandB2b h3 {
+  font-size: 50px;
+  font-family: "Manrope", sans-serif;
+  line-height: 50px;
+  margin-bottom: 40px;
+}
+@media (max-width: 780px) {
+  .B2BSection .expandB2b h3 {
+    font-size: 28px;
+    line-height: 28px;
+    margin-bottom: 10px;
+  }
+}
+.B2BSection .expandB2b p {
+  font-size: 24px;
+  font-family: "Manrope", sans-serif;
+  line-height: 38px;
+}
+@media (max-width: 780px) {
+  .B2BSection .expandB2b p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+@media (max-width: 480px) {
+  .B2BSection .expandB2b p {
+    margin-bottom: 20px;
+  }
+}
+.B2BSection .expandB2b .statistics {
+  background-color: rgba(14, 8, 73, 0.23);
+  border-radius: 10px;
+}
+.B2BSection .expandB2b .statistics p {
+  font-size: 14px;
+  text-align: start;
+  padding: 20px;
+}
+@media (max-width: 780px) {
+  .B2BSection .expandB2b .statistics p {
+    font-size: 16px;
+    line-height: 24px;
+    padding: 10px 15px;
+  }
+}
+.B2BSection .expandB2b .statistics h3 {
+  font-size: 50px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 0;
+  line-height: 25px;
+}
+@media (max-width: 780px) {
+  .B2BSection .expandB2b .statistics h3 {
+    font-size: 30px;
+    line-height: 24px;
+  }
+}
+
+.ObjectivesSection {
+  padding: 90px 0;
+}
+@media (max-width: 780px) {
+  .ObjectivesSection {
+    padding: 80px 0;
+  }
+}
+.ObjectivesSection h3 {
+  font-size: 35px;
+  font-family: "Manrope", sans-serif;
+  margin-bottom: 25px;
+  line-height: 35px;
+  font-weight: 300;
+}
+@media (max-width: 780px) {
+  .ObjectivesSection h3 {
+    font-size: 25px;
+  }
+}
+.ObjectivesSection p {
+  font-size: 20px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 300;
+  line-height: 30px;
+  margin-bottom: 60px;
+  text-align: justify;
+}
+@media (max-width: 780px) {
+  .ObjectivesSection p {
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 480px) {
+  .ObjectivesSection img {
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 480px) {
+  .ObjectivesSection div.text-end,
+  .ObjectivesSection div.text-start {
+    text-align: center !important;
+  }
+}
+
+.ContactSection .contactDiv {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#0072ce+0,ffffff+100&0.05+0,0+100 */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0, 114, 206, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0d0072ce", endColorstr="#00ffffff", GradientType=0);
+  /* IE6-9 */
+  padding: 60px 170px;
+  border-radius: 30px;
+}
+@media (max-width: 780px) {
+  .ContactSection .contactDiv {
+    padding: 60px 40px;
+  }
+}
+.ContactSection .contactDiv h3 {
+  text-align: center;
+  font-size: 35px;
+  font-family: "Manrope", sans-serif;
+  margin-bottom: 15px;
+}
+@media (max-width: 480px) {
+  .ContactSection .contactDiv h3 {
+    line-height: 35px;
+  }
+}
+.ContactSection .contactDiv p {
+  text-align: center;
+  font-size: 17px;
+  font-family: "Manrope", sans-serif;
+  margin-bottom: 40px;
+}
+.ContactSection .contactDiv .contactForm {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 50px 95px;
+}
+@media (max-width: 480px) {
+  .ContactSection .contactDiv .contactForm {
+    padding: 20px;
+  }
+}
+.ContactSection .contactDiv .contactForm .form-label {
+  font-size: 17px;
+  font-family: "Manrope", sans-serif;
+  margin-bottom: 30px;
+  font-weight: 900;
+}
+.ContactSection .contactDiv .contactForm .form-control {
+  height: 56px;
+  border: 1px solid #D6E0E4;
+  border-radius: 8px;
+  background-color: #F5F8FA;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+.ContactSection .contactDiv .contactForm p {
+  font-size: 15px;
+  margin-bottom: 50px;
+  text-align: start;
+  line-height: 25px;
+}
+
+footer .topFooter {
+  background-color: #40D3FF;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 30px 0;
+}
+@media (max-width: 780px) {
+  footer .topFooter {
+    display: none;
+  }
+}
+footer .topFooter .footerNav {
+  display: flex;
+}
+footer .topFooter .footerNav ul {
+  display: inline-flex;
+  align-items: center;
+}
+footer .topFooter .footerNav ul li {
+  display: inline-block;
+}
+footer .topFooter .footerNav ul li a {
+  color: #fff;
+  font-size: 20px;
+  font-family: "Manrope", sans-serif;
+}
+footer .topFooter .footerNav .langSwitch {
+  display: flex;
+  color: #fff;
+  font-size: 20px;
+  font-family: "Tajawal", sans-serif !important;
+}
+footer .topFooter .footerNav .langSwitch img {
+  margin: 0 15px;
+}
+footer .botFooter {
+  background-color: #00C3FE;
+  color: #fff;
+  padding: 50px 0;
+  background-image: url(../img/footerBg.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+@media (max-width: 780px) {
+  footer .botFooter {
+    padding: 30px;
+  }
+}
+footer .botFooter h3 {
+  font-size: 45px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-bottom: 25px;
+  line-height: 45px;
+  font-weight: bolder;
+}
+footer .botFooter p {
+  font-size: 15px;
+  font-family: "Manrope", sans-serif;
+  margin-bottom: 20px;
+  line-height: 20px;
+  text-align: justify;
+}
+footer .botFooter a {
+  font-size: 17px;
+  font-family: "Manrope", sans-serif;
+  color: #fff;
+  font-weight: 900;
+}
+footer .botFooter ul li {
+  display: flex;
+  margin-bottom: 20px;
+  font-size: 17px;
+  font-family: "Manrope", sans-serif;
+  align-items: center;
+}
+footer .botFooter ul li strong {
+  font-weight: 900;
+}
+footer .botFooter ul li a {
+  font-weight: 400;
+}
+footer .botFooter ul.social {
+  margin-top: 35px;
+}
+footer .botFooter ul.social li {
+  display: inline-block;
+  float: left;
+}
+
+.ProductsPage .abouthead {
+  background-color: rgba(0, 194, 254, 0.13);
+  background-image: url(../img/aboutHeadBg.png);
+  background-repeat: no-repeat;
+  background-position: center 70%;
+  min-height: 80vh;
+  background-attachment: fixed;
+}
+.ProductsPage .abouthead .breadcrumbs {
+  margin-top: 40px;
+  list-style: none;
+}
+.ProductsPage .abouthead .breadcrumbs li {
+  display: inline-block;
+}
+.ProductsPage .abouthead .breadcrumbs li:last-child {
+  text-decoration: underline;
+}
+.ProductsPage .abouthead .breadcrumbs li a {
+  font-size: 17px;
+  font-family: "Manrope", sans-serif;
+  text-decoration: none;
+}
+.ProductsPage .abouthead .breadcrumbs li a:after {
+  content: "/";
+  margin: 0 10px;
+}
+.ProductsPage .abouthead h1 {
+  font-size: 50px;
+  line-height: 50px;
+  font-weight: 400;
+  margin-top: 100px;
+  margin-bottom: 20px;
+}
+.ProductsPage .abouthead p.subTitle {
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 200;
+}
+.ProductsPage .BroductsList {
+  margin-top: -300px;
+}
+.ProductsPage .BroductsList .badgeList {
+  margin-bottom: 30px;
+}
+.ProductsPage .BroductsList .badgeList li {
+  display: inline-block;
+}
+.ProductsPage .BroductsList .badgeList li a {
+  font-size: 17px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 900;
+  background-color: #fff;
+  border-radius: 50px;
+  border: 1px solid #BDE3F7;
+  padding: 15px 30px;
+}
+.ProductsPage .BroductsList .badgeList li a.active {
+  background-color: #0E0849;
+  color: #fff;
+}
+.ProductsPage .BroductsList .product {
+  margin-bottom: 90px;
+}
+.ProductsPage .BroductsList .product h3 {
+  font-size: 24px;
+  line-height: 24px;
+  margin-bottom: 30px;
+  font-weight: 400;
+}
+.ProductsPage .BroductsList .product .productSlider {
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid rgba(14, 8, 73, 0.4);
+  padding: 20px;
+  text-align: center;
+  padding-bottom: 160px;
+  position: relative;
+  height: 620px;
+}
+.ProductsPage .BroductsList .product .productSlider .productBadge {
+  position: absolute;
+  top: 50%;
+  z-index: 100000;
+  text-align: center;
+}
+.ProductsPage .BroductsList .product .productSlider .productBadge img {
+  margin: 0 auto 20px;
+}
+@media (max-width: 480px) {
+  .ProductsPage .BroductsList .product .productSlider .productBadge {
+    display: none;
+  }
+}
+.ProductsPage .BroductsList .product .productSlider .carousel {
+  width: 100%;
+}
+.ProductsPage .BroductsList .product .productSlider .carousel .carousel-item {
+  text-align: center;
+}
+.ProductsPage .BroductsList .product .productSlider .carousel .carousel-item img {
+  float: none;
+  margin: auto;
+}
+@media (max-width: 600px) {
+  .ProductsPage .BroductsList .product .productSlider .carousel .carousel-item img {
+    width: 100%;
+  }
+}
+.ProductsPage .BroductsList .product .productSlider .carousel-indicators {
+  bottom: -160px;
+}
+.ProductsPage .BroductsList .product .productSlider .carousel-indicators button {
+  width: 100px !important;
+  background-color: transparent;
+  width: auto;
+  height: 100px;
+}
+.ProductsPage .BroductsList .product .productSlider .carousel-indicators button.active {
+  border: 1px solid #00C3FE;
+  border-radius: 8px;
+}
+.ProductsPage .BroductsList .product .productDetails {
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid rgba(14, 8, 73, 0.4);
+  padding: 55px 70px;
+  position: relative;
+  height: 620px;
+}
+@media (max-width: 480px) {
+  .ProductsPage .BroductsList .product .productDetails {
+    padding: 55px 20px;
+  }
+}
+.ProductsPage .BroductsList .product .productDetails .newBadge {
+  position: absolute;
+  color: #fff;
+  background: url(../img/newBadge.png);
+  width: 84px;
+  height: 35px;
+  right: -10px;
+  padding: 3px 20px;
+}
+.ProductsPage .BroductsList .product .productDetails .healthy {
+  font-family: "Manrope", sans-serif;
+  font-size: 17px;
+  text-transform: uppercase;
+  font-weight: bolder;
+  margin-bottom: 30px;
+}
+.ProductsPage .BroductsList .product .productDetails .productTitle {
+  font-family: "Manrope", sans-serif;
+  font-size: 35px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  line-height: 35px;
+}
+.ProductsPage .BroductsList .product .productDetails .rating {
+  display: flex;
+}
+.ProductsPage .BroductsList .product .productDetails .rating .rating-input {
+  display: none;
+}
+.ProductsPage .BroductsList .product .productDetails .rating li {
+  display: inline-block;
+  color: #7c7c7c;
+}
+.ProductsPage .BroductsList .product .productDetails .rating li i {
+  color: #F3AC3D;
+}
+.ProductsPage .BroductsList .product .productDetails .sizeBadge {
+  background: url(../img/sizeBadge.png) no-repeat;
+  display: inline-block;
+  font-size: 24px;
+  font-weight: 900;
+  font-family: "Manrope", sans-serif;
+  padding: 13px;
+  height: 48px;
+  min-width: 150px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.ProductsPage .BroductsList .product .productDetails .sizeBadge small {
+  font-size: 17px;
+  color: #fff;
+  font-weight: 100;
+}
+.ProductsPage .BroductsList .product .productDetails .defination {
+  font-family: "Manrope", sans-serif;
+  margin-bottom: 50px;
+}
+.ProductsPage .BroductsList .product .productDetails .defination p {
+  margin-bottom: 10px;
+  line-height: 20px;
+}
+.ProductsPage .BroductsList .product .productDetails .btn {
+  border: 1px solid rgba(14, 8, 73, 0.12);
+  font-weight: 500;
+}
+
+.ContactUsPage .abouthead {
+  min-height: 50vh;
+}
+.ContactUsPage .abouthead .breadcrumbs {
+  margin-top: 40px;
+  list-style: none;
+}
+.ContactUsPage .abouthead .breadcrumbs li {
+  display: inline-block;
+}
+.ContactUsPage .abouthead .breadcrumbs li:last-child {
+  text-decoration: underline;
+}
+.ContactUsPage .abouthead .breadcrumbs li a {
+  font-size: 17px;
+  font-family: "Manrope", sans-serif;
+  text-decoration: none;
+}
+.ContactUsPage .abouthead .breadcrumbs li a:after {
+  content: "/";
+  margin: 0 10px;
+}
+.ContactUsPage .abouthead h1 {
+  font-size: 50px;
+  line-height: 50px;
+  font-weight: 400;
+  margin-top: 100px;
+  margin-bottom: 20px;
+}
+.ContactUsPage .abouthead p.subTitle {
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 200;
+  margin-top: 50px;
+  margin-bottom: 15px;
+}
+.ContactUsPage .mainContact {
+  padding: 60px 0 100px;
+  background-color: #F1F7F9;
+}
+.ContactUsPage .mainContact .contactblock {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-start;
+  min-height: 250px;
+}
+.ContactUsPage .mainContact .contactblock img {
+  margin-right: 20px;
+}
+.ContactUsPage .mainContact .contactblock h3 {
+  font-size: 24px;
+  margin-bottom: 30px;
+  margin-top: 15px;
+  font-weight: 500;
+}
+.ContactUsPage .mainContact .contactblock p {
+  font-size: 15px;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+.ContactUsPage .mainContact .contactblock .social li {
+  display: inline-block;
+}
+.ContactUsPage .mainContact .contactblock .social li a {
+  background-color: #0072CE;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  text-align: center;
+  color: #fff;
+  line-height: 30px;
+  font-size: 14px;
+}
+.ContactUsPage .mainContact .contactblock .contactInfo li {
+  display: flex;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.ContactUsPage .mainContact .contactblock .contactInfo li i {
+  color: #00C3FE;
+  margin-right: 10px;
+}
+.ContactUsPage .mainContact .contactDiv {
+  background-color: #fff;
+  padding: 60px 170px;
+  border-radius: 30px;
+  margin-top: 60px;
+}
+@media (max-width: 780px) {
+  .ContactUsPage .mainContact .contactDiv {
+    padding: 60px 40px;
+  }
+}
+.ContactUsPage .mainContact .contactDiv h3 {
+  text-align: center;
+  font-size: 35px;
+  font-family: "Manrope", sans-serif;
+  margin-bottom: 15px;
+}
+@media (max-width: 480px) {
+  .ContactUsPage .mainContact .contactDiv h3 {
+    line-height: 35px;
+  }
+}
+.ContactUsPage .mainContact .contactDiv p {
+  text-align: center;
+  font-size: 17px;
+  font-family: "Manrope", sans-serif;
+  margin-bottom: 40px;
+}
+.ContactUsPage .mainContact .contactDiv .contactForm {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 50px 95px;
+}
+@media (max-width: 480px) {
+  .ContactUsPage .mainContact .contactDiv .contactForm {
+    padding: 20px;
+  }
+}
+.ContactUsPage .mainContact .contactDiv .contactForm .form-label {
+  font-size: 17px;
+  font-family: "Manrope", sans-serif;
+  margin-bottom: 30px;
+  font-weight: 900;
+}
+.ContactUsPage .mainContact .contactDiv .contactForm .form-control {
+  height: 56px;
+  border: 1px solid #D6E0E4;
+  border-radius: 8px;
+  background-color: #F5F8FA;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+.ContactUsPage .mainContact .contactDiv .contactForm p {
+  font-size: 15px;
+  margin-bottom: 50px;
+  text-align: start;
+  line-height: 25px;
+}
+
+.AboutUsPage .abouthead {
+  background-image: url(../img/aboutBg.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 70vh;
+}
+.AboutUsPage .abouthead .breadcrumbs {
+  margin-top: 40px;
+  list-style: none;
+}
+.AboutUsPage .abouthead .breadcrumbs li {
+  display: inline-block;
+}
+.AboutUsPage .abouthead .breadcrumbs li:last-child {
+  text-decoration: underline;
+}
+.AboutUsPage .abouthead .breadcrumbs li a {
+  font-size: 17px;
+  font-family: "Manrope", sans-serif;
+  text-decoration: none;
+}
+.AboutUsPage .abouthead .breadcrumbs li a:after {
+  content: "/";
+  margin: 0 10px;
+}
+.AboutUsPage .abouthead .drylogo {
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+.AboutUsPage .abouthead .vissionDiv {
+  display: flex;
+}
+@media (max-width: 480px) {
+  .AboutUsPage .abouthead .vissionDiv {
+    flex-direction: column;
+  }
+}
+.AboutUsPage .abouthead .vissionDiv img {
+  margin-right: 185px;
+}
+@media (max-width: 768px) {
+  .AboutUsPage .abouthead .vissionDiv img {
+    margin-right: 45px;
+  }
+}
+@media (max-width: 480px) {
+  .AboutUsPage .abouthead .vissionDiv img {
+    width: 50%;
+    margin-bottom: 20px;
+  }
+}
+.AboutUsPage .abouthead .vissionDiv h3 {
+  font-size: 45px;
+  margin-bottom: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 900;
+  line-height: 1;
+}
+.AboutUsPage .abouthead .vissionDiv p {
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 100;
+  margin-bottom: 60px;
+  text-align: justify;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.AboutUsPage .objective {
+  padding: 130px 0;
+  background-color: #F1F7F9;
+  text-align: center;
+}
+.AboutUsPage .objective .objectivesDiv {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+@media (max-width: 768px) {
+  .AboutUsPage .objective .objectivesDiv {
+    flex-wrap: wrap;
+  }
+}
+.AboutUsPage .objective .objectivesDiv .object {
+  margin: 0 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.AboutUsPage .AboutDiv {
+  padding: 130px 0;
+  background-color: #fff;
+}
+.AboutUsPage .AboutDiv .mainTitle {
+  margin-bottom: 100px;
+}
+.AboutUsPage .AboutDiv p {
+  font-size: 17px;
+  line-height: 32px;
+  text-align: justify;
+  padding: 0 10px;
+}
+.AboutUsPage .AboutDiv.Mission h3 {
+  font-size: 45px;
+  margin-bottom: 40px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 900;
+  line-height: 1;
+}
+.AboutUsPage .AboutDiv.Mission p {
+  font-size: 20px;
+  line-height: 2;
+  font-weight: 500;
+  margin-bottom: 60px;
+}
+
+.invalid-feedback {
+  margin-bottom: 30px;
+}
+
+.alert {
+  display: flex;
+  align-items: center;
+  min-height: 80px;
+  font-size: 20px;
+}
+.alert.alert-success {
+  color: #212529;
+  background-color: #2fdf8f;
+  border-color: #2fdf8f;
+}
+.alert .close {
+  margin-right: auto;
+  background: transparent;
+  color: #fff;
+  font-size: 32px;
+}
+
+.theme-krajee-svg.rating-md .krajee-icon, .theme-krajee-svg.rating-md .krajee-icon-clear {
+  width: 1rem;
+  height: 1rem;
+}
+
+.joinB2bPage .abouthead h1 {
+  font-weight: 300;
+}
+@media (max-width: 480px) {
+  .joinB2bPage .abouthead h1 {
+    text-align: center;
+  }
+}
+.joinB2bPage .abouthead p {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 30px;
+}
+@media (max-width: 480px) {
+  .joinB2bPage .abouthead p {
+    text-align: justify;
+    -moz-text-align-last: center;
+         text-align-last: center;
+  }
+}
+.joinB2bPage .abouthead p.subTitle {
+  font-size: 28px;
+  font-weight: bold;
+  font-family: "Manrope", sans-serif;
+  line-height: 40px;
+  margin-bottom: 30px;
+}
+.joinB2bPage .badgeList li {
+  display: inline-block;
+}
+.joinB2bPage .badgeList li .form-check {
+  padding: 0;
+}
+.joinB2bPage .badgeList label {
+  font-size: 17px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 900;
+  background-color: #fff;
+  border-radius: 50px;
+  border: 1px solid #BDE3F7;
+  padding: 15px 30px;
+  cursor: pointer;
+}
+.joinB2bPage .badgeList .form-check-input[type=radio] {
+  display: none;
+}
+.joinB2bPage .badgeList .form-check-input:checked[type=radio] + label {
+  background-color: #0E0849;
+  color: #fff;
+}
+.joinB2bPage .contactDiv {
+  margin-top: 40px !important;
+  box-shadow: 0 0 10px 0 hsla(0, 0%, 0%, 0.05);
+  border-radius: 10px !important;
+}
+.joinB2bPage .abouthead {
+  margin-bottom: 160px;
+}
+@media (max-width: 780px) {
+  .joinB2bPage .abouthead img {
+    width: 100%;
+  }
+}
+
+:lang(ar) html, :lang(ar) body,
+:lang(ar) header .nav-pills .nav-item .nav-link,
+:lang(ar) h1, :lang(ar) h2, :lang(ar) h3, :lang(ar) h4, :lang(ar) h5, :lang(ar) h6, :lang(ar) p, :lang(ar) span, :lang(ar) a, :lang(ar) .btn, :lang(ar) input,
+:lang(ar) .ProductsSection .product .table tr td,
+:lang(ar) .ContactSection .contactDiv .contactForm .form-label,
+:lang(ar) footer .botFooter ul li,
+:lang(ar) .ContactUsPage .mainContact .contactDiv .contactForm .form-label,
+:lang(ar) .joinB2bPage .badgeList label {
+  font-family: "Tajawal", sans-serif !important;
+}
+:lang(ar) .mainSlider .carousel-caption {
+  text-align: left;
+  direction: ltr;
+}
+:lang(ar) .ProductsSection .poster-main .poster-btn {
+  left: 30% !important;
+  right: auto !important;
+  transform: rotate(180deg);
+}
+:lang(ar) .ProductsSection .poster-main .poster-prev-btn {
+  left: 37% !important;
+  right: auto !important;
+  transform: rotate(180deg);
+}
+:lang(ar) .ProductsSection .product .dryBadge {
+  right: 30px;
+  left: auto;
+}
+:lang(ar) header .langSwitch .dropdown-menu a img,
+:lang(ar) .ProductsSection .product .dryBadge img {
+  margin-left: 15px;
+  margin-right: 0;
+}
+:lang(ar) .ProductsSection .product .sizeBadge {
+  display: inline-flex;
+  background: url(../img/sizeBadge_ar.png) no-repeat;
+}
+:lang(ar) .ProductsSection .product .sizeBadge span {
+  margin-left: 10px;
+}
+:lang(ar) .ContactUsPage .mainContact .contactblock img {
+  margin-left: 20px;
+  margin-right: 0;
+}
+:lang(ar) .ContactUsPage .mainContact .contactblock .contactInfo li i {
+  margin-left: 10px;
+  margin-right: 0;
+}
+:lang(ar) .AboutUsPage .abouthead .vissionDiv img {
+  margin-left: 185px;
+  margin-right: 0;
+}
+:lang(ar) .ProductsPage .BroductsList .product .productDetails .newBadge {
+  background: url(../img/newBadge_ar.png);
+  right: auto;
+  left: -10px;
+}
+:lang(ar) .ProductsPage .BroductsList .product .productDetails .sizeBadge {
+  display: inline-flex;
+  background: url(../img/sizeBadge_ar.png) no-repeat;
+}
+:lang(ar) .ProductsPage .BroductsList .product .productDetails .sizeBadge span {
+  margin-left: 10px;
+}
+:lang(ar) .alert .close {
+  margin-right: 0;
+  margin-left: auto;
+}
+:lang(ar) footer .botFooter ul.social li {
+  display: inline-block;
+  float: right;
+}/*# sourceMappingURL=main.css.map */
