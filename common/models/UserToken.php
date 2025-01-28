@@ -146,7 +146,7 @@ class UserToken extends ActiveRecord
     {
         return random_int(10 ** (self::OTP_LENGTH - 1), (10 ** self::OTP_LENGTH) - 1);
     }
-}
+
 
     /**
      * @param int|null $duration
