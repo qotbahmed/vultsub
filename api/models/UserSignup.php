@@ -38,7 +38,7 @@ class UserSignup extends Model
             ['email', 'email'],
             ['mobile', 'safe'],
             [['email'], 'string', 'max' => 200],
-            [['fullname','last_name'], 'string', 'min' => 3, 'max' => 50],
+            [['fullname'], 'string', 'min' => 3, 'max' => 50],
             [
                 'email', 'unique', 'targetClass' => '\common\models\User',
             ],
