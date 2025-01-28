@@ -90,6 +90,7 @@ class UserSignup extends Model
 
                     $profile = new UserProfile();
                     $profile->firstname = $this->fullname;
+                    $profile->lastname = '';
                     $profile->locale = 'en-US';
 //                    if ($this->company_cr_file) {
 //                        $filename = ImageHelper::Base64FileUpload($this->company_cr_file, 'company_cr_file');
