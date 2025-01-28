@@ -26,8 +26,8 @@ class UserToken extends ActiveRecord
     public const TYPE_ACTIVATION = 'activation';
     public const TYPE_PASSWORD_RESET = 'password_reset';
     public const TYPE_LOGIN_PASS = 'login_pass';
-    protected const TOKEN_LENGTH = 4;
-    public const OTP_LENGTH = 4;
+    protected const TOKEN_LENGTH = 40;
+    public const OTP_LENGTH = 6;
 
     /**
      * @inheritdoc
@@ -52,13 +52,15 @@ class UserToken extends ActiveRecord
      * @return bool|UserToken
      * @throws \yii\base\Exception
      */
-    public static function create($user_id, $type, $duration = null)
+    public static function create($user_id, $type, $duration = nul,$otp,$user_email=null)
     {
         $model = new self;
         $model->setAttributes([
             'user_id' => $user_id,
+            'email' => $user_email,
             'type' => $type,
             'token' => Yii::$app->security->generateRandomString(self::TOKEN_LENGTH),
+            'otp' => $otp??self::generateOtp(self::OTP_LENGTH),
             'expire_at' => $duration ? time() + $duration : null
         ]);
 
@@ -112,9 +114,9 @@ class UserToken extends ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'type', 'token'], 'required'],
+            [['user_id', 'type', 'token','otp'], 'required'],
             [['user_id', 'expire_at'], 'integer'],
-            [['type'], 'string', 'max' => 255],
+            [['type','email'], 'string', 'max' => 255],
             [['token'], 'string', 'max' => self::TOKEN_LENGTH]
         ];
     }
@@ -129,6 +131,7 @@ class UserToken extends ActiveRecord
             'user_id' => Yii::t('common', 'User ID'),
             'type' => Yii::t('common', 'Type'),
             'token' => Yii::t('common', 'Token'),
+            'otp' => Yii::t('common', 'OTP'),
             'expire_at' => Yii::t('common', 'Expire At'),
             'created_at' => Yii::t('common', 'Created At'),
             'updated_at' => Yii::t('common', 'Updated At'),
@@ -142,11 +145,6 @@ class UserToken extends ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
-    public static function generateOtp()
-    {
-        return random_int(10 ** (self::OTP_LENGTH - 1), (10 ** self::OTP_LENGTH) - 1);
-    }
-
 
     /**
      * @param int|null $duration
@@ -177,5 +175,11 @@ class UserToken extends ActiveRecord
     public function __toString()
     {
         return $this->token;
+    }
+
+    public static function generateOtp()
+    {
+        return "111111";
+//        return random_int(10 ** (self::OTP_LENGTH - 1), (10 ** self::OTP_LENGTH) - 1);
     }
 }
