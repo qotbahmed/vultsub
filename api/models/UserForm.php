@@ -93,9 +93,7 @@ class UserForm extends Model
             $user->setPassword($this->new_password);
         }
 
-        $name = explode(' ', $this->fullname);
-        $profile->firstname = $name[0];
-        $profile->lastname = $name[1];
+        $profile->firstname =  $this->fullname;
         $profile->mobile = $this->mobile;
 
 

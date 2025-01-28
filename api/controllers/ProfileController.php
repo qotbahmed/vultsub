@@ -24,24 +24,6 @@ class ProfileController extends MyActiveController
         return ResponseHelper::sendSuccessResponse($user);
     }
 
-    public function actionChangeLocation()
-    {
-        $user = UserResource::findOne(\Yii::$app->user->identity->id);
-        $userProf = $user->userProfile;
-        $params = \Yii::$app->request->post();
-
-        if (isset($params['address']) && isset($params['lat']) && isset($params['lng'])) {
-            $userProf->address = $params['address'];
-            $userProf->lat = $params['lat'];
-            $userProf->lng = $params['lng'];
-
-            $userProf->save();
-
-            return ResponseHelper::sendSuccessResponse(['MESSAGE' => Yii::t('common', 'Location changed successfully')], 200);
-        } else {
-            return ResponseHelper::sendFailedResponse(['error' => Yii::t('common', 'Not available data')]);
-        }
-    }
 
     public function actionUpdate()
     {
@@ -85,7 +67,4 @@ class ProfileController extends MyActiveController
         }
     }
 
-    /**
-     * Create a new company profile.
-     */
 }
