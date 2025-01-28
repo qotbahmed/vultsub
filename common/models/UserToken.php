@@ -26,7 +26,7 @@ class UserToken extends ActiveRecord
     public const TYPE_ACTIVATION = 'activation';
     public const TYPE_PASSWORD_RESET = 'password_reset';
     public const TYPE_LOGIN_PASS = 'login_pass';
-    protected const TOKEN_LENGTH = 40;
+    protected const TOKEN_LENGTH = 4;
     public const OTP_LENGTH = 4;
 
     /**

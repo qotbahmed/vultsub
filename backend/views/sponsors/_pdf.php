@@ -1,0 +1,36 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\DetailView;
+use kartik\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $model common\models\Sponsors */
+
+$this->title = $model->title;
+$this->params['breadcrumbs'][] = ['label' => 'Sponsors', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="sponsors-view">
+
+    <div class="row">
+        <div class="col-sm-9">
+            <h2><?= 'Sponsors'.' '. Html::encode($this->title) ?></h2>
+        </div>
+    </div>
+
+    <div class="row">
+<?php 
+    $gridColumn = [
+        'id',
+        'title',
+        'path',
+        'base_url:url',
+    ];
+    echo DetailView::widget([
+        'model' => $model,
+        'attributes' => $gridColumn
+    ]); 
+?>
+    </div>
+</div>

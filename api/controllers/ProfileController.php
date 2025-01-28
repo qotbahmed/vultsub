@@ -3,7 +3,9 @@
 namespace api\controllers;
 
 use common\models\CompanyProfile;
+use common\models\PointsLogs;
 use common\models\User;
+use common\models\UserProfile;
 use Yii;
 use api\models\UserForm;
 use api\helpers\ImageHelper;
@@ -52,6 +54,39 @@ class ProfileController extends MyActiveController
             return ResponseHelper::sendSuccessResponse($user);
         } else {
             return ResponseHelper::sendFailedResponse($model->getFirstErrors() ?: ['error' => Yii::t('common', "Invalid access")]);
+        }
+    }
+    public function actionCheckPoint()
+    {
+        $user = UserProfile::findOne(['user_id'=>\Yii::$app->user->identity->id]);
+        $params = \Yii::$app->request->post();
+
+
+        if (isset($params['surah'], $params['ayah_num'], $params['page_num'])) {
+            $user->surah = $params['surah'];
+            $user->ayah_num = $params['ayah_num'];
+//            $user->points_num = $params['points_num'];
+            $user->page_num = $params['page_num'];
+
+            if ($user->save()) {
+                $log = new PointsLogs();
+                $log->user_id = $user->user_id;
+                $log->user_name = $user->firstname;
+                $log->user_mobile = $user->user->mobile;
+                $log->points_num += $params['points_num']??0;
+                $log->type = PointsLogs::TYPE_ADD;
+                $log->page_num = $params['page_num']??0;
+                $log->time =$params['time'];
+
+                if (!$log->save()) {
+                    return ResponseHelper::sendFailedResponse($user->getFirstErrors());
+                }
+                return ResponseHelper::sendSuccessResponse($user);
+            } else {
+                return ResponseHelper::sendFailedResponse($user->getFirstErrors());
+            }
+        } else {
+            return ResponseHelper::sendFailedResponse(['error' => Yii::t('common', "Missing required parameters")]);
         }
     }
 
