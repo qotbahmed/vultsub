@@ -30,6 +30,16 @@ class UserTokenQuery extends ActiveQuery
         return $this;
     }
 
+    public function byOtp($otp)
+    {
+        $this->andWhere(['otp' => $otp]);
+        return $this;
+    }
+    public function byEmail($email)
+    {
+        $this->andWhere(['email' => $email]);
+        return $this;
+    }
     /**
      * @param $token
      * @return $this
