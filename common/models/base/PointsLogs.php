@@ -55,11 +55,12 @@ class PointsLogs extends ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'points_num', 'page_num', 'time', 'created_by', 'updated_by'], 'integer'],
+            [['user_id', 'points_num',
+                'page_num', 'time', 'created_by', 'updated_by'], 'integer'],
             [['type'], 'string'],
-            [['user_name', 'user_mobile', 'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['lock'], 'default', 'value' => '0'],
-            [['lock'], 'mootensai\components\OptimisticLockValidator']
+            [['user_name', 'user_mobile',], 'string', 'max' => 255],
+            [['created_at', 'updated_at'], 'safe'],
+
         ];
     }
 
@@ -71,17 +72,6 @@ class PointsLogs extends ActiveRecord
         return 'points_logs';
     }
 
-    /**
-     *
-     * @return string
-     * overwrite function optimisticLock
-     * return string name of field are used to stored optimistic lock
-     *
-     */
-    public function optimisticLock()
-    {
-        return 'lock';
-    }
 
     /**
      * @inheritdoc
@@ -125,10 +115,6 @@ class PointsLogs extends ActiveRecord
                 'class' => BlameableBehavior::class,
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => 'updated_by',
-            ],
-            [
-                'class' => UUIDBehavior::class,
-                'column' => 'id',
             ],
         ];
     }

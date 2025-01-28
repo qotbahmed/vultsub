@@ -63,17 +63,17 @@ class ProfileController extends MyActiveController
 
 
         if (isset($params['surah'], $params['ayah_num'], $params['page_num'])) {
-            $user->surah = $params['surah'];
-            $user->ayah_num = $params['ayah_num'];
-//            $user->points_num = $params['points_num'];
-            $user->page_num = $params['page_num'];
+            $user->surah = $params['surah']??'';
+            $user->ayah_num = $params['ayah_num']??0;
+            $user->points_num += $params['points_num']??0;
+            $user->page_num = $params['page_num']??0;
 
             if ($user->save()) {
                 $log = new PointsLogs();
                 $log->user_id = $user->user_id;
                 $log->user_name = $user->firstname;
                 $log->user_mobile = $user->user->mobile;
-                $log->points_num += $params['points_num']??0;
+                $log->points_num = $params['points_num']??0;
                 $log->type = PointsLogs::TYPE_ADD;
                 $log->page_num = $params['page_num']??0;
                 $log->time =$params['time'];

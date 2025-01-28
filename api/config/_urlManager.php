@@ -46,17 +46,13 @@ return [
             [
                 'class' => 'yii\rest\UrlRule',
                 'controller' => 'profile',
-                'only' => ['index', 'update', 'complete-profile-data', 'change-password', 'options','current-subscriptions','previous-subscriptions'
-                ,'subscription-info','complete-company-profile'],
+                'only' => ['index', 'update', 'check-point', 'change-password', 'options',
+                ],
                 'extraPatterns' => [
                     'GET /' => 'index',
                     'PUT /' => 'update',
-                    'PUT complete-profile-data' => 'complete-profile-data',
                     'PUT change-password' => 'change-password',
-                    'GET current-subscriptions' => 'current-subscriptions',
-                    'GET previous-subscriptions' => 'previous-subscriptions',
-                    'GET subscription-info' => 'subscription-info',
-                    'POST complete-company-profile' => 'complete-company-profile',
+                    'PUT check-point' => 'check-point',
 
 
                 ],
@@ -66,11 +62,9 @@ return [
             [
                 'class' => 'yii\rest\UrlRule',
                 'controller' => 'lookups',
-                'only' => ['country','business-sectors','company-sizes'],
+                'only' => ['country','business-sectors','company-sizes','sponsors'],
                 'extraPatterns' => [
-                    'GET country' => 'country',
-                    'GET business-sectors' => 'business-sectors',
-                    'GET company-sizes' => 'company-sizes',
+                    'GET sponsors' => 'sponsors',
                 ], 'pluralize' => false,
             ],
 

@@ -46,9 +46,8 @@ class Sponsors extends ActiveRecord
     {
         return [
             [['title', 'path'], 'required'],
-            [['title', 'path', 'base_url', 'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['lock'], 'default', 'value' => '0'],
-            [['lock'], 'mootensai\components\OptimisticLockValidator']
+            [['title', 'path', 'base_url', ], 'string', 'max' => 255],
+           [['created_at', 'updated_at'], 'safe'],
         ];
     }
     
@@ -83,6 +82,12 @@ class Sponsors extends ActiveRecord
             'base_url' => 'Base Url',
         ];
     }
+    public function getImage($default = null)
+    {
+        return $this->avatar_path
+            ? Yii::getAlias($this->base_url .'/'. $this->path)
+            : $default;
+    }
 
 /**
      * @inheritdoc
@@ -102,10 +107,7 @@ class Sponsors extends ActiveRecord
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => 'updated_by',
             ],
-            [
-                'class' => UUIDBehavior::class,
-                'column' => 'id',
-            ],
+
         ];
     }
 
