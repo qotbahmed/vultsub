@@ -15,9 +15,8 @@ use api\helpers\ResponseHelper;
 class UserSignup extends Model
 {
     public $first_name;
-    public $account_type;
     public $last_name;
-//    public $fullname;
+    public $fullname;
     public $email;
     public $mobile;
     public $password;
@@ -34,13 +33,12 @@ class UserSignup extends Model
     public function rules()
     {
         return [
-            [['first_name','last_name', 'email', 'password','account_type'], 'required'],//'mobile', 'company_name', 'company_cr', 'company_cr_file'
-            [['first_name','last_name', 'email'], 'filter', 'filter' => 'trim'],
-            ['account_type', 'in', 'range' => ['company', 'contractor'], 'message' => 'Account type must be either "company" or "contractor".'],
+            [['fullname', 'email', 'password'], 'required'],//'mobile', 'company_name', 'company_cr', 'company_cr_file'
+            [['fullname', 'email'], 'filter', 'filter' => 'trim'],
             ['email', 'email'],
             ['mobile', 'safe'],
             [['email'], 'string', 'max' => 200],
-            [['first_name','last_name'], 'string', 'min' => 3, 'max' => 50],
+            [['fullname','last_name'], 'string', 'min' => 3, 'max' => 50],
             [
                 'email', 'unique', 'targetClass' => '\common\models\User',
             ],
@@ -59,7 +57,6 @@ class UserSignup extends Model
         return [
             'first_name' => Yii::t('common', 'First Name'),
             'last_name' => Yii::t('common', 'Last Name'),
-            'account_type' => Yii::t('common', 'Account Type'),
             'email' => Yii::t('common', 'Email'),
             'password' => Yii::t('common', 'Password'),
             'password_repeat' => Yii::t('common', 'Repeat Password'),
@@ -81,7 +78,6 @@ class UserSignup extends Model
             try {
                 $user = new User();
                 $user->username = $this->email;
-                $user->account_type = $this->account_type;
                 $user->email = $this->email;
                 $user->mobile = $this->mobile;
                 $user->setPassword($this->password);
@@ -93,8 +89,7 @@ class UserSignup extends Model
                     $auth->assign($role, $user->id);
 
                     $profile = new UserProfile();
-                    $profile->firstname = $this->first_name;
-                    $profile->lastname = $this->last_name;
+                    $profile->firstname = $this->fullname;
                     $profile->locale = 'en-US';
 //                    if ($this->company_cr_file) {
 //                        $filename = ImageHelper::Base64FileUpload($this->company_cr_file, 'company_cr_file');

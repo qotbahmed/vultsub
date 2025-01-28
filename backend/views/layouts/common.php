@@ -257,7 +257,7 @@ $logEntries[] = [
 
     <!-- footer -->
     <footer class="main-footer <?php echo $keyStorage->get('adminlte.footer-small-text') ? 'text-sm' : null ?>">
-        <strong>&copy; pos <?php echo date('Y') ?></strong>
+        <strong>&copy; Zakr <?php echo date('Y') ?></strong>
     </footer>
     <!-- /footer -->
 

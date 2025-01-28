@@ -330,7 +330,6 @@ CREATE TABLE `nationality` (
 BEGIN;
 COMMIT;
 
-
 -- ----------------------------
 -- Table structure for notifications
 -- ----------------------------

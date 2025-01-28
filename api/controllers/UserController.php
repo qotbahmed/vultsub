@@ -151,6 +151,7 @@ class UserController extends MyRestController
         if ($user) {
             $token = UserToken::findOne(['user_id' => $user->id, 'type' => UserToken::TYPE_ACTIVATION]);
             if ($token) {
+
                 $token->updateAttributes(['otp' => UserToken::generateOtp(UserToken::OTP_LENGTH),'expire_at' => time() + Time::SECONDS_IN_AN_HOUR]);
             }else{
                 $token = UserToken::create($user->id, UserToken::TYPE_ACTIVATION, Time::SECONDS_IN_AN_HOUR);

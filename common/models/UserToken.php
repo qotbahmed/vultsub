@@ -27,6 +27,7 @@ class UserToken extends ActiveRecord
     public const TYPE_PASSWORD_RESET = 'password_reset';
     public const TYPE_LOGIN_PASS = 'login_pass';
     protected const TOKEN_LENGTH = 40;
+    protected const OTP_LENGTH = 4;
 
     /**
      * @inheritdoc
@@ -141,6 +142,11 @@ class UserToken extends ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
+    public static function generateOtp()
+    {
+        return random_int(10 ** (self::OTP_LENGTH - 1), (10 ** self::OTP_LENGTH) - 1);
+    }
+}
 
     /**
      * @param int|null $duration

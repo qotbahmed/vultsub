@@ -73,50 +73,6 @@ class ProfileController extends MyActiveController
         }
     }
 
-    public function actionCompleteProfileData()
-    {
-        $params = \Yii::$app->request->post();
-        $model = CompleteProfileData::find()->where(['user_id' => \Yii::$app->user->identity->id])->one();
-        if ($model->load(['CompleteProfileData' => $params]) && $model->save()) {
-            $name = explode(' ', $model->name);
-            $model->firstname = $name[0];
-            $model->lastname = $name[1];
-            $model->save();
-            $user = UserResource::findOne(\Yii::$app->user->identity->id);
-
-            if ($model->binary_picture) {
-                try {
-                    $filename = ImageHelper::Base64Image($model->binary_picture);
-                    $model->avatar_base_url = \Yii::getAlias('@storageUrl') . '/source/';
-                    $model->avatar_path = 'profile/' . $filename;
-                } catch (InvalidParamException $e) {
-                    return ResponseHelper::sendFailedResponse(['binary_picture' => $e->getMessage()]);
-                }
-
-                if (!$model->save(false)) {
-                    return ResponseHelper::sendFailedResponse($model->getFirstErrors());
-                }
-            }
-
-            if ($model->binary_cv) {
-                try {
-                    $filename = ImageHelper::Base64IPdfConverter($model->binary_cv, 'cv');
-                    $model->cv_base_url = \Yii::getAlias('@storageUrl') . '/source/';
-                    $model->cv_path = 'cv/' . $filename;
-                } catch (InvalidParamException $e) {
-                    return ResponseHelper::sendFailedResponse(['binary_cv' => $e->getMessage()]);
-                }
-
-                if (!$model->save(false)) {
-                    return ResponseHelper::sendFailedResponse($model->getFirstErrors());
-                }
-            }
-
-            return ResponseHelper::sendSuccessResponse($user);
-        } else {
-            return ResponseHelper::sendFailedResponse($model->getFirstErrors());
-        }
-    }
 
     public function actionChangePassword()
     {
@@ -132,24 +88,4 @@ class ProfileController extends MyActiveController
     /**
      * Create a new company profile.
      */
-    public function actionCompleteCompanyProfile()
-    {
-        $user = UserResource::findOne(\Yii::$app->user->identity->id);
-        if (!$user) {
-            return ResponseHelper::sendFailedResponse(Yii::t('common', "Invalid access"), 403);
-        }
-
-        $model = new CompanyProfile();
-        $model->user_id = $user->id;
-        $model->load(Yii::$app->request->post(), '');
-        if ($model->validate() && $model->save()) {
-
-            $user->complete_company_info=1;
-            $user->save();
-
-            return ResponseHelper::sendSuccessResponse(Yii::t('common', "Company profile created successfully."));
-        }
-
-        return ResponseHelper::sendFailedResponse($model->getFirstErrors());
-    }
 }
