@@ -12,6 +12,8 @@ class m250128_122445_add_email_user_token_table extends Migration
      */
     public function safeUp()
     {
+        $this->addColumn('user_token', 'otp', $this->string(20)->after('token'));
+
         $this->execute("
         
         ALTER TABLE user_token
