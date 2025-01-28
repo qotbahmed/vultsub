@@ -110,7 +110,7 @@ class UserController extends MyRestController
         }
         $otpObj = UserToken::find()
             ->byType(UserToken::TYPE_ACTIVATION)
-            ->byToken($otp)
+            ->byOtp($otp)
             ->byEmail($email)
             ->notExpired()
             ->one();
