@@ -179,7 +179,7 @@ class UserToken extends ActiveRecord
 
     public static function generateOtp()
     {
-        return "111111";
+        return "1111";
 //        return random_int(10 ** (self::OTP_LENGTH - 1), (10 ** self::OTP_LENGTH) - 1);
     }
 }

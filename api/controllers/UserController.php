@@ -61,9 +61,9 @@ class UserController extends MyRestController
             $user = UserResource::find()->where(['id' => $registerUser['user']->id])->one();
             if(YII_ENV_DEV){
                 $email = env('ROBOT_EMAIL');
-                $token = UserToken::create($user->id, UserToken::TYPE_ACTIVATION, Time::SECONDS_IN_AN_HOUR,'111111',$model->email);
+                $token = UserToken::create($user->id, UserToken::TYPE_ACTIVATION, Time::SECONDS_IN_AN_HOUR,'1111',$model->email);
             }else{
-                $token = UserToken::create($user->id, UserToken::TYPE_ACTIVATION, Time::SECONDS_IN_AN_HOUR,null,$model->email);
+                $token = UserToken::create($user->id, UserToken::TYPE_ACTIVATION, Time::SECONDS_IN_AN_HOUR,'1111',$model->email);
                 $email= $user->email ;
                 $token = $token->token;
                 Yii::$app->commandBus->handle(new SendEmailCommand([
