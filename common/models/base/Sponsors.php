@@ -2,6 +2,7 @@
 
 namespace common\models\base;
 
+use trntv\filekit\behaviors\UploadBehavior;
 use Yii;
 use yii\db\ActiveRecord;
 use common\models\SponsorsQuery;
@@ -23,6 +24,7 @@ use mootensai\behaviors\UUIDBehavior;
  */
 class Sponsors extends ActiveRecord
 {
+    public $image;
 
     use RelationTrait;
 
@@ -45,7 +47,9 @@ class Sponsors extends ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'path'], 'required'],
+            [['title'], 'required'],
+            [['image'], 'safe'],
+
             [['title', 'path', 'base_url', ], 'string', 'max' => 255],
            [['created_at', 'updated_at'], 'safe'],
         ];
@@ -76,15 +80,15 @@ class Sponsors extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'title' => 'Title',
-            'path' => 'Path',
-            'base_url' => 'Base Url',
+            'id' => Yii::t('backend','ID'),
+            'title' =>  Yii::t('backend','Title'),
+            'path' => Yii::t('backend', 'Path'),
+            'base_url' => Yii::t('backend', 'Base Url'),
         ];
     }
     public function getImage($default = null)
     {
-        return $this->avatar_path
+        return $this->path
             ? Yii::getAlias($this->base_url .'/'. $this->path)
             : $default;
     }
@@ -102,10 +106,12 @@ class Sponsors extends ActiveRecord
                 'updatedAtAttribute' => 'updated_at',
                 'value' => new Expression('NOW()'),
             ],
-            [
-                'class' => BlameableBehavior::class,
-                'createdByAttribute' => 'created_by',
-                'updatedByAttribute' => 'updated_by',
+
+            'image' => [
+                'class' => UploadBehavior::class,
+                'attribute' => 'image',
+                'pathAttribute' => 'path',
+                'baseUrlAttribute' => 'base_url',
             ],
 
         ];

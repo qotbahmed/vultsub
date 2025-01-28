@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\search\\SponsorsSearch */
+/* @var $model common\models\search\SponsorsSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 <div class="w-100 form-academy-sport-search">

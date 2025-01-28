@@ -493,6 +493,7 @@ return [
     'job' => 'الوظيفة',
     'Location' => 'الموقع',
     'Create  Announcement' => 'إضافة إعلان',
+    'Image max 1 mega' => 'يُفضـل أن لا تتعدى الصورة 1 ميجا ',
 
 
 ];

@@ -2,9 +2,12 @@
 
 namespace backend\controllers;
 
+use Intervention\Image\ImageManagerStatic;
+use trntv\filekit\actions\DeleteAction;
+use trntv\filekit\actions\UploadAction;
 use Yii;
 use common\models\Sponsors;
-use common\models\search\\SponsorsSearch;
+use common\models\search\SponsorsSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -21,6 +24,27 @@ class SponsorsController extends BackendController
                 'actions' => [
                     'delete' => ['post'],
                 ],
+            ],
+        ];
+    }
+
+    public function actions()
+    {
+        return [
+
+            'image-upload' => [
+                'class' => UploadAction::class,
+                // 'class' => MyUploadAction::class,
+                'deleteRoute' => 'image-delete',
+                'on afterSave' => function ($event) {
+                    /* @var $file \League\Flysystem\File */
+                    $file = $event->file;
+                    $img = ImageManagerStatic::make($file->read())->resize(1000, 600);
+                    $file->put($img->encode());
+                },
+            ],
+            'image-delete' => [
+                'class' => DeleteAction::class,
             ],
         ];
     }

@@ -25,57 +25,75 @@ return
                     'visible' => (Yii::$app->user->can('user')),
                 ],
             ],
-        ],
-
-
-
-        [
-            'label' => Yii::t('common', 'System Management'),
+        ],     [
+            'label' => Yii::t('backend', 'Sponsors'),
             'url' => '#',
-            'icon' => FAS::icon('cogs', ['class' => ['nav-icon']]), // Change icon as needed
+            'icon' => FAS::icon('users', ['class' => ['nav-icon']]),
             'options' => ['class' => 'nav-item has-treeview'],
-            'active' => (Yii::$app->controller->module->id === 'locations' ||
-                in_array(Yii::$app->controller->id, ['cities', 'districts', 'service', 'service-type', 'product', 'product-category'])),
+            'active' => (Yii::$app->controller->id === 'sponsors'),
+
+            'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('user_sponsors')),
+
             'items' => [
-
                 [
-                    'label' => Yii::t('common', 'Roles'),
-                    'url' => ['/user-custom-role/index'],
-                    'icon' => FAR::icon('user', ['class' => ['nav-icon']]),
-                    'active' => Yii::$app->controller->id === 'user-custom-role',
-                    'visible' => (Yii::$app->user->can('administrator')),
+                    'label' => Yii::t('backend', 'Sponsors List'),
+                    'url' => ['/sponsors'],
+                    'icon' => FAS::icon('thumbtack', ['class' => ['nav-icon']]),
+                    'active' => (Yii::$app->controller->id === 'sponsors'),
+//                    'visible' => (Yii::$app->user->can('user')),
                 ],
-
-
-                [
-                    'label' => Yii::t('common', 'Locations'),
-                    'url' => '#',
-                    'icon' => FAS::icon('map-marker-alt', ['class' => ['nav-icon']]),
-                    'options' => ['class' => 'nav-item has-treeview'],
-                    'active' => (Yii::$app->controller->module->id === 'locations' &&
-                        in_array(Yii::$app->controller->id, ['cities', 'districts'])),
-                    'items' => [
-                        [
-                            'label' => Yii::t('common', 'Cities'),
-                            'url' => ['cities/index'],
-                            'active' => (Yii::$app->controller->id === 'cities' && Yii::$app->controller->action->id === 'index'),
-                            'icon' => FAS::icon('city', ['class' => ['nav-icon']]),
-                        ],
-                        [
-                            'label' => Yii::t('common', 'Districts'),
-                            'url' => ['districts/index'],
-                            'active' => (Yii::$app->controller->id === 'districts' && Yii::$app->controller->action->id === 'index'),
-                            'icon' => FAS::icon('home', ['class' => ['nav-icon']]),
-                        ],
-                    ]
-                ],
-
-
-
-
-
             ],
         ],
+
+
+
+//        [
+//            'label' => Yii::t('common', 'System Management'),
+//            'url' => '#',
+//            'icon' => FAS::icon('cogs', ['class' => ['nav-icon']]), // Change icon as needed
+//            'options' => ['class' => 'nav-item has-treeview'],
+//            'active' => (Yii::$app->controller->module->id === 'locations' ||
+//                in_array(Yii::$app->controller->id, ['cities', 'districts', 'service', 'service-type', 'product', 'product-category'])),
+//            'items' => [
+//
+//                [
+//                    'label' => Yii::t('common', 'Roles'),
+//                    'url' => ['/user-custom-role/index'],
+//                    'icon' => FAR::icon('user', ['class' => ['nav-icon']]),
+//                    'active' => Yii::$app->controller->id === 'user-custom-role',
+//                    'visible' => (Yii::$app->user->can('administrator')),
+//                ],
+//
+//
+//                [
+//                    'label' => Yii::t('common', 'Locations'),
+//                    'url' => '#',
+//                    'icon' => FAS::icon('map-marker-alt', ['class' => ['nav-icon']]),
+//                    'options' => ['class' => 'nav-item has-treeview'],
+//                    'active' => (Yii::$app->controller->module->id === 'locations' &&
+//                        in_array(Yii::$app->controller->id, ['cities', 'districts'])),
+//                    'items' => [
+//                        [
+//                            'label' => Yii::t('common', 'Cities'),
+//                            'url' => ['cities/index'],
+//                            'active' => (Yii::$app->controller->id === 'cities' && Yii::$app->controller->action->id === 'index'),
+//                            'icon' => FAS::icon('city', ['class' => ['nav-icon']]),
+//                        ],
+//                        [
+//                            'label' => Yii::t('common', 'Districts'),
+//                            'url' => ['districts/index'],
+//                            'active' => (Yii::$app->controller->id === 'districts' && Yii::$app->controller->action->id === 'index'),
+//                            'icon' => FAS::icon('home', ['class' => ['nav-icon']]),
+//                        ],
+//                    ]
+//                ],
+//
+//
+//
+//
+//
+//            ],
+//        ],
 
         [
             'label' => Yii::t('backend', 'Website Content'),

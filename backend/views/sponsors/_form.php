@@ -1,7 +1,9 @@
 <?php
 
+use trntv\filekit\widget\Upload;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\web\JsExpression;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -41,15 +43,23 @@ use yii\widgets\ActiveForm;
     <div class="card">
         <div class="card-body">
         <div class="row">
-    <?= $form->errorSummary($model); ?>
+            <?= $form->errorSummary($model); ?>
 
- <div class="col-md-4">   <?= $form->field($model, 'id')->textInput(['placeholder' => Yii::t('app', 'Id')]) ?> </div>
+            <div class="col-md-12 text-center">
+                <?= $form->field($model, 'image')->widget(
+                    Upload::class,
+                    [
+                        'url' => ['image-upload'],
+                        'acceptFileTypes' => new JsExpression('/(\.|\/)(png|jpeg|jpg)$/i'),
+                        'options' => ['class' => 'justify-content-center']
+                    ]
+                )->hint(Yii::t('common', 'Image max 1 mega'))->label(Yii::t('backend', 'Image'), [
+                    'class' => 'text-center w-100'
+                ]); ?>
+            </div>
+ <div class="col-md-4">   <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => Yii::t('backend', 'Title')]) ?> </div>
 
- <div class="col-md-4">   <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Title')]) ?> </div>
 
- <div class="col-md-4">   <?= $form->field($model, 'path')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Path')]) ?> </div>
-
- <div class="col-md-4">   <?= $form->field($model, 'base_url')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Base Url')]) ?> </div>
 
 
 
@@ -59,7 +69,7 @@ use yii\widgets\ActiveForm;
         </div>
 
         <div class="card-footer">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('common', 'Create') :  Yii::t('common', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
          </div>
     </div>
 
