@@ -2,7 +2,6 @@
 
 namespace api\controllers;
 
-use common\models\CompanyProfile;
 use common\models\PointsLogs;
 use common\models\User;
 use common\models\UserProfile;
@@ -13,7 +12,6 @@ use api\models\ChangePassword;
 use api\helpers\ResponseHelper;
 use api\resources\UserResource;
 use yii\base\InvalidParamException;
-use common\models\CompleteProfileData;
 
 class ProfileController extends MyActiveController
 {
@@ -81,7 +79,7 @@ class ProfileController extends MyActiveController
                 if (!$log->save()) {
                     return ResponseHelper::sendFailedResponse($log->getFirstErrors());
                 }
-                return ResponseHelper::sendSuccessResponse($user);
+                return ResponseHelper::sendSuccessResponse(Yii::t('common', "Updated Successfully."));
             } else {
                 return ResponseHelper::sendFailedResponse($user->getFirstErrors());
             }

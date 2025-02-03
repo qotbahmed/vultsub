@@ -661,7 +661,7 @@ return [
     'Sponsors' => 'الرعاة',
     'Sponsors List' => 'قائمة الرعاة',
     'Create Sponsors'=>'اضافة الرعاة',
-    ''=>'',
+    'Updated Successfully.'=>'تم التحديث بنجاح.',
     ''=>'',
     ''=>'',
     ''=>'',
