@@ -96,8 +96,7 @@ class UserProfile extends ActiveRecord
             ['locale', 'default', 'value' => Yii::$app->language],
             [['new_phone', 'age', 'hour_rate'], 'number'],
             [['dob'], 'date', 'format' => 'php:Y-m-d'], // Add dob
-            [['picture', 'avatar_path', 'avatar_base_url', 'national_id_path', 'national_id_base_url',
-                'permit_path', 'permit_base_url', 'to_days', 'location_id', 'address', 'lat', 'lng', 'days','surah','time','points_num'], 'safe'],
+            [['picture', 'avatar_path', 'avatar_base_url', 'national_id_path', 'national_id_base_url', 'permit_path', 'permit_base_url', 'to_days', 'location_id', 'address', 'lat', 'lng', 'days','surah'], 'safe'],
        
          [['identification_number'], 'integer'],
          
