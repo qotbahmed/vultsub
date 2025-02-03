@@ -79,11 +79,11 @@ class ProfileController extends MyActiveController
                 $log->time =$params['time'];
 
                 if (!$log->save()) {
-                    return ResponseHelper::sendFailedResponse($user->getFirstErrors());
+                    return ResponseHelper::sendFailedResponse($log->getFirstErrors());
                 }
                 return ResponseHelper::sendSuccessResponse($user);
             } else {
-                return ResponseHelper::sendFailedResponse($user->getFirstErrors());
+                return ResponseHelper::sendFailedResponse($user->errors);
             }
         } else {
             return ResponseHelper::sendFailedResponse(['error' => Yii::t('common', "Missing required parameters")]);
