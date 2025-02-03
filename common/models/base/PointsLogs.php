@@ -57,7 +57,7 @@ class PointsLogs extends ActiveRecord
         return [
             [['user_id', 'points_num',
                 'page_num', 'time', 'created_by', 'updated_by'], 'integer'],
-            [['type'], 'string'],
+            [['type'], 'integer'],
             [['user_name', 'user_mobile',], 'string', 'max' => 255],
             [['created_at', 'updated_at'], 'safe'],
 
