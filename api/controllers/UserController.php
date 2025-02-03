@@ -15,7 +15,7 @@ use api\resources\UserResource;
 use api\controllers\MyRestController;
 use common\commands\SendEmailCommand;
 
-class UserController extends MyRestController
+class UserController extends MyRestUnAuthController
 {
     public $prefix = '966';
 
