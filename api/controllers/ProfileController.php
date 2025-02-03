@@ -83,7 +83,7 @@ class ProfileController extends MyActiveController
                 }
                 return ResponseHelper::sendSuccessResponse($user);
             } else {
-                return ResponseHelper::sendFailedResponse($user->errors);
+                return ResponseHelper::sendFailedResponse($user->getFirstErrors());
             }
         } else {
             return ResponseHelper::sendFailedResponse(['error' => Yii::t('common', "Missing required parameters")]);
