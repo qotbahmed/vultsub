@@ -73,7 +73,7 @@ class ProfileController extends MyActiveController
                 $log->user_mobile = $user->user->mobile;
                 $log->points_num = $params['points_num']??0;
                 $log->type = PointsLogs::TYPE_ADD;
-                $log->page_num = $params['page_num']??0;
+                $log->page_num = $params['page_count']??0;
                 $log->time =$params['time'];
 
                 if (!$log->save()) {
