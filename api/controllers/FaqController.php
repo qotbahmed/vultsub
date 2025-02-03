@@ -6,7 +6,7 @@ use common\models\Faq;
 use api\resources\FaqResource;
 use api\helpers\ResponseHelper;
 
-class FaqController extends RestController
+class FaqController extends MyRestUnAuthController
 {
     public $modelClass = Faq::class;
 

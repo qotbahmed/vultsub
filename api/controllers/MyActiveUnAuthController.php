@@ -9,6 +9,7 @@
 
 namespace api\controllers;
 
+use api\helpers\ApiHelper;
 use yii\data\ActiveDataProvider;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBearerAuth;
@@ -24,17 +25,7 @@ class MyActiveUnAuthController extends Controller
 
     public static function allowedDomains()
     {
-        return [
-          //  '*',
-            'http://127.0.0.1:3000',
-            'http://localhost:3000',
-            'http://localhost',
-            'http://joyjoin.tonesapps.com',
-            'https://joyjoin.tonesapps.com'
-
-
-
-        ];
+        return ApiHelper::allowedDomains();
     }
 
     public function actions()

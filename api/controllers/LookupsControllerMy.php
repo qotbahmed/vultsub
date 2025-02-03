@@ -9,7 +9,7 @@ use Yii;
 use api\helpers\ResponseHelper;
 use api\resources\CountryResource;
 
-class LookupsController extends RestController
+class LookupsControllerMy extends MyRestUnAuthController
 {
 
 

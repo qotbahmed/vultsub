@@ -8,7 +8,7 @@ use api\resources\SettingsResource;
 use common\models\Page;
 use Yii;
 
-class ContentController extends RestController
+class ContentControllerMy extends MyRestUnAuthController
 {
     public function beforeAction($action)
     {
