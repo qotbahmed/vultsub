@@ -194,7 +194,7 @@ class UserController extends MyRestUnAuthController
             if ($token) {
                 $token->updateAttributes(['otp' => UserToken::generateOtp(UserToken::OTP_LENGTH),'expire_at' => time() + Time::SECONDS_IN_AN_HOUR]);
             }else{
-                $token = UserToken::create($user->id, UserToken::TYPE_PASSWORD_RESET, Time::SECONDS_IN_AN_HOUR);
+                $token = UserToken::create($user->id, UserToken::TYPE_ACTIVATION, Time::SECONDS_IN_AN_HOUR,'1111',$model->email);
             }
 
             if ($user->save()) {
