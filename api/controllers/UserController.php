@@ -242,7 +242,7 @@ class UserController extends MyRestUnAuthController
             ->one();
 
         if ($otpObj) {
-            return ResponseHelper::sendSuccessResponse(Yii::t('common', 'Token is valid.'));
+            return ResponseHelper::sendSuccessResponse(Yii::t('common', 'OTP is valid.'));
         } else {
             return ResponseHelper::sendFailedResponse(['token' => Yii::t('common', 'Token not valid.')]);
         }
