@@ -494,6 +494,7 @@ return [
     'Location' => 'الموقع',
     'Create  Announcement' => 'إضافة إعلان',
     'Image max 1 mega' => 'يُفضـل أن لا تتعدى الصورة 1 ميجا ',
+    'Your account is not active. Please activate your account.' => 'حسابك غير نشط. الرجاء تفعيل حسابك.',
 
 
 ];
