@@ -32,7 +32,7 @@ class UserController extends MyRestUnAuthController
             if (!$user) {
                 return ResponseHelper::sendFailedResponse(['identity' => Yii::t('common', 'Please check your data and validate your email.')], 400);
             }
-            if ($user->status === User::STATUS_ACTIVE) {
+            if ($user->status !== User::STATUS_ACTIVE) {
                 return ResponseHelper::sendFailedResponse(
                     ['identity' => Yii::t('common', 'Your account is not active. Please activate your account.')],
                     403
