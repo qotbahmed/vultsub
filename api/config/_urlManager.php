@@ -103,6 +103,13 @@ return [
                 ],
                 'pluralize' => false,
             ],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'content'
+                , 'only' => ['terms-conditions']
+                , 'extraPatterns' => [
+                'GET terms-conditions' => 'terms-conditions',
+            ]
+                , 'pluralize' => false,
+            ],
 
 //            [
 //                'class' => 'yii\rest\UrlRule',
