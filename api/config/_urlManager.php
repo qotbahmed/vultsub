@@ -57,6 +57,15 @@ return [
 
                 ],
                 'pluralize' => false,
+            ],    [
+                'class' => 'yii\rest\UrlRule',
+                'controller' => 'points-logs',
+                'only' => ['index', 'options',
+                ],
+                'extraPatterns' => [
+                    'GET /' => 'index',
+                ],
+                'pluralize' => false,
             ],
 
             [
