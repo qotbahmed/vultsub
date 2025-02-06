@@ -32,6 +32,10 @@ use yii\db\Expression;
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_by
+ * @property integer $points_per_second
+ * @property integer $daily_points
+ * @property integer $reading_points_delay
+ * @property integer $max_daily_points_per_user
  * @property integer $updated_by
  * @property double $distance_range
  * @property double $min_charge_nanny
@@ -62,7 +66,10 @@ class Settings extends BaseSettings
     public function rules()
     {
         return [
-            [['created_by', 'updated_by'], 'integer'],
+            [['created_by', 'updated_by',
+                'points_per_second','daily_points',
+                'reading_points_delay', 'max_daily_points_per_user'
+            ], 'integer'],
             [['website_title', 'phone', 'email', 'notification_email', 'address',
                 'facebook', 'youtube', 'twitter', 'instagram', 'linkedin', 'whatsapp',
                 'app_ios', 'app_android', 'video_url', 'created_at', 'updated_at',

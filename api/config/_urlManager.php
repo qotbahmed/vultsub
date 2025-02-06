@@ -62,9 +62,10 @@ return [
             [
                 'class' => 'yii\rest\UrlRule',
                 'controller' => 'lookups',
-                'only' => ['country','business-sectors','company-sizes','sponsors'],
+                'only' => ['country','business-sectors','company-sizes','sponsors','settings'],
                 'extraPatterns' => [
                     'GET sponsors' => 'sponsors',
+                    'GET settings' => 'settings',
                 ], 'pluralize' => false,
             ],
 

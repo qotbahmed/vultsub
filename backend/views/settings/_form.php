@@ -71,6 +71,10 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
                <?= $form->field($model, 'youtube')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Youtube')]) ?>
                <?= $form->field($model, 'instagram')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Instagram')]) ?>
                <?=$form->field($model, 'whatsapp')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Whatsapp')]) ?>
+               <?=$form->field($model, 'points_per_second')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Points per second')]) ?>
+               <?=$form->field($model, 'reading_points_delay')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Whatsapp')]) ?>
+               <?=$form->field($model, 'max_daily_points_per_user')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Maximum points collected daily for each person')]) ?>
+               <?=$form->field($model, 'daily_points')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Points for the day')]) ?>
                 </div>
 
             </div>
