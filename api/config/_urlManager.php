@@ -71,8 +71,9 @@ return [
             [
                 'class' => 'yii\rest\UrlRule',
                 'controller' => 'lookups',
-                'only' => ['country','business-sectors','company-sizes','sponsors','settings'],
+                'only' => ['country','business-sectors','terms-conditions','company-sizes','sponsors','settings'],
                 'extraPatterns' => [
+                    'GET terms-conditions' => 'terms-conditions',
                     'GET sponsors' => 'sponsors',
                     'GET settings' => 'settings',
                 ], 'pluralize' => false,

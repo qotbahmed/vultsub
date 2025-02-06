@@ -2,6 +2,7 @@
 
 namespace api\controllers;
 
+use api\resources\PageResource;
 use api\resources\SettingsResource;
 use api\resources\SponsorResource;
 use Yii;
@@ -24,7 +25,16 @@ class LookupsController extends MyRestUnAuthController
     }
 
 
+    public function actionTermsConditions()
+    {
+        $termsConditionsObj = PageResource::findOne(2);
 
+        if ($termsConditionsObj) {
+            return ResponseHelper::sendSuccessResponse($termsConditionsObj);
+        } else {
+            return ResponseHelper::sendFailedResponse(Yii::t('common', 'Not Found'), 404);
+        }
+    }
 
 
 }
