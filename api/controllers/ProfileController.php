@@ -81,9 +81,10 @@ class ProfileController extends MyActiveController
             $expected_pages_read = floor($total_time / $settings->reading_points_delay);
             $valid_pages = min($expected_pages_read, $page_count);
 
-//            if ($valid_pages < 1) {
-//                return ResponseHelper::sendFailedResponse(['error' => Yii::t('common', 'Reading time is too short to earn points.')]);
-//            }
+            if ($valid_pages < 1) {
+                return ResponseHelper::sendSuccessResponse([
+                    'earned_points' => 0,
+                ]);            }
 
             $earned_time = $valid_pages * $settings->reading_points_delay; // Time that is valid
             $earned_points = $earned_time * $settings->points_per_second;
@@ -112,8 +113,11 @@ class ProfileController extends MyActiveController
                 if (!$log->save()) {
                     return ResponseHelper::sendFailedResponse($log->getFirstErrors());
                 }
-                return ResponseHelper::sendSuccessResponse(Yii::t('common', "Updated Successfully."));
+                return ResponseHelper::sendSuccessResponse([
+                    'earned_points' => $earned_points,
+                ]);
             } else {
+
                 return ResponseHelper::sendFailedResponse($user->getFirstErrors());
             }
         } else {
