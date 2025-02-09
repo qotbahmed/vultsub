@@ -20,7 +20,7 @@ class PointsLogsController extends MyActiveController
 
     public function actionIndex()
     {
-        $pointsLogs = PointsLogsResource::find()->where(['user_id',\Yii::$app->user->identity->id])->all();
+        $pointsLogs = PointsLogsResource::find()->where(['user_id'=>\Yii::$app->user->identity->id])->all();
         return ResponseHelper::sendSuccessResponse($pointsLogs);
     }
 
