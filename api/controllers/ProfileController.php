@@ -92,7 +92,8 @@ class ProfileController extends MyActiveController
 
                 return ResponseHelper::sendSuccessResponse([
                     'earned_points' => 0,
-                ]);            }
+                ]);
+            }
 
             $earned_time = $valid_pages * $settings->reading_points_delay; // Time that is valid
             $earned_points = $earned_time * $settings->points_per_second;
@@ -104,8 +105,6 @@ class ProfileController extends MyActiveController
 
             $user->surah = $params['surah'] ?? '';
             $user->ayah_num = $params['ayah_num'] ?? 0;
-            $user->page_num = $params['page_num'] ?? 0;
-
             $user->points_num += $earned_points ?? 0;
             $user->page_num = $params['page_num'] ?? 0;
 
