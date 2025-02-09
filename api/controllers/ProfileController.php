@@ -59,7 +59,7 @@ class ProfileController extends MyActiveController
     {
         $params = \Yii::$app->request->post();
         $user_id = Yii::$app->user->identity->id;
-        $total_time = $params['total_time'] ?? 0;
+        $total_time = $params['time'] ?? 0;
         $page_count = $params['page_count'] ?? 0; // Number of pages read
 
         $user = UserProfile::findOne(['user_id' => $user_id]);
