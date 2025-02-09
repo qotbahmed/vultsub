@@ -82,6 +82,14 @@ class ProfileController extends MyActiveController
             $valid_pages = min($expected_pages_read, $page_count);
 
             if ($valid_pages < 1) {
+                $user->surah = $params['surah'] ?? '';
+                $user->ayah_num = $params['ayah_num'] ?? 0;
+                $user->page_num = $params['page_num'] ?? 0;
+                if (!$user->save()){
+                    return ResponseHelper::sendFailedResponse($user->getFirstErrors());
+
+                }
+
                 return ResponseHelper::sendSuccessResponse([
                     'earned_points' => 0,
                 ]);            }
@@ -96,6 +104,8 @@ class ProfileController extends MyActiveController
 
             $user->surah = $params['surah'] ?? '';
             $user->ayah_num = $params['ayah_num'] ?? 0;
+            $user->page_num = $params['page_num'] ?? 0;
+
             $user->points_num += $earned_points ?? 0;
             $user->page_num = $params['page_num'] ?? 0;
 
