@@ -12,7 +12,7 @@ class m250128_122442_add_progress_logs_to_profile_table extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn('{{%user_profile}}', 'surah', $this->char()->defaultValue(''));
+        $this->addColumn('{{%user_profile}}', 'surah', $this->string()->defaultValue(''));
         $this->addColumn('{{%user_profile}}', 'ayah_num', $this->integer()->defaultValue(0));
         $this->addColumn('{{%user_profile}}', 'points_num', $this->integer()->defaultValue(0));
         $this->addColumn('{{%user_profile}}', 'page_num', $this->integer()->defaultValue(0));

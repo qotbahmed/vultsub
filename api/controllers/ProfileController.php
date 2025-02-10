@@ -103,6 +103,20 @@ class ProfileController extends MyActiveController
                 $earned_points = max(0, $settings->max_daily_points_per_user - $todayPoints);
             }
 
+            if ($earned_points < 1) {
+                $user->surah = $params['surah'] ?? '';
+                $user->ayah_num = $params['ayah_num'] ?? 0;
+                $user->page_num = $params['page_num'] ?? 0;
+                if (!$user->save()) {
+                    return ResponseHelper::sendFailedResponse($user->getFirstErrors());
+                }
+
+                return ResponseHelper::sendSuccessResponse([
+                    'earned_points' => 0,
+                    'max_daily_points_per_user' => $settings->max_daily_points_per_user,
+                ]);
+            }
+
             $user->surah = $params['surah'] ?? '';
             $user->ayah_num = $params['ayah_num'] ?? 0;
             $user->points_num += $earned_points ?? 0;

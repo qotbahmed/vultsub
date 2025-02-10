@@ -88,7 +88,7 @@ class UserProfile extends ActiveRecord
         return [
             [['user_id'], 'required'],
             [['user_id', 'gender', 'new_phone_verified', 'to_days', 'from_days', 'preferred_age_to_unit', 'preferred_age_to', 'preferred_age_from_unit',
-              'preferred_age_from', 'education_level', 'academy_id', 'reward', 'sport_id','ayah_num','points_num','page_num', 'subscription_id'], 'integer'],
+              'preferred_age_from', 'education_level', 'reward', 'sport_id','ayah_num','points_num','page_num', 'subscription_id'], 'integer'],
         
 
             [['gender'], 'in', 'range' => [NULL, self::GENDER_FEMALE, self::GENDER_MALE]],

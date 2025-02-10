@@ -10,7 +10,6 @@ use yii\db\ActiveRecord;
  * This is the model class for table "timeline_event".
  *
  * @property integer $id
- * @property integer $academy_id
  * @property string $application
  * @property string $category
  * @property string $event
@@ -58,7 +57,7 @@ class TimelineEvent extends ActiveRecord
         return [
             [['application', 'category', 'event'], 'required'],
             [['data'], 'safe'],
-            [['user_id','academy_id'], 'integer'],
+            [['user_id'], 'integer'],
             [['application', 'category', 'event'], 'string', 'max' => 64]
         ];
     }
