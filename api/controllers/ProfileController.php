@@ -52,7 +52,7 @@ class ProfileController extends MyActiveController
             $user = UserResource::findOne(\Yii::$app->user->identity->id);
             return ResponseHelper::sendSuccessResponse($user);
         } else {
-            return ResponseHelper::sendFailedResponse($model->getFirstErrors() ?: ['error' => Yii::t('common', "Invalid access")]);
+            return ResponseHelper::sendFailedResponse($model->getFirstErrors() ?:  Yii::t('common', "Invalid access"));
         }
     }
 
@@ -111,10 +111,10 @@ class ProfileController extends MyActiveController
                     return ResponseHelper::sendFailedResponse($user->getFirstErrors());
                 }
 
-                return ResponseHelper::sendSuccessResponse([
-                    'earned_points' => 0,
-                    'max_daily_points_per_user' => $settings->max_daily_points_per_user,
-                ]);
+                return ResponseHelper::sendFailedResponse( Yii::t('common', 'You exceeded the max earned daily points.')
+                );
+
+
             }
 
             $user->surah = $params['surah'] ?? '';
@@ -146,53 +146,10 @@ class ProfileController extends MyActiveController
                 return ResponseHelper::sendFailedResponse($user->getFirstErrors());
             }
         } else {
-            return ResponseHelper::sendFailedResponse(['error' => Yii::t('common', "Missing required parameters")]);
+            return ResponseHelper::sendFailedResponse(Yii::t('common', "Missing required parameters"));
         }
     }
 
-    public function actionCalculatePoints()
-    {
-        $params = Yii::$app->request->post();
-        $user_id = Yii::$app->user->identity->id;
-        $total_time = $params['total_time'] ?? 0;
-        $page_numbers = $params['page_numbers'] ?? 0;
-
-        $settings = Settings::find()->select([
-            'points_per_second',
-            'daily_points',
-            'reading_points_delay',
-            'max_daily_points_per_user'
-        ])->one();
-
-        if (!$settings) {
-            return ResponseHelper::sendFailedResponse(['error' => Yii::t('common', 'Settings not found.')]);
-        }
-
-        $todayPoints = PointsLogs::find()
-            ->where(['user_id' => $user_id])
-            ->andWhere(['>=', 'created_at', date('Y-m-d 00:00:00')])
-            ->sum('points_num') ?? 0;
-
-        $expected_time = $params['page_count'] * $settings->reading_points_delay;
-
-        if ($total_time < $expected_time) {
-            return ResponseHelper::sendFailedResponse([
-                'error' => Yii::t('common', 'Reading time is too short for the pages read.')
-            ]);
-        }
-
-        $earned_points = $total_time * $settings->points_per_second;
-        $new_total_points = $todayPoints + $earned_points;
-
-        if ($new_total_points > $settings->max_daily_points_per_user) {
-            $earned_points = max(0, $settings->max_daily_points_per_user - $todayPoints);
-        }
-
-        return ResponseHelper::sendSuccessResponse([
-            'earned_points' => $earned_points,
-            'total_today' => $new_total_points
-        ]);
-    }
 
     public function actionChangePassword()
     {

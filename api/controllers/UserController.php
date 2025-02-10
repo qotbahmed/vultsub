@@ -30,11 +30,11 @@ class UserController extends MyRestUnAuthController
                 ->one();
 //            return ResponseHelper::sendSuccessResponse($user);
             if (!$user) {
-                return ResponseHelper::sendFailedResponse(['identity' => Yii::t('common', 'Please check your data and validate your email.')], 400);
+                return ResponseHelper::sendFailedResponse( Yii::t('common', 'Please check your data and validate your email.'), 400);
             }
             if ($user->status !== User::STATUS_ACTIVE) {
                 return ResponseHelper::sendFailedResponse(
-                    ['identity' => Yii::t('common', 'Your account is not active. Please activate your account.')],
+                  Yii::t('common', 'Your account is not active. Please activate your account.'),
                     403
                 );
             }
@@ -46,10 +46,10 @@ class UserController extends MyRestUnAuthController
                 $data = ['token' => $user->access_token, 'profile' => $user];
                 return ResponseHelper::sendSuccessResponse($data);
             } else {
-                return ResponseHelper::sendFailedResponse(['identity' => Yii::t('common', 'Your login data is not correct.')]);
+                return ResponseHelper::sendFailedResponse( Yii::t('common', 'Your login data is not correct.'));
             }
         } else {
-            return ResponseHelper::sendFailedResponse(['identity' => Yii::t('common', 'Your login data is not correct.')]);
+            return ResponseHelper::sendFailedResponse( Yii::t('common', 'Your login data is not correct.'));
         }
     }
 
@@ -111,7 +111,7 @@ class UserController extends MyRestUnAuthController
 
         $user = User::findOne(['email' => $email]);
         if (!$user) {
-            return ResponseHelper::sendFailedResponse(['email' => \Yii::t('common', 'Please check the entered data')]);
+            return ResponseHelper::sendFailedResponse(\Yii::t('common', 'Please check the entered data'));
         }
         $otpObj = UserToken::find()
             ->byType(UserToken::TYPE_ACTIVATION)
@@ -135,7 +135,7 @@ class UserController extends MyRestUnAuthController
                 'profile' => $user
             ]);
         } else {
-            return ResponseHelper::sendFailedResponse(['token' => Yii::t('common', 'OTP not valid.')]);
+            return ResponseHelper::sendFailedResponse(Yii::t('common', 'OTP not valid.'));
         }
     }
 
@@ -177,7 +177,7 @@ class UserController extends MyRestUnAuthController
                 return ResponseHelper::sendSuccessResponse($message);
             }
         }
-        return ResponseHelper::sendFailedResponse(['email' => \Yii::t('common', 'Please check the entered data')], 404);
+        return ResponseHelper::sendFailedResponse( \Yii::t('common', 'Please check the entered data'), 404);
     }
 
     public function actionRequestResetPassword()
@@ -216,7 +216,7 @@ class UserController extends MyRestUnAuthController
                 return ResponseHelper::sendSuccessResponse($message);
             }
         }
-        return ResponseHelper::sendFailedResponse(['email' => \Yii::t('common', 'Please check the entered data')], 404);
+        return ResponseHelper::sendFailedResponse( \Yii::t('common', 'Please check the entered data'), 404);
     }
 
     public function actionVerifyResetPasswordToken()
@@ -236,7 +236,7 @@ class UserController extends MyRestUnAuthController
 
         $user = User::findOne(['email' => $email]);
         if (!$user) {
-            return ResponseHelper::sendFailedResponse(['email' => \Yii::t('common', 'Please check the entered data')]);
+            return ResponseHelper::sendFailedResponse(\Yii::t('common', 'Please check the entered data'));
         }
 
         $otpObj = UserToken::find()
@@ -249,7 +249,7 @@ class UserController extends MyRestUnAuthController
         if ($otpObj) {
             return ResponseHelper::sendSuccessResponse(Yii::t('common', 'OTP is valid.'));
         } else {
-            return ResponseHelper::sendFailedResponse(['token' => Yii::t('common', 'Token not valid.')]);
+            return ResponseHelper::sendFailedResponse( Yii::t('common', 'Token not valid.'));
         }
     }
 
@@ -275,7 +275,7 @@ class UserController extends MyRestUnAuthController
 
         $user = User::findOne(['email' => $email]);
         if (!$user) {
-            return ResponseHelper::sendFailedResponse(['email' => \Yii::t('common', 'Please check the entered data')], 404);
+            return ResponseHelper::sendFailedResponse(\Yii::t('common', 'Please check the entered data'), 404);
         }
 
         $token = UserToken::find()->where(['user_id' => $user->id])
@@ -295,7 +295,7 @@ class UserController extends MyRestUnAuthController
                 ]);
             }
         } else {
-            return ResponseHelper::sendFailedResponse(['token' => Yii::t('common', 'Token not valid.')]);
+            return ResponseHelper::sendFailedResponse( Yii::t('common', 'Token not valid.'));
         }
     }
 
