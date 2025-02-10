@@ -73,7 +73,6 @@ class MyActiveController extends Controller
         if (isset($_REQUEST['lang']) && $_REQUEST['lang'] == 'ar') {
             \Yii::$app->language = 'ar';
         }
-        \Yii::$app->language = 'en';
         return parent::beforeAction($action);
     }
 

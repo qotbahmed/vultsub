@@ -111,8 +111,7 @@ class ProfileController extends MyActiveController
                     return ResponseHelper::sendFailedResponse($user->getFirstErrors());
                 }
 
-                return ResponseHelper::sendFailedResponse( Yii::t('common', 'You exceeded the max earned daily points.')
-                );
+                return ResponseHelper::sendFailedResponse( Yii::t('common', 'You exceeded the max earned daily points.'));
 
 
             }
