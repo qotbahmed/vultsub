@@ -49,7 +49,6 @@ class Sponsors extends ActiveRecord
         return [
             [['title'], 'required'],
             [['image'], 'safe'],
-
             [['title', 'path', 'base_url', ], 'string', 'max' => 255],
            [['created_at', 'updated_at'], 'safe'],
         ];
@@ -61,17 +60,6 @@ class Sponsors extends ActiveRecord
     public static function tableName()
     {
         return 'sponsors';
-    }
-
-    /**
-     * 
-     * @return string
-     * overwrite function optimisticLock
-     * return string name of field are used to stored optimistic lock 
-     * 
-     */
-    public function optimisticLock() {
-        return 'lock';
     }
 
     /**

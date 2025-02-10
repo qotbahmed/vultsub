@@ -153,7 +153,7 @@ class SponsorsController extends BackendController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->deleteWithRelated();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }

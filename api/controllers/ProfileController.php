@@ -31,8 +31,8 @@ class ProfileController extends MyActiveController
         $user = UserResource::findOne(\Yii::$app->user->identity->id);
         $params = \Yii::$app->request->post();
         $model = new UserForm();
-        $model->username =  $user->email;
-        $model->email =  $user->email;
+        $model->username = $user->email;
+        $model->email = $user->email;
         if ($model->load(['UserForm' => $params]) && $model->save()) {
             if ($model->binary_picture) {
                 $userProfile = $user->userProfile;
@@ -55,6 +55,7 @@ class ProfileController extends MyActiveController
             return ResponseHelper::sendFailedResponse($model->getFirstErrors() ?: ['error' => Yii::t('common', "Invalid access")]);
         }
     }
+
     public function actionCheckPoint()
     {
         $params = \Yii::$app->request->post();
@@ -85,9 +86,8 @@ class ProfileController extends MyActiveController
                 $user->surah = $params['surah'] ?? '';
                 $user->ayah_num = $params['ayah_num'] ?? 0;
                 $user->page_num = $params['page_num'] ?? 0;
-                if (!$user->save()){
+                if (!$user->save()) {
                     return ResponseHelper::sendFailedResponse($user->getFirstErrors());
-
                 }
 
                 return ResponseHelper::sendSuccessResponse([
@@ -95,7 +95,7 @@ class ProfileController extends MyActiveController
                 ]);
             }
 
-            $earned_time = $valid_pages * $settings->reading_points_delay; // Time that is valid
+            $earned_time = $valid_pages * $settings->reading_points_delay;
             $earned_points = $earned_time * $settings->points_per_second;
 
             $new_total_points = $todayPoints + $earned_points;
@@ -109,18 +109,20 @@ class ProfileController extends MyActiveController
             $user->page_num = $params['page_num'] ?? 0;
 
             if ($user->save()) {
-                // **Log the earned points**
-                $log = new PointsLogs();
-                $log->user_id = $user->user_id;
-                $log->user_name = $user->firstname;
-                $log->user_mobile = $user->user->mobile;
-                $log->points_num = $earned_points;
-                $log->type = PointsLogs::TYPE_ADD;
-                $log->page_num = $params['page_count']??0;
-                $log->time = $earned_time; // Log valid time
 
-                if (!$log->save()) {
-                    return ResponseHelper::sendFailedResponse($log->getFirstErrors());
+                if ($earned_points > 0) {
+                    $log = new PointsLogs();
+                    $log->user_id = $user->user_id;
+                    $log->user_name = $user->firstname;
+                    $log->user_mobile = $user->user->mobile;
+                    $log->points_num = $earned_points;
+                    $log->type = PointsLogs::TYPE_ADD;
+                    $log->page_num = $params['page_count'] ?? 0;
+                    $log->time = $earned_time; // Log valid time
+
+                    if (!$log->save()) {
+                        return ResponseHelper::sendFailedResponse($log->getFirstErrors());
+                    }
                 }
                 return ResponseHelper::sendSuccessResponse([
                     'earned_points' => $earned_points,
@@ -177,6 +179,7 @@ class ProfileController extends MyActiveController
             'total_today' => $new_total_points
         ]);
     }
+
     public function actionChangePassword()
     {
         $model = new ChangePassword();
