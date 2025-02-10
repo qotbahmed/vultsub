@@ -19,11 +19,13 @@ class MyRestController extends Controller
         'collectionEnvelope' => 'items',
     ];
 
+
     public function beforeAction($action)
     {
-        $language = \Yii::$app->request->headers->get('Accept-Language', 'en');
-        \Yii::$app->language = $language;
-
+        if (isset($_REQUEST['lang']) && $_REQUEST['lang'] == 'ar') {
+            \Yii::$app->language = 'ar';
+        }
+        \Yii::$app->language = 'en';
         return parent::beforeAction($action);
     }
 
@@ -60,4 +62,5 @@ class MyRestController extends Controller
         $behaviors['authenticator']['except'] = ['options'];
         return $behaviors;
     }
+
 }
