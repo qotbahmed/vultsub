@@ -20,17 +20,15 @@ use yii\widgets\ActiveForm;
 
     <div class="flex-fill">
         <div class="d-flex gap-2 flex-wrap">
-    <?= $form->field($model, 'id')->textInput() ?>
 
     <?= $form->field($model, 'sponsor_id')->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\common\models\Sponsors::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
-        'options' => ['placeholder' => 'Choose Sponsors'],
+        'options' => ['placeholder' => Yii::t('backend','Sponsor Name')],
         'pluginOptions' => [
             'allowClear' => true
         ],
     ]) ?>
 
-    <?= $form->field($model, 'amount')->textInput(['maxlength' => true]) ?>
 
         </div>
     </div>

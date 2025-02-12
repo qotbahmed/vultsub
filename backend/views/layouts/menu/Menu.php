@@ -6,6 +6,33 @@ use common\models\User;
 
 return
     [
+        [
+            'label' => Yii::t('backend', 'Dashboard'),
+            'url' => '/site',
+            'icon' => FAS::icon('fas fa-chart-bar', ['class' => ['nav-icon']]),
+            'options' => ['class' => 'nav-item has-treeview'],
+            'active' => Yii::$app->controller->id === 'site'
+        ],
+
+        [
+            'label' => Yii::t('backend', 'Sponsor Logs'),
+            'url' => '/sponsor-log',
+            'icon' => FAS::icon('gift', ['class' => ['nav-icon']]),
+            'options' => ['class' => 'nav-item has-treeview'],
+            'active' => Yii::$app->controller->id === 'sponsor-log'
+        ],
+        [
+            'label' => Yii::t('backend', 'Sponsors'),
+            'url' => ['/sponsors'],
+            'icon' => FAS::icon('star', ['class' => ['nav-icon']]),
+            'options' => ['class' => 'nav-item has-treeview'],
+            'active' => (Yii::$app->controller->id === 'sponsors'),
+
+            'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('user_sponsors')),
+
+        ],
+
+
 
         [
             'label' => Yii::t('backend', 'Customers'),
@@ -15,16 +42,58 @@ return
             'active' => (Yii::$app->controller->id === 'user'),
 
             'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('user_index')),
-        ], [
-        'label' => Yii::t('backend', 'Sponsors'),
-        'url' => ['/sponsors'],
-        'icon' => FAS::icon('users', ['class' => ['nav-icon']]),
-        'options' => ['class' => 'nav-item has-treeview'],
-        'active' => (Yii::$app->controller->id === 'sponsors'),
+        ],
+        [
+            'label' => Yii::t('backend', 'System settings'),
+            'url' => '#',
+            'icon' => FAS::icon('puzzle-piece', ['class' => ['nav-icon']]),
+            'options' => ['class' => 'nav-item has-treeview'],
+            'active' => ( Yii::$app->controller->module->id === 'settings'  ||Yii::$app->controller->id === 'category'||Yii::$app->controller->id === 'faq') ,
+            'items' => [
+//                [
+//                    'label' => Yii::t('backend', 'Pages'),
+//                    'url' => ['/page/index'],
+//                    'icon' => FAS::icon('thumbtack', ['class' => ['nav-icon']]),
+//                    'active' => Yii::$app->controller->id === 'page',
+//                ],
+                [
+                    'label' => Yii::t('backend', 'Settings'),
+                    'url' => ['/settings/index'],
+                    'icon' => FAS::icon('thumbtack', ['class' => ['nav-icon']]),
+                    'active' => Yii::$app->controller->id === 'settings'   ],
+                [
+                    'label' => Yii::t('backend', 'FAQs'),
+                    'url' => '#',
+                    'icon' => FAS::icon('question', ['class' => ['nav-icon']]),
+                    'options' => ['class' => 'nav-item has-treeview'],
+                    'active' => (Yii::$app->controller->id === 'faq' || Yii::$app->controller->id === 'category'),
 
-        'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('user_sponsors')),
+                    'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('category_index') || Yii::$app->user->identity->checkMenuPermissions('faq_index')),
 
-    ],
+
+                    'items' => [
+                        [
+                            'label' => Yii::t('backend', 'Category'),
+                            'url' => ['/category/index'],
+                            'icon' => '<i class="fas fa-tags" ></i>',
+                            'active' => (Yii::$app->controller->id === 'category'),
+
+                            'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('category_index')),
+                        ],
+                        [
+                            'label' => Yii::t('backend', 'FAQs'),
+                            'url' => ['/faq/index'],
+                            'icon' => '<i class="fas fa-question-circle nav-icon"></i>',
+                            'active' => (Yii::$app->controller->id === 'faq'),
+
+
+                            'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('faq_index')),
+                        ],
+                    ]
+                ],
+            ],
+        ],
+
 
 
 //        [
@@ -75,58 +144,6 @@ return
 //            ],
 //        ],
 
-        [
-            'label' => Yii::t('backend', 'System settings'),
-            'url' => '#',
-            'icon' => FAS::icon('puzzle-piece', ['class' => ['nav-icon']]),
-            'options' => ['class' => 'nav-item has-treeview'],
-            'active' => (Yii::$app->controller->module->id === 'faq' || Yii::$app->controller->module->id === 'page' || Yii::$app->controller->module->id === 'settings' || 'category' === Yii::$app->controller->id),
-            'items' => [
-//                [
-//                    'label' => Yii::t('backend', 'Pages'),
-//                    'url' => ['/page/index'],
-//                    'icon' => FAS::icon('thumbtack', ['class' => ['nav-icon']]),
-//                    'active' => Yii::$app->controller->id === 'page',
-//                ],
-                [
-                    'label' => Yii::t('backend', 'Settings'),
-                    'url' => ['/settings/index'],
-                    'icon' => FAS::icon('thumbtack', ['class' => ['nav-icon']]),
-                    'active' => Yii::$app->controller->id === 'settings',
-                ],
-                [
-                    'label' => Yii::t('backend', 'FAQs'),
-                    'url' => '#',
-                    'icon' => FAS::icon('question', ['class' => ['nav-icon']]),
-                    'options' => ['class' => 'nav-item has-treeview'],
-                    'active' => (Yii::$app->controller->id === 'faq' || Yii::$app->controller->id === 'category'),
-
-                    'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('category_index') || Yii::$app->user->identity->checkMenuPermissions('faq_index')),
-
-
-                    'items' => [
-                        [
-                            'label' => Yii::t('backend', 'Category'),
-                            'url' => ['/category/index'],
-                            'icon' => '<i class="fas fa-tags" ></i>',
-                            'active' => (Yii::$app->controller->id === 'category'),
-
-                            'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('category_index')),
-                        ],
-                        [
-                            'label' => Yii::t('backend', 'FAQs'),
-                            'url' => ['/faq/index'],
-                            'icon' => '<i class="fas fa-question-circle nav-icon"></i>',
-                            'active' => (Yii::$app->controller->id === 'faq'),
-
-
-                            'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('faq_index')),
-                        ],
-                    ]
-                ],
-            ],
-        ],
-
         // [
         //     'label' => Yii::t('backend', 'Supplier'),
         //     'url' => ['/supplier/index'],
@@ -135,6 +152,7 @@ return
         //     // 'visible' => Yii::$app->controller->MainAcadmin === 0,
 
         // ],
+//
 //                [
 //                    'label' => Yii::t('backend', 'Contracts'),
 //                    'url' => ['/contract/index'],

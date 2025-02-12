@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "05f5d877ef550ad15dc58e61b95faefd",
+    "content-hash": "2f2658af3d8b89391fae24516f5ec636",
     "packages": [
         {
             "name": "2amigos/yii2-chartjs-widget",
@@ -6596,6 +6596,21 @@
             ]
         },
         {
+            "name": "npm-asset/chart.js",
+            "version": "4.4.7",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/chart.js/-/chart.js-4.4.7.tgz"
+            },
+            "require": {
+                "npm-asset/kurkle--color": ">=0.3.0,<0.4.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
             "name": "npm-asset/flot",
             "version": "3.2.13",
             "dist": {
@@ -6706,6 +6721,18 @@
             "dist": {
                 "type": "tar",
                 "url": "https://registry.npmjs.org/jquery-validation/-/jquery-validation-1.21.0.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/kurkle--color",
+            "version": "0.3.2",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/@kurkle/color/-/color-0.3.2.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -11028,22 +11055,22 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "trntv/yii2-datetime-widget": 20,
-        "trntv/cheatsheet": 20,
-        "kartik-v/yii2-detail-view": 20,
         "engmohamedamer/yii2-enhanced-gii": 20,
-        "kartik-v/yii2-mpdf": 20,
-        "kartik-v/yii2-tree-manager": 20,
-        "newerton/yii2-fancybox-3": 20,
-        "kartik-v/yii2-widget-depdrop": 20,
-        "kartik-v/yii2-field-range": 20,
-        "kartik-v/yii2-number": 20,
-        "kartik-v/yii2-editable": 20,
-        "kartik-v/yii2-password": 20,
         "kartik-v/yii2-bootstrap4-dropdown": 20,
-        "kartik-v/yii2-widget-rating": 20,
+        "kartik-v/yii2-datecontrol": 20,
+        "kartik-v/yii2-detail-view": 20,
+        "kartik-v/yii2-editable": 20,
         "kartik-v/yii2-editors": 20,
-        "kartik-v/yii2-datecontrol": 20
+        "kartik-v/yii2-field-range": 20,
+        "kartik-v/yii2-mpdf": 20,
+        "kartik-v/yii2-number": 20,
+        "kartik-v/yii2-password": 20,
+        "kartik-v/yii2-tree-manager": 20,
+        "kartik-v/yii2-widget-depdrop": 20,
+        "kartik-v/yii2-widget-rating": 20,
+        "newerton/yii2-fancybox-3": 20,
+        "trntv/cheatsheet": 20,
+        "trntv/yii2-datetime-widget": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
@@ -11052,6 +11079,6 @@
         "ext-intl": "*",
         "ext-gd": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

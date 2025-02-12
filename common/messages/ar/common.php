@@ -511,5 +511,6 @@ return [
     "Missing required parameters" => "المعلمات المطلوبة مفقودة",
     "Password Updated Successfully." => "تم تحديث كلمة المرور بنجاح.",
     "You exceeded the max earned daily points." => "لقد تجاوزت الحد الأقصى للنقاط المكتسبة يوميًا.",
-
+    'Search' => 'بحث',
+    'Reset' => 'إعادة تعين'
 ];

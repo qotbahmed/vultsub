@@ -68,9 +68,9 @@ class SponsorLog extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'sponsor_id' => 'Sponsor ID',
-            'amount' => 'Amount',
+            'id' => Yii::t('backend', 'ID'),
+            'sponsor_id' => Yii::t('backend', 'Sponsor Name'),
+            'amount' => Yii::t('backend', 'Sponsor Amount'),
         ];
     }
 
@@ -95,11 +95,7 @@ class SponsorLog extends ActiveRecord
                 'updatedAtAttribute' => 'updated_at',
                 'value' => new Expression('NOW()'),
             ],
-            [
-                'class' => BlameableBehavior::class,
-                'createdByAttribute' => 'created_by',
-                'updatedByAttribute' => 'updated_by',
-            ],
+
 
         ];
     }

@@ -62,6 +62,11 @@ class Sponsors extends ActiveRecord
         return 'sponsors';
     }
 
+    public function getLogs()
+    {
+        return $this->hasMany(SponsorLog::class, ['sponsor_id' => 'id']);
+    }
+
     /**
      * @inheritdoc
      */

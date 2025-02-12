@@ -71,12 +71,12 @@ class SponsorLogController extends BackendController
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             Yii::$app->getSession()->setFlash('alert', [
                 'type' =>'success',
-                'body' =>  'Sponsor Log was successfuly created',
+                'body' => Yii::t('backend', 'Sponsor Log was successfuly created'),
                 'title' =>'',
             ]);
 
             if (!Yii::$app->request->isAjax) {
-                return $this->redirect(['index']);
+                return $this->redirect(['sponsors/index']);
             } else {
                 return $this->actionUpdate($model->id);
             }
