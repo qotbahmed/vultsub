@@ -2,19 +2,16 @@
 
 namespace backend\controllers;
 
-use Intervention\Image\ImageManagerStatic;
-use trntv\filekit\actions\DeleteAction;
-use trntv\filekit\actions\UploadAction;
 use Yii;
-use common\models\Sponsors;
-use common\models\search\SponsorsSearch;
+use common\models\SponsorLog;
+use common\models\search\SponsorLogSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SponsorsController implements the CRUD actions for Sponsors model.
+ * SponsorLogController implements the CRUD actions for SponsorLog model.
  */
-class SponsorsController extends BackendController
+class SponsorLogController extends BackendController
 {
     public function behaviors()
     {
@@ -28,47 +25,26 @@ class SponsorsController extends BackendController
         ];
     }
 
-    public function actions()
-    {
-        return [
-
-            'image-upload' => [
-                'class' => UploadAction::class,
-                // 'class' => MyUploadAction::class,
-                'deleteRoute' => 'image-delete',
-                'on afterSave' => function ($event) {
-                    /* @var $file \League\Flysystem\File */
-                    $file = $event->file;
-                    $img = ImageManagerStatic::make($file->read())->resize(1000, 600);
-                    $file->put($img->encode());
-                },
-            ],
-            'image-delete' => [
-                'class' => DeleteAction::class,
-            ],
-        ];
-    }
-
     /**
-     * Lists all Sponsors models.
+     * Lists all SponsorLog models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SponsorsSearch();
+        $searchModel = new SponsorLogSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->setSort([
-            'defaultOrder' => ['id' => SORT_DESC],
+            'defaultOrder' => ['id' => SORT_DESC ],
         ]);
 
-        return $this->render('index', [
+    return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Sponsors model.
+     * Displays a single SponsorLog model.
      * @param integer $id
      * @return mixed
      */
@@ -81,22 +57,22 @@ class SponsorsController extends BackendController
     }
 
     /**
-     * Creates a new Sponsors model.
+     * Creates a new SponsorLog model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Sponsors();
+        $model = new SponsorLog();
         $render_data = [
             'model' => $model
         ];
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             Yii::$app->getSession()->setFlash('alert', [
-                'type' => 'success',
-                'body' => 'Sponsors was successfuly created',
-                'title' => '',
+                'type' =>'success',
+                'body' =>  'Sponsor Log was successfuly created',
+                'title' =>'',
             ]);
 
             if (!Yii::$app->request->isAjax) {
@@ -114,7 +90,7 @@ class SponsorsController extends BackendController
     }
 
     /**
-     * Updates an existing Sponsors model.
+     * Updates an existing SponsorLog model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -130,12 +106,12 @@ class SponsorsController extends BackendController
 
             Yii::$app->getSession()->setFlash('success', [
                 'type' => 'success',
-                'message' => 'Sponsors was successfuly updated',
+                'message' => 'Sponsor Log was successfuly updated',
             ]);
 
 
             if (!Yii::$app->request->isAjax) {
-                return $this->redirect(['index']);
+                    return $this->redirect(['index']);
             }
         }
         if (Yii::$app->request->isAjax) {
@@ -146,28 +122,28 @@ class SponsorsController extends BackendController
     }
 
     /**
-     * Deletes an existing Sponsors model.
+     * Deletes an existing SponsorLog model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($id)->deleteWithRelated();
 
         return $this->redirect(['index']);
     }
-
+    
     /**
-     * Finds the Sponsors model based on its primary key value.
+     * Finds the SponsorLog model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Sponsors the loaded model
+     * @return SponsorLog the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Sponsors::findOne($id)) !== null) {
+        if (($model = SponsorLog::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

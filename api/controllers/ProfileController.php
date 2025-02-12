@@ -41,7 +41,7 @@ class ProfileController extends MyActiveController
                     $userProfile->avatar_base_url = \Yii::getAlias('@storageUrl') . '/source/';
                     $userProfile->avatar_path = 'profile/' . $filename;
                 } catch (InvalidParamException $e) {
-                    return ResponseHelper::sendFailedResponse(['binary_picture' => $e->getMessage()]);
+                    return ResponseHelper::sendFailedResponse( $e->getMessage());
                 }
 
                 if (!$userProfile->save(false)) {

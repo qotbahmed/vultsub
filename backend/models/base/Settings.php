@@ -41,7 +41,7 @@ class Settings extends ActiveRecord
      * @inheritdoc
      */
 
-    
+
     /**
      * @inheritdoc
      */
@@ -86,7 +86,10 @@ class Settings extends ActiveRecord
             'end_session_alarm' => Yii::t('backend', 'End Session Alarm (Minute)'),
             'onway_btn_visible' => Yii::t('backend', 'Show the "On my way" button (Minutes)'),
             'refund_policy_period' => Yii::t('backend', 'Refund policy period (Hours)'),
-
+            'points_per_second' => Yii::t('backend', 'Points per second'),
+            'reading_points_delay' => Yii::t('backend', 'Reading points delay'),
+            'max_daily_points_per_user' => Yii::t('backend', 'Maximum points collected daily for each person'),
+            'daily_points' => Yii::t('backend', 'Points for the day'),
             'visa' => Yii::t('backend', 'Show Pay With Visa'),
             'mada' => Yii::t('backend', 'Show Pay With Mada'),
             'applepay' => Yii::t('backend', 'Show Pay With Applepay'),
@@ -96,11 +99,11 @@ class Settings extends ActiveRecord
 
     public static function serviceFees()
     {
-        return[
-            1 => Yii::t('backend','Percentage'),
-            2 => Yii::t('backend','Fixed Amount')];
-        
-}
+        return [
+            1 => Yii::t('backend', 'Percentage'),
+            2 => Yii::t('backend', 'Fixed Amount')];
+
+    }
 
     /**
      * @inheritdoc

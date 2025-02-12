@@ -15,18 +15,21 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
 ?>
 
 <style>
-    input[type=checkbox]{
+    input[type=checkbox] {
         height: 20px !important;
-        display: inline !important;        
+        display: inline !important;
         width: 20px !important;
     }
-    .payment{
-        margin-left: 8px  !important
+
+    .payment {
+        margin-left: 8px !important
     }
-    label:has(input.payment){
+
+    label:has(input.payment) {
         font-size: 13px !important;
     }
-    /* label:has(input.ddd) { 
+
+    /* label:has(input.ddd) {
         position: relative !important;
         font-size: 12px !important;
         z-index: 0 !important;
@@ -37,7 +40,7 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
         font-weight: 700 !important;
         padding: 2px 10px !important;
     } */
-    
+
 </style>
 
 <div class="settings-form">
@@ -56,40 +59,48 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
     <div class="card">
         <div class="card-body">
 
-            <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
             <div class="row">
 
-                <?= $form->field($model, 'address')->textInput(['maxlength' => true, 'placeholder' => 'Address'])->widget(MyMultiLanguageActiveField::className()); ?>
-
-                <?= $form->field($model, 'email')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Email')]) ?>
-                <?= $form->field($model, 'linkedin')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Linkedin')]) ?>
             </div>
-                <div class="row">
+            <div class="row">
 
-               <?= $form->field($model, 'facebook')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Facebook')]) ?>
-
-               <?= $form->field($model, 'youtube')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Youtube')]) ?>
-               <?= $form->field($model, 'instagram')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Instagram')]) ?>
-               <?=$form->field($model, 'whatsapp')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Whatsapp')]) ?>
-               <?=$form->field($model, 'points_per_second')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Points per second')]) ?>
-               <?=$form->field($model, 'reading_points_delay')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Whatsapp')]) ?>
-               <?=$form->field($model, 'max_daily_points_per_user')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Maximum points collected daily for each person')]) ?>
-               <?=$form->field($model, 'daily_points')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Points for the day')]) ?>
+                <div class="col-md-6">
+                    <?= $form->field($model, 'address')->textInput(['maxlength' => true, 'placeholder' =>Yii::t('backend', 'Address')])->widget(MyMultiLanguageActiveField::className()); ?>
                 </div>
 
+                <div class="col-md-6">
+                    <?= $form->field($model, 'email')->textInput(['maxlength' => true, 'placeholder' => Yii::t('backend', 'Email')]) ?>
+                </div>
+
+                <div class="col-md-6">
+                    <?= $form->field($model, 'points_per_second')->textInput(['maxlength' => true, 'placeholder' => Yii::t('backend', 'Points per second')]) ?>
+                </div>
+
+                <div class="col-md-6">
+                    <?= $form->field($model, 'reading_points_delay')->textInput(['maxlength' => true, 'placeholder' => Yii::t('backend', 'Reading points delay')]) ?>
+                </div>
+
+                <div class="col-md-6">
+                    <?= $form->field($model, 'max_daily_points_per_user')->textInput(['maxlength' => true, 'placeholder' => Yii::t('backend', 'Maximum points collected daily for each person')]) ?>
+                </div>
+
+                <div class="col-md-6">
+                    <?= $form->field($model, 'daily_points')->textInput(['maxlength' => true, 'placeholder' => Yii::t('backend', 'Points for the day')]) ?>
+                </div>
             </div>
 
-
-
         </div>
 
 
-        <div class="card-footer">
-            <?= Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-primary' : 'btn btn-primary']) ?>
-
-        </div>
     </div>
 
-    <?php ActiveForm::end(); ?>
+
+    <div class="card-footer">
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-primary' : 'btn btn-primary']) ?>
+
+    </div>
+</div>
+
+<?php ActiveForm::end(); ?>
 
 </div>

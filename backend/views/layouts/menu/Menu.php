@@ -9,42 +9,22 @@ return
 
         [
             'label' => Yii::t('backend', 'Customers'),
-            'url' => '#',
+            'url' => ['/user'],
             'icon' => FAS::icon('users', ['class' => ['nav-icon']]),
             'options' => ['class' => 'nav-item has-treeview'],
             'active' => (Yii::$app->controller->id === 'user'),
 
             'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('user_index')),
+        ], [
+        'label' => Yii::t('backend', 'Sponsors'),
+        'url' => ['/sponsors'],
+        'icon' => FAS::icon('users', ['class' => ['nav-icon']]),
+        'options' => ['class' => 'nav-item has-treeview'],
+        'active' => (Yii::$app->controller->id === 'sponsors'),
 
-            'items' => [
-                [
-                    'label' => Yii::t('backend', 'Customers List'),
-                    'url' => ['/user'],
-                    'icon' => FAR::icon('user', ['class' => ['nav-icon']]),
-                    'active' => (Yii::$app->controller->id === 'user'),
-                    'visible' => (Yii::$app->user->can('user')),
-                ],
-            ],
-        ],     [
-            'label' => Yii::t('backend', 'Sponsors'),
-            'url' => '#',
-            'icon' => FAS::icon('users', ['class' => ['nav-icon']]),
-            'options' => ['class' => 'nav-item has-treeview'],
-            'active' => (Yii::$app->controller->id === 'sponsors'),
+        'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('user_sponsors')),
 
-            'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('user_sponsors')),
-
-            'items' => [
-                [
-                    'label' => Yii::t('backend', 'Sponsors List'),
-                    'url' => ['/sponsors'],
-                    'icon' => FAS::icon('thumbtack', ['class' => ['nav-icon']]),
-                    'active' => (Yii::$app->controller->id === 'sponsors'),
-//                    'visible' => (Yii::$app->user->can('user')),
-                ],
-            ],
-        ],
-
+    ],
 
 
 //        [
@@ -96,18 +76,18 @@ return
 //        ],
 
         [
-            'label' => Yii::t('backend', 'Website Content'),
+            'label' => Yii::t('backend', 'System settings'),
             'url' => '#',
             'icon' => FAS::icon('puzzle-piece', ['class' => ['nav-icon']]),
             'options' => ['class' => 'nav-item has-treeview'],
             'active' => (Yii::$app->controller->module->id === 'faq' || Yii::$app->controller->module->id === 'page' || Yii::$app->controller->module->id === 'settings' || 'category' === Yii::$app->controller->id),
             'items' => [
-                [
-                    'label' => Yii::t('backend', 'Pages'),
-                    'url' => ['/page/index'],
-                    'icon' => FAS::icon('thumbtack', ['class' => ['nav-icon']]),
-                    'active' => Yii::$app->controller->id === 'page',
-                ],
+//                [
+//                    'label' => Yii::t('backend', 'Pages'),
+//                    'url' => ['/page/index'],
+//                    'icon' => FAS::icon('thumbtack', ['class' => ['nav-icon']]),
+//                    'active' => Yii::$app->controller->id === 'page',
+//                ],
                 [
                     'label' => Yii::t('backend', 'Settings'),
                     'url' => ['/settings/index'],

@@ -4,10 +4,10 @@ use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\search\SponsorsSearch */
+/* @var $searchModel common\models\search\SponsorLogSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 $hasFilters = ! empty($_GET);
-$this->title = Yii::t('backend','Sponsors');
+$this->title = 'Sponsor Log';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -24,16 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <span class="isax icon isax-filter-remove"></span>
         </a>
         <?=  Html::a(
-            Html::tag('i', '', ['class' => 'isax isax-add']) . ' ' . Yii::t('backend', 'Create Sponsors' ) ,
+            Html::tag('i', '', ['class' => 'isax isax-add']) . ' ' . Yii::t('common', 'Create  Sponsor Log' ) ,
             ['create'],
             ['class' => 'btn btn-secondary']
         ) ?>
-        <?= Html::a(
-            Html::tag('i', '', ['class' => 'isax isax-document']) . ' ' . Yii::t('backend', 'Create Sponsor Log'),
-            ['sponsor-log/create'],
-            ['class' => 'btn btn-primary']
-        ) ?>
-
     </div>
 </div>
 
@@ -56,50 +50,45 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php 
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
-        'title',
+        'id',
         [
-            'label' => Yii::t('backend', 'Image'),
-            'format' => 'html',
-            'value' => function ($model) {
-                return Html::img($model->getImage(), ['width' => '40px', 'height' => '40px']);
-            },
-            'filter' => false,
-        ],
+                'attribute' => 'sponsor_id',
+                'label' => 'Sponsor',
+                'value' => function($model){
+                    return $model->sponsors->title;
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => \yii\helpers\ArrayHelper::map(\common\models\Sponsors::find()->asArray()->all(), 'id', 'title'),
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => 'Sponsors', 'id' => 'grid-sponsor-log-search-sponsor_id']
+            ],
+        'amount',
         [
             'class' => 'kartik\grid\ActionColumn',
             "width"=>"20%",
-            "template"=>' {view} {delete}'//{delete}
+            "template"=>'{update} {view} '//{delete}
         ],
     ]; 
     ?>
-
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        'filterModel' => null,
+        'options' => ['class' => 'gridview table-responsive'],
+        'tableOptions' => ['class' => 'table text-nowrap mb-0'],
         'columns' => $gridColumn,
-        'options' => [
-            'class' => ['gridview', 'table-responsive'],
-        ],
-        'layout' => "{items}\n{pager}",
-
-        'tableOptions' => [
-            'class' => ['table', 'text-nowrap', 'mb-0'],
-        ],
-
-        // 'pjax' => true,
-        // 'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-product']],
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-sponsor-log']],
         'panel' => [
             'type' => GridView::TYPE_LIGHT,
-            'heading' => false,
-            'options' => ['class' => false],
-
+            'heading' => false ,
         ],
-
         // set a label for default menu
         'export' => [
-            'label' => Yii::t('backend','Page'),
+            'label' => 'Page',
             'fontAwesome' => true,
+            'options' => ['class' => false],
         ],
         // your toolbar can include the additional full export menu
         'toolbar' => [
@@ -108,14 +97,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'columns' => $gridColumn,
                 'target' => ExportMenu::TARGET_BLANK,
-                'filename' => 'List of Customers-'. date('d-m-y'),
-
                 'fontAwesome' => true,
                 'dropdownOptions' => [
-                    'label' => Yii::t('backend','Full'),
+                    'label' => 'Full',
                     'class' => 'btn btn-default',
                     'itemsBefore' => [
-                        '<li class="dropdown-header">'.Yii::t('backend','Export All Data').'</li>',
+                        '<li class="dropdown-header">Export All Data</li>',
                     ],
                 ],
                 'exportConfig' => [
@@ -124,32 +111,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     ExportMenu::FORMAT_HTML => false,
                     ExportMenu::FORMAT_EXCEL => false,
                 ]
-            ]),
+            ]) ,
         ],
         'exportConfig' => [
-            GridView::CSV => [
-                'filename' => 'List of Customers-'. date('d-m-y')
-            ],
-            GridView::EXCEL => [
-                'filename' => 'List of Customers-'. date('d-m-y'),
-            ],
+            GridView::CSV => ['label' => 'Save as CSV'],
+            GridView::EXCEL => [ ],
 
         ],
     ]); ?>
 
-
-    <div class="col-md-12 text-center" style="display: flex; justify-content: center;">
-        <?php echo \yii\widgets\LinkPager::widget([
-            'pagination'=>$dataProvider->pagination,
-            'options' => ['class' => 'pagination']
-        ]) ?>
-    </div>
 </div>
-
-    <div class="card-footer">
-        <?php echo getDataProviderSummary($dataProvider) ?>
-    </div>
 </div>
-
-
-
