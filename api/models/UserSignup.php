@@ -2,7 +2,9 @@
 
 namespace api\models;
 
+use api\resources\UserResource;
 use Yii;
+use yii\base\InvalidParamException;
 use yii\base\Model;
 use common\models\User;
 use api\helpers\ImageHelper;
@@ -17,6 +19,7 @@ class UserSignup extends Model
     public $first_name;
     public $last_name;
     public $fullname;
+    public $binary_picture;
     public $email;
     public $mobile;
     public $password;
@@ -36,7 +39,7 @@ class UserSignup extends Model
             [['fullname', 'email', 'password'], 'required'],//'mobile', 'company_name', 'company_cr', 'company_cr_file'
             [['fullname', 'email'], 'filter', 'filter' => 'trim'],
             ['email', 'email'],
-            ['mobile', 'safe'],
+            [['mobile','binary_picture'], 'safe'],
             [['email'], 'string', 'max' => 200],
             [['fullname'], 'string', 'min' => 3, 'max' => 50],
             [
@@ -96,6 +99,15 @@ class UserSignup extends Model
 //                        $filename = ImageHelper::Base64FileUpload($this->company_cr_file, 'company_cr_file');
 //                        $profile->company_cr_file_path = 'company_cr_file/' . $filename;
 //                    }
+                    if ($this->binary_picture) {
+                        try {
+                            $filename = ImageHelper::Base64Image($this->binary_picture);
+                            $profile->avatar_base_url = \Yii::getAlias('@storageUrl') . '/source/';
+                            $profile->avatar_path = 'profile/' . $filename;
+                        } catch (InvalidParamException $e) {
+                            return ResponseHelper::sendFailedResponse( $e->getMessage());
+                        }
+                    }
                     $user->link('userProfile', $profile);
                     $transaction->commit();
                     return [

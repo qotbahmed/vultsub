@@ -2,6 +2,7 @@
 
 namespace api\controllers;
 
+use api\helpers\ImageHelper;
 use cheatsheet\Time;
 use common\models\CompanyProfile;
 use yii\base\DynamicModel;
@@ -14,6 +15,7 @@ use api\helpers\ResponseHelper;
 use api\resources\UserResource;
 use api\controllers\MyRestController;
 use common\commands\SendEmailCommand;
+use yii\base\InvalidParamException;
 
 class UserController extends MyRestUnAuthController
 {
@@ -62,6 +64,8 @@ class UserController extends MyRestUnAuthController
         $model->load(['UserSignup' => $params]);
 
         $registerUser = $model->signup();
+
+
         if ($registerUser['status']) {
             $user = UserResource::find()->where(['id' => $registerUser['user']->id])->one();
             if(YII_ENV_DEV){
