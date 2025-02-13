@@ -109,7 +109,7 @@ class UserProfile extends ActiveRecord
     {
         return [
             'user_id' => Yii::t('backend', 'User ID'),
-            'firstname' => Yii::t('backend', 'Fullname'),
+            'firstname' => Yii::t('backend', 'Name'),
             'address' => Yii::t('common', 'Address'),
             'middlename' => Yii::t('backend', 'Middlename'),
             'lastname' => Yii::t('backend', 'Lastname'),

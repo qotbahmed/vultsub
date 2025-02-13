@@ -165,13 +165,6 @@ $percentageChange = $lastMonthSponsorshipAmount > 0
             ],
 
             [
-                'label' => Yii::t('backend', 'Created At'),
-                'filter' => false,
-                'value' => function ($model) {
-                    return Yii::$app->formatter->asDatetime($model->created_at, 'dd/MM/yyyy hh:mm a');
-                },
-            ],
-            [
                 'label' => Yii::t('backend', 'New donation'),
                 'value' => function ($model) {
                     // Assuming $model has a relation to 'SponsorLog' named 'sponsorLogs'

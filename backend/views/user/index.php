@@ -32,6 +32,69 @@ $search = "$('.search-button').click(function(){
 $this->registerJs($search);
 
 ?>
+<style>
+    .user-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .profile-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .profile-initial {
+        width: 40px;
+        height: 40px;
+        background: #f0f0f0;
+        color: #555;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .user-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .user-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .user-link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .user-email {
+        font-size: 12px;
+        color: #888;
+    }
+
+</style>
 
 <div class="row mb-3">
     <div class="col-12 col-sm-4">
@@ -73,52 +136,27 @@ $this->registerJs($search);
             ['class' => 'yii\grid\SerialColumn'],
             ['attribute' => 'id', 'hidden' => true],
             [
-                'label' => Yii::t('backend', 'Full Name'),
+                'label' => Yii::t('backend', 'User'),
                 'attribute' => 'fullName',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return Html::a($model->userProfile['fullName'], ['/user/view?id=' . $model->id], ['target' => '_self']);
-                },
+                    $profileImage = $model->userProfile->getAvatar()
+                        ? Html::img($model->userProfile->getAvatar(), ['class' => 'profile-img'])
+                        : '<span class="profile-initial">' . strtoupper(mb_substr($model->userProfile['fullName'], 0, 1)) . '</span>';
 
-            ],
-
-            [
-                'label' => Yii::t('backend', 'Email'),
-                'attribute' => 'email',
-                'enableSorting' => false,
-                'value' => function ($model) {
-                    return !preg_match("/@testzone321/i", $model->email) ? $model->email : "-";
-                },
-            ],
-            [
-                'attribute' => 'mobile',
-                'enableSorting' => false,
-                'value' => function ($model) {
-                    return ($model->mobile) ? $model->mobile : "-";
+                    return '<div class="user-info">
+                    <div class="user-avatar">' . $profileImage . '</div>
+                    <div class="user-details">
+                        <div class="user-name">' . Html::a($model->userProfile->getFullName(), ['/user/view', 'id' => $model->id], ['class' => 'user-link']) . '</div>
+                        <div class="user-email">' . Html::encode($model->email) . '</div>
+                    </div>
+                </div>';
                 },
             ],
-
             [
-                'attribute' => 'status',
-                'enableSorting' => false,
-                'format' => 'raw',
-                'filter' => Html::activeDropDownList($searchModel, 'status', User::getStatuses(''), ['class' => 'form-control', 'prompt' => Yii::t('backend', 'Select Status')]),
-                'contentOptions' => ['style' => 'text-align: center;'],
-                'headerOptions' => ['style' => 'text-align: center;'],
+                'label' => Yii::t('backend', 'User Type'),
                 'value' => function ($model) {
-                    $status = $model->usersStatuses()[$model->status];
-                    $action = $model->status === User::STATUS_ACTIVE ? Yii::t('backend', 'Deactivate') : Yii::t('backend', 'Activate');
-                    $confirmationMessage = Yii::t('backend', 'Are you sure you want to') . $action .  Yii::t('backend', '?');
-                    $confirmationTitle = Yii::t('backend',  'Confirmation');
-
-                    return Html::a($status, ['toggle-status', 'id' => $model->id], [
-                        'class' => 'status-toggle',
-                        'data' => [
-                            'confirm' => $confirmationMessage,
-                            'method' => 'post',
-                        ],
-
-                    ]);
+                    return 'مدير';
                 },
             ],
 
@@ -138,7 +176,6 @@ $this->registerJs($search);
                     ]
                 ]),
             ],
-
 
 
             [
@@ -174,7 +211,7 @@ $this->registerJs($search);
 
             // set a label for default menu
             'export' => [
-                'label' => Yii::t('backend','Page'),
+                'label' => Yii::t('backend', 'Page'),
                 'fontAwesome' => true,
             ],
             // your toolbar can include the additional full export menu
@@ -184,14 +221,14 @@ $this->registerJs($search);
                     'dataProvider' => $dataProvider,
                     'columns' => $gridColumn,
                     'target' => ExportMenu::TARGET_BLANK,
-                    'filename' => 'List of Customers-'. date('d-m-y'),
+                    'filename' => 'List of Customers-' . date('d-m-y'),
 
                     'fontAwesome' => true,
                     'dropdownOptions' => [
-                        'label' => Yii::t('backend','Full'),
+                        'label' => Yii::t('backend', 'Full'),
                         'class' => 'btn btn-default',
                         'itemsBefore' => [
-                            '<li class="dropdown-header">'.Yii::t('backend','Export All Data').'</li>',
+                            '<li class="dropdown-header">' . Yii::t('backend', 'Export All Data') . '</li>',
                         ],
                     ],
                     'exportConfig' => [
@@ -204,10 +241,10 @@ $this->registerJs($search);
             ],
             'exportConfig' => [
                 GridView::CSV => [
-                    'filename' => 'List of Customers-'. date('d-m-y')
+                    'filename' => 'List of Customers-' . date('d-m-y')
                 ],
                 GridView::EXCEL => [
-                    'filename' => 'List of Customers-'. date('d-m-y'),
+                    'filename' => 'List of Customers-' . date('d-m-y'),
                 ],
 
             ],
@@ -216,7 +253,7 @@ $this->registerJs($search);
 
         <div class="col-md-12 text-center" style="display: flex; justify-content: center;">
             <?php echo \yii\widgets\LinkPager::widget([
-                'pagination'=>$dataProvider->pagination,
+                'pagination' => $dataProvider->pagination,
                 'options' => ['class' => 'pagination']
             ]) ?>
         </div>

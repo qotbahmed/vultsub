@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\AccountForm;
 use Yii;
 use backend\models\Settings;
 use yii\data\ActiveDataProvider;
@@ -56,48 +57,61 @@ class SettingsController extends BackendController
      * Lists all Settings models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($tab = 'point')
     {
-//        $dataProvider = new ActiveDataProvider([
-//            'query' => Settings::find(),
-//        ]);
-//
-//        $dataProvider->setSort([
-//            'defaultOrder' => ['id' => SORT_DESC ],
-//        ]);
-//
-//        return $this->render('index', [
-//            'dataProvider' => $dataProvider,
-//        ]);
+        // Load models
+        $settingsModel = isset($_SESSION['MenuV']) && $_SESSION['MenuV'] == 'dry' ? $this->findModel(2) : $this->findModel(1);
+        $profileModel = Yii::$app->user->identity->userProfile;
+        $userModel = Yii::$app->user->identity; // Load User model
+        $accountModel = new AccountForm();
 
-        if(isset($_SESSION['MenuV']) && $_SESSION['MenuV'] =='dry'){
-            $model = $this->findModel(2);
-        }else{
-            $model = $this->findModel(1);
-
+        // Handle form submission based on the active tab
+        if ($tab === 'point' && $settingsModel->loadAll(Yii::$app->request->post()) && $settingsModel->saveAll()) {
+            Yii::$app->session->setFlash('alert', [
+                'type' => 'success',
+                'body' => Yii::t('backend', 'تم تحديث البيانات بنجاح'),
+            ]);
+            return $this->redirect(['index', 'tab' => 'point']);
         }
 
-        $render_data = [
-            'model' => $model
-        ];
-
-        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
-
-            Yii::$app->getSession()->setFlash('alert', [
-                'type' =>'success',
-                'body' =>  Yii::t('backend', 'Data has been updated successfully'),
-                'title' =>'',
-            ]);
-
-            if (!Yii::$app->request->isAjax) {
-                return $this->redirect(['index']);
+        elseif ($tab === 'account' && $accountModel->load(Yii::$app->request->post()) && $accountModel->validate()) {
+            $user = Yii::$app->user->identity;
+            $user->username = $accountModel->username;
+            $user->email = $accountModel->email;
+            if ($accountModel->password) {
+                $user->setPassword($accountModel->password);
+            }
+            if ($user->save()) {
+                Yii::$app->session->setFlash('alert', [
+                    'type' => 'success',
+                    'body' => Yii::t('backend', 'تم حفظ الحساب بنجاح'),
+                ]);
+                return $this->redirect(['index', 'tab' => 'account']);
             }
         }
-        if (Yii::$app->request->isAjax) {
-            return $this->renderAjax('update', $render_data);
-        } else {
-            return $this->render('update', $render_data);
+
+        elseif ($tab === 'privacy' && $profileModel->load(Yii::$app->request->post()) && $userModel->load(Yii::$app->request->post())) {
+
+            // Save User model (email)
+            if ($userModel->validate() && $userModel->save(false)) {
+                if ($profileModel->save()) {
+                    Yii::$app->session->setFlash('alert', [
+                        'type' => 'success',
+                        'body' => Yii::t('backend', 'تم حفظ الملف الشخصي بنجاح'),
+                    ]);
+                    return $this->redirect(['index', 'tab' => 'privacy']);
+                }
+            }
         }
+
+        return $this->render('index', [
+            'settingsModel' => $settingsModel,
+            'profileModel' => $profileModel,
+            'userModel' => $userModel,
+            'accountModel' => $accountModel,
+
+            'tab' => $tab
+        ]);
     }
 
     /**
@@ -168,6 +182,46 @@ class SettingsController extends BackendController
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionProfile()
+    {
+        $model = Yii::$app->user->identity->userProfile;
+        if ($model->load($_POST) && $model->save()) {
+            Yii::$app->session->setFlash('alert', [
+                'options' => ['class' => 'alert-success'],
+                'body' => Yii::t('backend', 'Your profile has been successfully saved')
+            ]);
+            return $this->refresh();
+        }else{
+            //  var_dump($model->errors);die;
+        }
+        return $this->render('profile', ['model' => $model]);
+    }
+
+    public function actionAccount()
+    {
+        $user = Yii::$app->user->identity;
+        $model = new AccountForm();
+        $model->username = $user->username;
+        $model->email = $user->email;
+        if ($model->load($_POST) && $model->validate()) {
+            $user->username = $model->username;
+            $user->email = $model->email;
+            if ($model->password) {
+                $user->setPassword($model->password);
+            }
+            if( $user->save()){
+                Yii::$app->session->setFlash('alert', [
+                    'options' => ['class' => 'alert-success'],
+                    'body' => Yii::t('backend', 'Your account has been successfully saved')
+                ]);
+            }else{
+                var_dump($user->errors); die;
+            }
+            return $this->refresh();
+        }
+        return $this->render('account', ['model' => $model]);
     }
     
     /**

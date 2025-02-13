@@ -58,7 +58,7 @@ $this->registerJs($search);
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        'filterModel' => null,
         'columns' => $gridColumn,
         'options' => [
             'class' => ['gridview', 'table-responsive'],
