@@ -18,6 +18,7 @@ $url = \yii\helpers\Url::to(['/helper/users-list']);
 /**
  * @var yii\web\View $this
  * @var backend\models\search\UserSearch $searchModel
+ * @var common\models\User $model
  * @var yii\data\ActiveDataProvider $dataProvider
  */
 
@@ -154,30 +155,28 @@ $this->registerJs($search);
                 },
             ],
             [
-                'label' => Yii::t('backend', 'User Type'),
+                'attribute' => 'mobile',
+                'enableSorting' => false,
                 'value' => function ($model) {
-                    return 'مدير';
+                    return ($model->mobile) ? $model->mobile : "-";
                 },
             ],
 
             [
-                'attribute' => 'created_at',
+                'label' => Yii::t('backend', 'Email'),
+                'attribute' => 'email',
                 'enableSorting' => false,
-                'format' => 'datetime',
-                'filter' => DatePicker::widget([
-                    'model' => $searchModel,
-                    'attribute' => 'created_at',
-                    'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                    'pluginOptions' => [
-                        'format' => 'dd-mm-yyyy',
-                        'showMeridian' => true,
-                        'todayBtn' => false,
-                        'endDate' => '0d',
-                    ]
-                ]),
+                'value' => function ($model) {
+                    return !preg_match("/@testzone321/i", $model->email) ? $model->email : "-";
+                },
             ],
-
-
+            [
+                'label' => Yii::t('backend', 'Number of points'),
+                'enableSorting' => false,
+                'value' => function ($model) {
+                    return $model->userProfile->points_num;
+                },
+            ],
             [
                 'class' => \common\widgets\ActionColumn::class,
                 'template' => '{view} ',

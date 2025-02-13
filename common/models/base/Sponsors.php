@@ -21,6 +21,7 @@ use mootensai\behaviors\UUIDBehavior;
  * @property string $base_url
  * @property string $created_at
  * @property string $updated_at
+ * @property \common\models\SponsorLog[] $logs
  */
 class Sponsors extends ActiveRecord
 {

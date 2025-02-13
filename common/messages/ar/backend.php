@@ -697,6 +697,8 @@ return [
     'Donation Amount' => 'مبلغ التبرع',
     'Time & Date' => 'وقت و تاريخ التبرع',
     'this week' => 'هذا الأسبوع',
+    'Student Management' => 'ادارة الطلاب',
+    'Number of points' => 'عدد النقاط',
 
 
 ];

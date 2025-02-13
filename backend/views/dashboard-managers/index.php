@@ -4,7 +4,8 @@ use backend\modules\rbac\models\RbacAuthItem;
 use common\models\School;
 use common\grid\EnumColumn;
 use common\models\User;
-use trntv\yii\datetime\DateTimeWidget;
+    use kartik\widgets\DatePicker;
+    use trntv\yii\datetime\DateTimeWidget;
 use yii\helpers\Html;
 //use yii\grid\GridView;
 use kartik\grid\GridView;
@@ -32,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php echo GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        'filterModel' => false,
         'options' => [
             'class' => 'grid-view table-responsive'
         ],
@@ -40,48 +41,60 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id',
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'username',
             [
-                'attribute' => 'full_name',
-                // 'format'    => 'raw',
-                'value'     => function ($model) {
-                    return $model->userProfile['fullName'];
-                    // return Html::a( $model->userProfile['fullName'], ['view?id='.$model->id]) ;
+                'label' => Yii::t('backend', 'User'),
+                'attribute' => 'fullName',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    $profileImage = $model->userProfile->getAvatar()
+                        ? Html::img($model->userProfile->getAvatar(), ['class' => 'profile-img'])
+                        : '<span class="profile-initial">' . strtoupper(mb_substr($model->userProfile['fullName'], 0, 1)) . '</span>';
+
+                    return '<div class="user-info">
+                    <div class="user-avatar">' . $profileImage . '</div>
+                    <div class="user-details">
+                        <div class="user-name">' . Html::a($model->userProfile->getFullName(), ['/user/view', 'id' => $model->id], ['class' => 'user-link']) . '</div>
+                        <div class="user-email">' . Html::encode($model->email) . '</div>
+                    </div>
+                </div>';
                 },
             ],
-           'email:email',
+
             [
-                'class' => EnumColumn::class,
-                'attribute' => 'status',
-                'enum' => User::statusList(),
-                'filter' =>  Html::activeDropDownList($searchModel, 'status', User::statuses(),
-                    ['class' => 'form-control',
-                        'prompt' => Yii::t('common', 'Select')]),
-            ],
-            [
-                'label' => "الصلاحية",
-                'attribute' => "user_role",
-                'format'    => 'raw',
-                'value' => function($model){
-                    return Html::a($model->userRole->description, ['/user-custom-role/update?id='.$model->userRole->name],
-                         ['target'=>'blank']);
+                'label' => Yii::t('backend', 'User Type'),
+                'value' => function ($model) {
+                    return 'مدير';
                 },
-                'filter' =>  Html::activeDropDownList($searchModel, 'user_role', User::ListCustomRoles(),
-                    ['class' => 'form-control',
-                        'prompt' => Yii::t('common', 'Select')]),
             ],
             [
-                'attribute' => 'logged_at',
+                'attribute' => 'created_at',
+                'enableSorting' => false,
                 'format' => 'datetime',
-                'filterType' => GridView::FILTER_DATE,
-                'filterWidgetOptions' => [
+                'filter' => DatePicker::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'created_at',
+                    'type' => DatePicker::TYPE_COMPONENT_APPEND,
                     'pluginOptions' => [
-                        'format' => 'yyyy-mm-dd',
-                        'autoclose' => true,
-                        'todayHighlight' => true,
+                        'format' => 'dd-mm-yyyy',
+                        'showMeridian' => true,
+                        'todayBtn' => false,
+                        'endDate' => '0d',
                     ]
-                ],
+                ]),
             ],
+
+//            [
+//                'attribute' => 'logged_at',
+//                'format' => 'datetime',
+//                'filterType' => GridView::FILTER_DATE,
+//                'filterWidgetOptions' => [
+//                    'pluginOptions' => [
+//                        'format' => 'yyyy-mm-dd',
+//                        'autoclose' => true,
+//                        'todayHighlight' => true,
+//                    ]
+//                ],
+//            ],
             // 'updated_at',
 
             [

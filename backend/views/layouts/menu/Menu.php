@@ -40,11 +40,20 @@ return
 
 
         [
-            'label' => Yii::t('backend', 'Customers'),
+            'label' => Yii::t('backend', 'Student Management'),
             'url' => ['/user'],
             'icon' => FAS::icon('users', ['class' => ['nav-icon']]),
             'options' => ['class' => 'nav-item has-treeview'],
             'active' => (Yii::$app->controller->id === 'user'),
+
+            'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('user_index')),
+        ],
+        [
+            'label' => Yii::t('backend', 'Customers'),
+            'url' => ['/dashboard-managers'],
+            'icon' => FAS::icon('users', ['class' => ['nav-icon']]),
+            'options' => ['class' => 'nav-item has-treeview'],
+            'active' => (Yii::$app->controller->id === 'dashboard-managers'),
 
             'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('user_index')),
         ],
