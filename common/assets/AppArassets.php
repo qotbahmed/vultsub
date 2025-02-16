@@ -21,6 +21,7 @@ class AppArassets extends AssetBundle
         // 'css/custom.css',
         'css/iconsax-css/isax.css',
         'css/style-ar.css',
+        'css/custom-ar.css',
     ];
     /**
      * @var array

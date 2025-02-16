@@ -96,39 +96,37 @@ $this->registerJs($search);
     }
 
 </style>
-
+<div class="d-flex align-items-center flex-wrap section_header justify-content-between gap-3">
+    <div class="section_header_right">
+        <h4 class="mb-0">
+        <?= Yii::t('backend', 'Customers List') ?>
+        </h4>
+    </div>
+</div>
 <div class="row mb-3">
     <div class="col-12 col-sm-4">
-        <div class="info-box custom-card statistics-card">
-            <div class="info-box-content">
-                <span class="info-box-text text-center text-muted"><?= Yii::t('backend', 'Total Customers') ?></span>
-                <span class="info-box-number text-center text-muted mb-0"><?= User::find()->where(['user_type' => User::USER_TYPE_CUSTOMER])->andFilterWhere(['>', 'id', 3])->count() ?></span>
-            </div>
+        <div class="stat-card p-4 bg-info-subtle">
+            <h6 class="text-muted"><img src="/img/Equalizer_blue.png" class="me-2"><?= Yii::t('backend', 'Total Customers') ?></h6>
+            <h3 class="fw-bold mb-3"><?= User::find()->where(['user_type' => User::USER_TYPE_CUSTOMER])->andFilterWhere(['>', 'id', 3])->count() ?></h3>
         </div>
     </div>
     <div class="col-12 col-sm-4">
-        <div class="info-box custom-card statistics-card">
-            <div class="info-box-content">
-                <span class="info-box-text text-center text-muted"><?= Yii::t('backend', 'Active Customers') ?></span>
-                <span class="info-box-number text-center text-muted mb-0"><?= User::find()->where(['user_type' => User::USER_TYPE_CUSTOMER, 'status' => User::STATUS_ACTIVE])->andFilterWhere(['>', 'id', 3])->count() ?></span>
-            </div>
+        <div class="stat-card p-4 bg-warning-subtle">
+            <h6 class="text-muted"><img src="/img/Equalizer_blue.png" class="me-2"><?= Yii::t('backend', 'Active Customers') ?></h6>
+            <h3 class="fw-bold mb-3"><?= User::find()->where(['user_type' => User::USER_TYPE_CUSTOMER, 'status' => User::STATUS_ACTIVE])->andFilterWhere(['>', 'id', 3])->count() ?></h3>
         </div>
     </div>
     <div class="col-12 col-sm-4">
-        <div class="info-box custom-card statistics-card">
-            <div class="info-box-content">
-                <span class="info-box-text text-center text-muted"><?= Yii::t('backend', 'Not Active Customers') ?></span>
-                <span class="info-box-number text-center text-muted mb-0"><?= User::find()->where(['user_type' => User::USER_TYPE_CUSTOMER, 'status' => User::STATUS_NOT_ACTIVE])->andFilterWhere(['>', 'id', 3])->count() ?></span>
-            </div>
+        <div class="stat-card p-4 bg-primary-subtle">
+            <h6 class="text-muted"><img src="/img/Equalizer_blue.png" class="me-2"><?= Yii::t('backend', 'Not Active Customers') ?></h6>
+            <h3 class="fw-bold mb-3"><?= User::find()->where(['user_type' => User::USER_TYPE_CUSTOMER, 'status' => User::STATUS_NOT_ACTIVE])->andFilterWhere(['>', 'id', 3])->count() ?></h3>
         </div>
     </div>
 
 </div>
-<div id="CARD" class="card">
-    <div class="card-header">
-        <h3><?= Yii::t('backend', 'Customers List') ?></h3>
-    </div>
+    
 
+<div class="card-border bg-gray mt-4 p-3">
 
     <div class="card-body p-0">
 
@@ -261,7 +259,6 @@ $this->registerJs($search);
     <div class="card-footer">
         <?php echo getDataProviderSummary($dataProvider) ?>
     </div>
+
 </div>
-
-
 

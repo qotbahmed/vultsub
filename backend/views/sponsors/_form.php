@@ -45,7 +45,7 @@ use yii\widgets\ActiveForm;
         <div class="row">
             <?= $form->errorSummary($model); ?>
 
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 >
                 <?= $form->field($model, 'image')->widget(
                     Upload::class,
                     [
@@ -54,7 +54,7 @@ use yii\widgets\ActiveForm;
                         'options' => ['class' => 'justify-content-center']
                     ]
                 )->hint(Yii::t('common', 'Image max 1 mega'))->label(Yii::t('backend', 'Image'), [
-                    'class' => 'text-center w-100'
+                    'class' => 'w-100'
                 ]); ?>
             </div>
  <div class="col-md-4">   <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => Yii::t('backend', 'Title')]) ?> </div>

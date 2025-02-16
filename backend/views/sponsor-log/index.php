@@ -81,9 +81,9 @@ $percentageChange = $lastMonthSponsorshipAmount > 0
 </style>
 
 
-<div class="d-flex align-items-center flex-wrap section_header justify-content-between gap-3">
-    <div class="section_header_right">
-        <h4 class="mb-0">
+<div class="d-flex align-items-center flex-wrap justify-content-between mb-4">
+    <div>
+        <h4>
             <?= $this->title ?>
         </h4>
     </div>
@@ -95,7 +95,7 @@ $percentageChange = $lastMonthSponsorshipAmount > 0
         <?= Html::a(
             Html::tag('i', '', ['class' => 'isax isax-add']) . ' ' . Yii::t('backend', 'Create Sponsor Log'),
             ['create'],
-            ['class' => 'btn btn-secondary']
+            ['class' => 'btn btn-primary text-white']
         ) ?>
     </div>
 </div>
@@ -137,7 +137,7 @@ $percentageChange = $lastMonthSponsorshipAmount > 0
 
 
 
-<div class="py-3">
+<div class="card-border bg-gray mt-4 p-3">
 
     <!-- Filters Toolbar -->
     <div id="collapseFilters" class="collapse <?= $hasFilters ? 'show' : '' ?>">

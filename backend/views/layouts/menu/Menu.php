@@ -180,10 +180,10 @@ return
             'label' => '<div class="user-menu">'
                 . $profileImage .
                 ' <span class="user-name">' . Html::encode($user->userProfile->getFullName()) . '</span>
-</div>',
+            </div>',
             'encode' => false, // Allows HTML rendering
             'url' => '#',
-            'options' => ['class' => 'nav-item has-treeview'],
+            'options' => ['class' => 'nav-item has-treeview user-panel'],
             'active' => Yii::$app->controller->id === 'profile',
             'items' => [
                 [

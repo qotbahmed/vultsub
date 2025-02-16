@@ -27,15 +27,15 @@ $this->registerJs($search);
 
 
         <p>
-            <?= Html::a(Yii::t('backend', 'Create FAQs'), ['create'], ['class' => 'to-modal btn btn-primary']) ?>
+            <?= Html::a(Yii::t('backend', 'Create FAQs'), ['create'], ['class' => 'to-modal btn btn-primary text-white']) ?>
         </p>
         <div class="search-form" style="display:none">
             <?= $this->render('_search', ['model' => $searchModel]); ?>
         </div>
     </div>
 
-    <div class="card-body">
-        <?php
+    <div class="card-border bg-gray mt-4 p-3">
+    <?php
         $gridColumn = [
             ['class' => 'yii\grid\SerialColumn'],
             ['attribute' => 'id', 'hidden' => true],

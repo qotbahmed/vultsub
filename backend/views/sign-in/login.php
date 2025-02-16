@@ -11,58 +11,61 @@ $this->title = Yii::t('backend', 'قم بتسجيل الدخول');
 $this->params['body-class'] = 'login-page';
 ?>
 
-<div class="d-flex align-items-center min-vh-100">
-    <div class="container">
-        <div class="row justify-content-center align-items-center">
+<div class="d-flex align-items-center min-vh-100 w-100">
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center vh-100">
 
             <!-- Right Side: Login Form -->
-            <div class="col-md-6 col-sm-12">
-                <div class="card border-0 shadow-lg p-4 rounded-lg">
-                    <div class="text-center mb-4">
+            <div class="col-md-4 col-sm-12 vh-100">
+                <div class="p-5 d-flex flex-column  h-100">
+                    <div class="mb-4">
                         <img src="/img/logo-h-gold.png" style="max-height: 60px;" alt="Logo">
                     </div>
-                    <h4 class="text-center font-weight-bold text-dark mb-4">
-                        <?= Yii::t('backend', 'قم بتسجيل الدخول') ?>
-                    </h4>
+                    <div class="my-auto">
+                        <p>مرحباً بك!</p>
+                        <h4 class="text-primary mb-5">
+                            <?= Yii::t('backend', 'قم بتسجيل الدخول') ?>
+                        </h4>
 
-                    <!-- Flash Messages -->
-                    <?php foreach (Yii::$app->session->getAllFlashes() as $key => $message): ?>
-                        <div class="alert alert-<?= $key ?> alert-dismissible fade show" role="alert">
-                            <?= $message ?>
-                        </div>
-                    <?php endforeach; ?>
+                        <!-- Flash Messages -->
+                        <?php foreach (Yii::$app->session->getAllFlashes() as $key => $message): ?>
+                            <div class="alert alert-<?= $key ?> alert-dismissible fade show" role="alert">
+                                <?= $message ?>
+                            </div>
+                        <?php endforeach; ?>
 
-                    <!-- Login Form -->
-                    <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-                    <div class="form-group">
-                        <?= $form->field($model, 'username', [
-                            'inputOptions' => ['class' => 'form-control rounded-lg', 'placeholder' => Yii::t('backend', 'أدخل البريد الإلكتروني')],
-                        ])->label(Yii::t('backend', 'البريد الإلكتروني'), ['class' => 'font-weight-bold']) ?>
-                    </div>
-                    <div class="form-group">
-                        <?= $form->field($model, 'password', [
-                            'inputOptions' => ['class' => 'form-control rounded-lg', 'placeholder' => Yii::t('backend', 'أدخل كلمة المرور')],
-                        ])->passwordInput()->label(Yii::t('backend', 'كلمة المرور'), ['class' => 'font-weight-bold']) ?>
-                    </div>
+                        <!-- Login Form -->
+                        <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+                            <div class="form-group">
+                                <?= $form->field($model, 'username', [
+                                    'inputOptions' => ['class' => 'form-control rounded-lg', 'placeholder' => Yii::t('backend', 'أدخل البريد الإلكتروني')],
+                                ])->label(Yii::t('backend', 'البريد الإلكتروني'), ['class' => 'font-weight-bold']) ?>
+                            </div>
+                            <div class="form-group">
+                                <?= $form->field($model, 'password', [
+                                    'inputOptions' => ['class' => 'form-control rounded-lg', 'placeholder' => Yii::t('backend', 'أدخل كلمة المرور')],
+                                ])->passwordInput()->label(Yii::t('backend', 'كلمة المرور'), ['class' => 'font-weight-bold']) ?>
+                            </div>
 
-                    <div class="form-group form-check d-flex justify-content-between align-items-center">
-                        <label class="form-check-label">
-                            <?= Html::activeCheckbox($model, 'rememberMe', ['class' => 'form-check-input']) ?>
-                            <?= Yii::t('backend', 'احفظ البريد الإلكتروني و كلمة المرور للمرة القادمة') ?>
-                        </label>
-                        <a href="#" class="text-primary small"> <?= Yii::t('backend', 'نسيت كلمة المرور؟') ?> </a>
-                    </div>
+                            <div class="form-group form-check d-flex justify-content-between align-items-center">
+                                <label class="form-check-label">
+                                    <?= Html::activeCheckbox($model, 'rememberMe', ['class' => 'form-check-input']) ?>
+                                    <?= Yii::t('backend', 'احفظ البريد الإلكتروني و كلمة المرور للمرة القادمة') ?>
+                                </label>
+                                <a href="#" class="text-primary small"> <?= Yii::t('backend', 'نسيت كلمة المرور؟') ?> </a>
+                            </div>
 
-                    <div class="form-group">
-                        <?= Html::submitButton(Yii::t('backend', 'تسجيل الدخول'), ['class' => 'btn btn-primary btn-block rounded-lg']) ?>
+                            <div class="form-group">
+                                <?= Html::submitButton(Yii::t('backend', 'تسجيل الدخول'), ['class' => 'btn btn-primary btn-block rounded-lg']) ?>
+                            </div>
+                        <?php ActiveForm::end(); ?>
                     </div>
-                    <?php ActiveForm::end(); ?>
                 </div>
             </div>
 
             <!-- Left Side: Illustration -->
-            <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center">
-                <img src="/img/undraw_two_fact.png" alt="Login Illustration" class="img-fluid w-75">
+            <div class="col-md-8 d-none d-md-flex align-items-center justify-content-center">
+                <img src="/img/undraw_two_fact.png" alt="Login Illustration">
             </div>
 
         </div>
