@@ -13,8 +13,8 @@ use yii\widgets\ActiveForm;
 
 <div class="category-form">
     <?php
-    $this->beginContent('@backend/views/public/multi-lang.php');
-    $this->endContent();
+//    $this->beginContent('@backend/views/public/multi-lang.php');
+//    $this->endContent();
     ?>
     <?php $form = ActiveForm::begin([
         'action' => $model->isNewRecord ? Url::to(['create']) : Url::to(['update', 'id' => $model->id]),
@@ -31,7 +31,7 @@ use yii\widgets\ActiveForm;
                 <div class="col-md-12">   <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?> </div>
 
                 <div class="col-md-8">   <?= $form->field($model, 'name')->textInput(['maxlength' => true,
-                        'placeholder' => Yii::t('backend', 'Name')])->widget(MyMultiLanguageActiveField::className()) ?> </div>
+                        'placeholder' => Yii::t('backend', 'Name')]) //->widget(MyMultiLanguageActiveField::className()) ?> </div>
 
 
             </div>

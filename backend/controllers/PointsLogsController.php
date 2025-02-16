@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\PointsLogs;
-use common\models\search\\PointsLogsSearch;
+use common\models\search\PointsLogsSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
