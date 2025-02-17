@@ -35,7 +35,7 @@ use yii\helpers\ArrayHelper;
 
                 <div class="col-md-8">   <?= $form->field($model, 'question')->textInput(['maxlength' => true, 'placeholder' => Yii::t('backend', 'Question')]) // ->widget(MyMultiLanguageActiveField::className()); ?> </div>
 
-                <div class="col-md-12">   <?= $form->field($model, 'answer')->textarea(['rows' => 6])->widget(MyMultiLanguageActiveField::className());?> </div>
+                <div class="col-md-12">   <?= $form->field($model, 'answer')->textarea(['rows' => 6]) //->widget(MyMultiLanguageActiveField::className());?> </div>
 
 
                 <div class="col-md-4">
