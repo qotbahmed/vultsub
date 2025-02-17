@@ -43,52 +43,52 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/chart.js', ['position' => \y
 
 </style>
     <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="mb-4">
         <h2 class="fw-bold">
-            👋 <?= Yii::t('backend', 'Welcome Back, ') . Yii::$app->user->identity->userProfile->getFullName() ?></h2>
+            <?= Yii::t('backend', 'Welcome Back, ') . Yii::$app->user->identity->userProfile->getFullName() ?> 👋 </h2>
         <span class="text-muted"><?= Yii::t('backend', 'Latest Statistics') ?></span>
     </div>
 
     <!-- Statistics Cards -->
     <div class="row">
         <div class="col-md-3">
-            <div class="stat-card bg-light p-3 text-center">
-                <h6 class="text-muted"><?= Yii::t('backend', 'Total Donations') ?></h6>
-                <h3 class="fw-bold"><?= number_format($totalDonations) ?> رس</h3>
-                <span class="text-success">⬆ 50% <?= Yii::t('backend', 'this week') ?></span>
+            <div class="stat-card p-4 bg-info-subtle">
+                <h6 class="text-muted"><img src="/img/Equalizer_blue.png" class="me-2"><?= Yii::t('backend', 'Total Donations') ?></h6>
+                <h3 class="fw-bold mb-3"><?= number_format($totalDonations) ?> <small>ر.س</small></h3>
+                <span class="text-muted">⬆ 50% <?= Yii::t('backend', 'this week') ?></span>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="stat-card bg-light p-3 text-center">
-                <h6 class="text-muted"><?= Yii::t('backend', 'Total Sponsors') ?></h6>
-                <h3 class="fw-bold"><?= number_format($totalSponsors) ?></h3>
-                <span class="text-success">⬆ 50% <?= Yii::t('backend', 'this week') ?></span>
+            <div class="stat-card p-4 bg-warning-subtle">
+                <h6 class="text-muted"><img src="/img/Equalizer_yellow.png" class="me-2"><?= Yii::t('backend', 'Total Sponsors') ?></h6>
+                <h3 class="fw-bold mb-3"><?= number_format($totalSponsors) ?></h3>
+                <span class="text-muted">⬆ 50% <?= Yii::t('backend', 'this week') ?></span>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="stat-card bg-light p-3 text-center">
-                <h6 class="text-muted"><?= Yii::t('backend', 'Donations Requests') ?></h6>
-                <h3 class="fw-bold"><?= number_format(5436) ?> رس</h3>
-                <span class="text-success">⬆ 50% <?= Yii::t('backend', 'this week') ?></span>
+            <div class="stat-card p-4 bg-success-subtle">
+                <h6 class="text-muted"><img src="/img/Equalizer_gray.png" class="me-2"><?= Yii::t('backend', 'Donations Requests') ?></h6>
+                <h3 class="fw-bold mb-3"><?= number_format(5436) ?> <small>ر.س</small></h3>
+                <span class="text-muted">⬆ 50% <?= Yii::t('backend', 'this week') ?></span>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="stat-card bg-light p-3 text-center">
-                <h6 class="text-muted"><?= Yii::t('backend', 'Total Requests') ?></h6>
-                <h3 class="fw-bold"><?= number_format($totalRequests) ?></h3>
-                <span class="text-success">⬆ 50% <?= Yii::t('backend', 'this week') ?></span>
+            <div class="stat-card p-4 bg-primary-subtle">
+                <h6 class="text-muted"><img src="/img/Equalizer_purple.png" class="me-2"><?= Yii::t('backend', 'Total Requests') ?></h6>
+                <h3 class="fw-bold mb-3"><?= number_format($totalRequests) ?></h3>
+                <span class="text-muted">⬆ 50% <?= Yii::t('backend', 'this week') ?></span>
             </div>
         </div>
     </div>
 
     <!-- Chart Section -->
-    <div class="card mt-4 p-4">
+    <div class="card-border mt-4 p-4">
         <h5><?= Yii::t('backend', 'Total Donations Over the Year') ?></h5>
         <canvas id="donationChart"></canvas>
     </div>
 
     <!-- Recent Donations Table -->
-    <div class="card mt-4 p-4">
+    <div class="card-border bg-gray mt-4 p-4">
         <h5><?= Yii::t('backend', 'Latest Donations') ?></h5>
         <?= GridView::widget([
             'dataProvider' => new yii\data\ArrayDataProvider([

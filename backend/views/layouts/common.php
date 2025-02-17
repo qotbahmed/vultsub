@@ -50,62 +50,10 @@ $logEntries[] = [
 
 <?php $this->beginContent('@backend/views/layouts/base.php'); ?>
 <div class="wrapper">
-    <!-- navbar -->
-    <?php NavBar::begin([
-        'renderInnerContainer' => false,
-        'options' => [
-            'class' => [
-                'main-header',
-                'navbar',
-                'navbar-expand',
-                'navbar-white',
-                'border-bottom',
-                'sticky-top',
-                $keyStorage->get('adminlte.navbar-no-border') ? 'border-bottom-0' : null,
-                $keyStorage->get('adminlte.navbar-small-text') ? 'text-sm' : null,
-            ],
-        ],
-    ]); ?>
-
-    <!-- left navbar links -->
-    <?php echo Nav::widget([
-        'options' => ['class' => ['navbar-nav']],
-        'encodeLabels' => false,
-        'items' => [
-            [
-                // sidebar menu toggler
-                'label' => '<i class="fas fa-bars"></i>',
-                'url' => '#',
-                'options' => [
-                    'data' => ['widget' => 'pushmenu'],
-                    'role' => 'button',
-                ]
-            ],
-        ]
-    ]); ?>
-    <!-- /left navbar links -->
-
-    <!-- right navbar links -->
-    <?php echo Nav::widget([
-        'options' => ['class' => ['navbar-nav', 'ml-auto', 'top-right-nav']],
-        'encodeLabels' => false,
-        'items' => [
-//                [
-//                    // timeline events
-//                    'label' => '<img src="/img/svg/bell.svg" alt="bell">'.' <span class="badge badge-success navbar-badge">'.TimelineEvent::find()->today()->count().'</span>',
-//                    'url'  => ['/timeline-event/index']
-//                ],
-
-
-        ]
-    ]); ?>
-    <!-- /right navbar links -->
-
-    <?php NavBar::end(); ?>
-    <!-- /navbar -->
+    
 
     <!-- main sidebar -->
-    <aside class="main-sidebar sidebar-light-primary  elevation-4 <?php echo $keyStorage->get('adminlte.sidebar-no-expand') ? 'sidebar-no-expand' : null ?>">
+    <aside class="main-sidebar <?php echo $keyStorage->get('adminlte.sidebar-no-expand') ? 'sidebar-no-expand' : null ?>">
         <!-- brand logo -->
         <a href="<?php echo Yii::getAlias('@backendUrl') ?>"
            class="brand-link  <?php echo $keyStorage->get('adminlte.brand-text-small') ? 'text-sm' : null ?>">
@@ -200,25 +148,8 @@ $logEntries[] = [
     <!-- /main sidebar -->
 
     <!-- content wrapper -->
-    <div class="content-wrapper" style="min-height: 402px;">
-        <!-- content header -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-sm-6">
-                        <h1 class="title text-dark"><?php echo Html::encode($this->title) ?></h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <?php echo Breadcrumbs::widget([
-                            'tag' => 'ol',
-                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                            'options' => ['class' => ['breadcrumb']]
-                        ]) ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /content header -->
+    <div class="content-wrapper pt-4" style="min-height: 402px;">
+       
 
         <!-- main content -->
         <section class="content">

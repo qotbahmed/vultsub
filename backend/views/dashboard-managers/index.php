@@ -25,11 +25,17 @@ $schools_url= \yii\helpers\Url::to(['/helper/school-list']);
 $this->title = "مديري النظام";
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-index">
-
-    <p>
-        <?php echo Html::a('إضافة مدير للنظام', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+<div class="d-flex align-items-center flex-wrap section_header justify-content-between gap-3">
+    <div class="section_header_right">
+        <h4 class="mb-0">
+            مديري النظام
+        </h4>
+    </div>
+    <div class="mb-0 d-inline-flex gap-2">
+        <?php echo Html::a('إضافة مدير للنظام', ['create'], ['class' => 'btn btn-primary text-white']) ?>
+    </div>
+</div>
+<div class="card-border bg-gray mt-4 p-3">
 
     <?php echo GridView::widget([
         'dataProvider' => $dataProvider,

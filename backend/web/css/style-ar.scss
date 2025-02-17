@@ -1559,11 +1559,12 @@ label {
 
 
 .form-control {
-
+    
     &[readonly] {
         background-color: $input-bg;
     }
 }
+
 
 
 .mg_table {

@@ -31,6 +31,8 @@ $this->registerJs($search);
         <?//= Html::a(Yii::t('backend', 'Create Page'), ['create'], ['class' => 'to-modal btn btn-primary']) ?>
         <? //= Html::a('Advance Search', '#', ['class' => 'btn btn-info search-button']) ?>
     </div>
+    <div class="card-border bg-gray mt-4 p-3">
+
     <div class="search-form" style="display:none">
         <?= $this->render('_search', ['model' => $searchModel]); ?>
     </div>
@@ -118,4 +120,5 @@ $this->registerJs($search);
             'options' => ['class' => 'pagination']
         ]) ?>
     </div>
+        </div>
 </div>

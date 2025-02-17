@@ -22,12 +22,16 @@ $this->registerJs($search);
     <div class="card-header">
 <h3><?=$this->title = Yii::t('backend', 'Category');?></h3>
     <p>
+        <?= Html::a(Yii::t('backend', 'Create Category'), ['create'], ['class' => 'to-modal btn btn-primary text-white']) ?>
+        <? //= Html::a(Yii::t('backend', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
         <?= Html::a(Yii::t('backend', 'Create Category'), ['create'], ['class' => 'to-modal btn btn-primary']) ?>
     </p>
         <div class="search-form" style="display:none">
         <?=  $this->render('_search', ['model' => $searchModel]); ?>
     </div>
     </div>
+    <div class="card-border bg-gray mt-4 p-3">
+
         <?php
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
@@ -67,3 +71,4 @@ $this->registerJs($search);
         ]) ?>
     </div>
 </div>
+        </div>
