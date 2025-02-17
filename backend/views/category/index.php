@@ -20,11 +20,9 @@ $this->registerJs($search);
 
 
     <div class="card-header">
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 <h3><?=$this->title = Yii::t('backend', 'Category');?></h3>
     <p>
         <?= Html::a(Yii::t('backend', 'Create Category'), ['create'], ['class' => 'to-modal btn btn-primary']) ?>
-        <? //= Html::a(Yii::t('backend', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
     </p>
         <div class="search-form" style="display:none">
         <?=  $this->render('_search', ['model' => $searchModel]); ?>
