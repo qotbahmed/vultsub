@@ -21,15 +21,13 @@ $this->registerJs($search);
 
 <div class="skill-index card" id="CARD">
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
 
     </p>
     <div class="card-header">
         <h3><?= Yii::t('backend', 'Pages list') ?></h3>
-        <?//= Html::a(Yii::t('backend', 'Create Page'), ['create'], ['class' => 'to-modal btn btn-primary']) ?>
-        <? //= Html::a('Advance Search', '#', ['class' => 'btn btn-info search-button']) ?>
+
     </div>
     <div class="card-border bg-gray mt-4 p-3">
 
