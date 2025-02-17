@@ -46,7 +46,7 @@ use common\models\UserProfile;
 
 <div class="form-container">
     <div class="form-title">
-        <?php echo Yii::t('backend', 'User Profile'); ?>
+        إضافة مدير جديد
     </div>
 
     <?php $form = ActiveForm::begin(); ?>
@@ -106,7 +106,7 @@ use common\models\UserProfile;
     </div>
 
     <div class="form-actions">
-        <?php echo Html::submitButton(Yii::t('backend', 'Save'), ['class' => 'btn btn-success', 'name' => 'signup-button']) ?>
+        <?php echo Html::submitButton(Yii::t('backend', 'Save'), ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
     </div>
 
     <?php ActiveForm::end() ?>

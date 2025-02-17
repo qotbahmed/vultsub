@@ -69,7 +69,7 @@ use yii\widgets\ActiveForm;
         </div>
 
         <div class="card-footer">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('common', 'Create') :  Yii::t('common', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('common', 'Create') :  Yii::t('common', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-primary' : 'btn btn-primary']) ?>
          </div>
     </div>
 

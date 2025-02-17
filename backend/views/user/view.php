@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Users'), 'url' =
 <div class="user-view">
 
     <p>
-        <?php echo Html::a(Yii::t('backend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?php echo Html::a(Yii::t('backend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary text-white mb-3']) ?>
     </p>
 
     <?php echo DetailView::widget([

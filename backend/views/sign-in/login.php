@@ -41,10 +41,11 @@ $this->params['body-class'] = 'login-page';
                                     'inputOptions' => ['class' => 'form-control rounded-lg', 'placeholder' => Yii::t('backend', 'أدخل البريد الإلكتروني')],
                                 ])->label(Yii::t('backend', 'البريد الإلكتروني'), ['class' => 'font-weight-bold']) ?>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group position-relative">
                                 <?= $form->field($model, 'password', [
                                     'inputOptions' => ['class' => 'form-control rounded-lg', 'placeholder' => Yii::t('backend', 'أدخل كلمة المرور')],
                                 ])->passwordInput()->label(Yii::t('backend', 'كلمة المرور'), ['class' => 'font-weight-bold']) ?>
+                                <i class="fa fa-eye-slash" id="togglePassword" style="position: absolute;left: 15px;bottom: 17px;cursor:pointer"></i>
                             </div>
 
                             <div class="form-group form-check d-flex justify-content-between align-items-center">
@@ -52,7 +53,7 @@ $this->params['body-class'] = 'login-page';
                                     <?= Html::activeCheckbox($model, 'rememberMe', ['class' => 'form-check-input']) ?>
                                     <?= Yii::t('backend', 'احفظ البريد الإلكتروني و كلمة المرور للمرة القادمة') ?>
                                 </label>
-                                <a href="#" class="text-primary small"> <?= Yii::t('backend', 'نسيت كلمة المرور؟') ?> </a>
+                                <!-- <a href="#" class="text-primary small"> <?= Yii::t('backend', 'نسيت كلمة المرور؟') ?> </a> -->
                             </div>
 
                             <div class="form-group">
@@ -93,3 +94,22 @@ $this->params['body-class'] = 'login-page';
         border-radius: 8px;
     }
 </style>
+
+<?php
+
+$js = <<<JS
+    // Toggle Password Visibility
+    $('#togglePassword').on('click', function() {
+        $(this).toggleClass('fa-eye fa-eye-slash');
+        var input = $("#loginform-password");
+        if (input.attr('type') == 'password') {
+            input.attr('type', 'text');
+        } else {
+            input.attr('type', 'password');
+        }
+    });
+
+JS;
+$this->registerJs($js);
+
+?>

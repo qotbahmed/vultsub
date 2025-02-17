@@ -15,7 +15,8 @@ return
         [
             'label' => Yii::t('backend', 'Dashboard'),
             'url' => '/site',
-            'icon' => FAS::icon('fas fa-chart-bar', ['class' => ['nav-icon']]),
+            // 'icon' => FAS::icon('fas fa-chart-bar', ['class' => ['nav-icon']]),
+            'icon' => '<img src="/img/icons/chart.png" class="me-2">',
             'options' => ['class' => 'nav-item has-treeview'],
             'active' => Yii::$app->controller->id === 'site'
         ],
@@ -23,14 +24,25 @@ return
         [
             'label' => Yii::t('backend', 'Sponsor Logs'),
             'url' => '/sponsor-log',
-            'icon' => FAS::icon('gift', ['class' => ['nav-icon']]),
+            'icon' => '<img src="/img/icons/gift.png" class="me-2">',
             'options' => ['class' => 'nav-item has-treeview'],
             'active' => Yii::$app->controller->id === 'sponsor-log'
         ],
+
+        [
+            'label' => Yii::t('backend', 'Student Management'),
+            'url' => ['/user'],
+            'icon' => '<img src="/img/icons/people.png" class="me-2">',
+            'options' => ['class' => 'nav-item has-treeview'],
+            'active' => (Yii::$app->controller->id === 'user'),
+
+            'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('user_index')),
+        ],
+
         [
             'label' => Yii::t('backend', 'Sponsors'),
             'url' => ['/sponsors'],
-            'icon' => FAS::icon('star', ['class' => ['nav-icon']]),
+            'icon' => '<img src="/img/icons/star.png" class="me-2">',
             'options' => ['class' => 'nav-item has-treeview'],
             'active' => (Yii::$app->controller->id === 'sponsors'),
 
@@ -38,20 +50,10 @@ return
 
         ],
 
-
-        [
-            'label' => Yii::t('backend', 'Student Management'),
-            'url' => ['/user'],
-            'icon' => FAS::icon('users', ['class' => ['nav-icon']]),
-            'options' => ['class' => 'nav-item has-treeview'],
-            'active' => (Yii::$app->controller->id === 'user'),
-
-            'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('user_index')),
-        ],
         [
             'label' => Yii::t('backend', 'Customers'),
             'url' => ['/dashboard-managers'],
-            'icon' => FAS::icon('users', ['class' => ['nav-icon']]),
+            'icon' => '<img src="/img/icons/profile-2user.png" class="me-2">',
             'options' => ['class' => 'nav-item has-treeview'],
             'active' => (Yii::$app->controller->id === 'dashboard-managers'),
 
@@ -60,26 +62,26 @@ return
         [
             'label' => Yii::t('backend', 'System settings'),
             'url' => '#',
-            'icon' => FAS::icon('puzzle-piece', ['class' => ['nav-icon']]),
+            'icon' => '<img src="/img/icons/setting.png" class="me-2">',
             'options' => ['class' => 'nav-item has-treeview'],
             'active' => (Yii::$app->controller->module->id === 'settings' || Yii::$app->controller->id === 'category' || Yii::$app->controller->id === 'faq'),
             'items' => [
                 [
                     'label' => Yii::t('backend', 'Pages'),
                     'url' => ['/page/index'],
-                    'icon' => FAS::icon('thumbtack', ['class' => ['nav-icon']]),
+                    'icon' => '<img src="/img/icons/setting.png" class="me-2">',
                     'active' => Yii::$app->controller->id === 'page',
                 ],
                 [
                     'label' => Yii::t('backend', 'Settings'),
                     'url' => ['/settings/index?tab=privacy'],
-                    'icon' => FAS::icon('thumbtack', ['class' => ['nav-icon']]),
+                    'icon' => '<img src="/img/icons/setting.png" class="me-2">',
                     'active' => Yii::$app->controller->id === 'settings'],
                 [
                     'label' => Yii::t('backend', 'FAQs'),
                     'url' => '#',
                     'icon' => FAS::icon('question', ['class' => ['nav-icon']]),
-                    'options' => ['class' => 'nav-item has-treeview'],
+                    'icon' => '<img src="/img/icons/setting.png" class="me-2">',
                     'active' => (Yii::$app->controller->id === 'faq' || Yii::$app->controller->id === 'category'),
 
                     'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('category_index') || Yii::$app->user->identity->checkMenuPermissions('faq_index')),
@@ -89,7 +91,7 @@ return
                         [
                             'label' => Yii::t('backend', 'Category'),
                             'url' => ['/category/index'],
-                            'icon' => '<i class="fas fa-tags" ></i>',
+                            'icon' => '<img src="/img/icons/setting.png" class="me-2">',
                             'active' => (Yii::$app->controller->id === 'category'),
 
                             'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('category_index')),
@@ -97,7 +99,7 @@ return
                         [
                             'label' => Yii::t('backend', 'FAQs'),
                             'url' => ['/faq/index'],
-                            'icon' => '<i class="fas fa-question-circle nav-icon"></i>',
+                            'icon' => '<img src="/img/icons/setting.png" class="me-2">',
                             'active' => (Yii::$app->controller->id === 'faq'),
 
 
@@ -189,19 +191,19 @@ return
                 [
                     'label' => Yii::t('backend', 'Profile'),
                     'url' => ['/sign-in/profile'],
-                    'icon' => FAS::icon('user', ['class' => ['nav-icon']]),
+                    'icon' => '<img src="/img/icons/profile-2user.png" class="me-2">',
                     'active' => Yii::$app->controller->id === 'sign-in' && Yii::$app->controller->action->id === 'profile',
                 ],
                 [
                     'label' => Yii::t('backend', 'Account'),
                     'url' => ['/sign-in/account'],
-                    'icon' => FAS::icon('cog', ['class' => ['nav-icon']]),
+                    'icon' => '<img src="/img/icons/setting.png" class="me-2">',
                     'active' => Yii::$app->controller->id === 'sign-in' && Yii::$app->controller->action->id === 'account',
                 ],
                 [
                     'label' => Yii::t('backend', 'Logout'),
                     'url' => ['/sign-in/logout'],
-                    'icon' => FAS::icon('sign-out', ['class' => 'nav-icon']), // Keep the icon
+                    'icon' => '<img src="/img/icons/setting.png" class="me-2">',
                     'encode' => false, // Ensure Yii does not escape the icon
                     'options' => ['class' => 'nav-item'],
                     'template' => Html::a(

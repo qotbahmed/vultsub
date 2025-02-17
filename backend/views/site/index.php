@@ -55,28 +55,28 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/chart.js', ['position' => \y
             <div class="stat-card p-4 bg-info-subtle">
                 <h6 class="text-muted"><img src="/img/Equalizer_blue.png" class="me-2"><?= Yii::t('backend', 'Total Donations') ?></h6>
                 <h3 class="fw-bold mb-3"><?= number_format($totalDonations) ?> <small>ر.س</small></h3>
-                <span class="text-muted">⬆ 50% <?= Yii::t('backend', 'this week') ?></span>
+                <span class="text-muted">50% <?= Yii::t('backend', 'this week') ?></span>
             </div>
         </div>
         <div class="col-md-3">
             <div class="stat-card p-4 bg-warning-subtle">
                 <h6 class="text-muted"><img src="/img/Equalizer_yellow.png" class="me-2"><?= Yii::t('backend', 'Total Sponsors') ?></h6>
                 <h3 class="fw-bold mb-3"><?= number_format($totalSponsors) ?></h3>
-                <span class="text-muted">⬆ 50% <?= Yii::t('backend', 'this week') ?></span>
+                <span class="text-muted">50% <?= Yii::t('backend', 'this week') ?></span>
             </div>
         </div>
         <div class="col-md-3">
             <div class="stat-card p-4 bg-success-subtle">
                 <h6 class="text-muted"><img src="/img/Equalizer_gray.png" class="me-2"><?= Yii::t('backend', 'Donations Requests') ?></h6>
                 <h3 class="fw-bold mb-3"><?= number_format(5436) ?> <small>ر.س</small></h3>
-                <span class="text-muted">⬆ 50% <?= Yii::t('backend', 'this week') ?></span>
+                <span class="text-muted">50% <?= Yii::t('backend', 'this week') ?></span>
             </div>
         </div>
         <div class="col-md-3">
             <div class="stat-card p-4 bg-primary-subtle">
                 <h6 class="text-muted"><img src="/img/Equalizer_purple.png" class="me-2"><?= Yii::t('backend', 'Total Requests') ?></h6>
                 <h3 class="fw-bold mb-3"><?= number_format($totalRequests) ?></h3>
-                <span class="text-muted">⬆ 50% <?= Yii::t('backend', 'this week') ?></span>
+                <span class="text-muted">50% <?= Yii::t('backend', 'this week') ?></span>
             </div>
         </div>
     </div>
