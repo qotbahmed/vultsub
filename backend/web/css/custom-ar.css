@@ -138,6 +138,7 @@ a {
 
 .circle_icon, .filter_toggler, .section_header .section_header_right .section_header_icon, .table td a:not(.btn) .fa, .table td a:not(.btn) .fas, .table td a:not(.btn) .far, .table td a:not(.btn):not(.floated_btn) .fa, .table td a:not(.btn):not(.floated_btn) .fas, .table td a:not(.btn):not(.floated_btn) .far {
   background: #6A8DC7 !important;
+  color: #fff !important;
 }
 
 .upload-kit .fa-plus-circle {
