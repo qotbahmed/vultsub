@@ -153,3 +153,24 @@ a {
 .upload-kit .upload-kit-input, .upload-kit .upload-kit-item {
   border: 2px dashed #6A8DC7 !important;
 }
+
+.timeline::before {
+  right: 21px;
+  top: 74px;
+}
+.timeline .timeline-list {
+  padding-left: 0;
+  padding-right: 20px;
+}
+.timeline .timeline-list::before {
+  left: auto;
+  right: 7px;
+}
+.timeline .timeline-list .timeline-item {
+  padding-right: 20px;
+  padding-left: 0;
+}
+.timeline .timeline-list .timeline-item::before {
+  left: auto;
+  right: -3px;
+}
