@@ -50,15 +50,15 @@ return
 
         ],
 
-        [
-            'label' => Yii::t('backend', 'Customers'),
-            'url' => ['/dashboard-managers'],
-            'icon' => '<img src="/img/icons/profile-2user.png" class="me-2">',
-            'options' => ['class' => 'nav-item has-treeview'],
-            'active' => (Yii::$app->controller->id === 'dashboard-managers'),
-
-            'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('user_index')),
-        ],
+//        [
+//            'label' => Yii::t('backend', 'Customers'),
+//            'url' => ['/dashboard-managers'],
+//            'icon' => '<img src="/img/icons/profile-2user.png" class="me-2">',
+//            'options' => ['class' => 'nav-item has-treeview'],
+//            'active' => (Yii::$app->controller->id === 'dashboard-managers'),
+//
+//            'visible' => (Yii::$app->user->can('administrator') || Yii::$app->user->identity->checkMenuPermissions('user_index')),
+//        ],
         [
             'label' => Yii::t('backend', 'System settings'),
             'url' => '#',
