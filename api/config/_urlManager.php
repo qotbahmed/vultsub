@@ -10,6 +10,7 @@ return [
     'rules' =>
     \yii\helpers\ArrayHelper::merge(
         [
+            ['pattern' => '/', 'route' => 'site/index'],
             ['pattern' => 'settings', 'route' => 'site/settings'],
             ['pattern' => 'terms', 'route' => 'site/terms'],
             ['pattern' => 'support-team', 'route' => 'site/support-team'],
