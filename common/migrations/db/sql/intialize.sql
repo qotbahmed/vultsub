@@ -748,7 +748,7 @@ CREATE TABLE `user_profile` (
                                 `subscription_id` int DEFAULT NULL,
                                 PRIMARY KEY (`user_id`),
                                 UNIQUE KEY `identification_number` (`identification_number`),
-                                KEY `user_profile_ibfk_1` (`academy_id`),
+
                                 CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
