@@ -31,6 +31,7 @@ use yii\db\Expression;
  * @property string $video_url
  * @property string $created_at
  * @property string $updated_at
+ * @property string $points_earned_per_riyal
  * @property integer $created_by
  * @property integer $points_per_second
  * @property integer $daily_points
@@ -68,7 +69,7 @@ class Settings extends BaseSettings
         return [
             [['created_by', 'updated_by',
                 'points_per_second','daily_points',
-                'reading_points_delay', 'max_daily_points_per_user'
+                'reading_points_delay','points_earned_per_riyal', 'max_daily_points_per_user'
             ], 'integer'],
             [['website_title', 'phone', 'email', 'notification_email', 'address',
                 'facebook', 'youtube', 'twitter', 'instagram', 'linkedin', 'whatsapp',

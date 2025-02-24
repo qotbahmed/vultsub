@@ -662,6 +662,7 @@ return [
     'Updated Successfully.' => 'تم التحديث بنجاح.',
     'System settings' => 'اعدادات النظام ',
     'Points per second' => 'النقاط المحصلة لكل ثانية',
+    'Points earned per riyal' => 'النقاط المحصلة لكل ريال',
     'Reading points delay' => 'عدم تحصيل نقاط قراءة الصفحة قبل قضاء مدة',
     'Maximum points collected daily for each person' => 'الحد الاقصي للنقاط المحصلة يوميا لكل شخص',
     'Points for the day' => 'النقاط المحددة لليوم الواحد',

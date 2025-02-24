@@ -23,6 +23,10 @@ use yii\helpers\Html;
                     <?= $form->field($model, 'max_daily_points_per_user')->textInput(['maxlength' => true, 'placeholder' => Yii::t('backend', 'الحد الأقصى للنقاط اليومية لكل مستخدم')]) ?>
                 </div>
 
+                <div class="col-md-6">
+                    <?= $form->field($model, 'points_earned_per_riyal')->textInput(['maxlength' => true, 'placeholder' => Yii::t('backend', 'النقاط المحصلة لكل ريال')]) ?>
+                </div>
+
             </div>
         </div>
     </div>

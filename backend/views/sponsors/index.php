@@ -193,6 +193,21 @@ $percentageChange = $lastMonthSponsorshipAmount > 0
 
                 },
             ],
+            [
+                'label' => Yii::t('backend', 'Number of points'),
+                'enableSorting' => false,
+                'value' => function ($model) {
+                    if ($model->logs) {
+                        $amounts = array_column($model->logs, 'amount');
+                      $settings=  \backend\models\base\Settings::findOne(1);
+                    ;
+
+
+                        return (array_sum($amounts))/  $settings->points_earned_per_riyal . ' ر.س ';
+                    }
+
+                    return 0;                },
+            ],
 
 //        [
 //            'label' => Yii::t('backend', 'Image'),
