@@ -21,16 +21,16 @@ $this->registerJs($search);
 
 <div class="skill-index card" id="CARD">
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
 
     </p>
     <div class="card-header">
         <h3><?= Yii::t('backend', 'Pages list') ?></h3>
-        <?//= Html::a(Yii::t('backend', 'Create Page'), ['create'], ['class' => 'to-modal btn btn-primary']) ?>
-        <? //= Html::a('Advance Search', '#', ['class' => 'btn btn-info search-button']) ?>
+
     </div>
+    <div class="card-border bg-gray mt-4 p-3">
+
     <div class="search-form" style="display:none">
         <?= $this->render('_search', ['model' => $searchModel]); ?>
     </div>
@@ -58,7 +58,7 @@ $this->registerJs($search);
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        'filterModel' => null,
         'columns' => $gridColumn,
         'options' => [
             'class' => ['gridview', 'table-responsive'],
@@ -118,4 +118,5 @@ $this->registerJs($search);
             'options' => ['class' => 'pagination']
         ]) ?>
     </div>
+        </div>
 </div>

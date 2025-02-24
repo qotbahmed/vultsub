@@ -20,13 +20,10 @@ use yii\widgets\ActiveForm;
 
     <div class="flex-fill">
         <div class="d-flex gap-2 flex-wrap">
-    <?= $form->field($model, 'id')->textInput() ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'path')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'base_url')->textInput(['maxlength' => true]) ?>
 
         </div>
     </div>

@@ -58,10 +58,10 @@ class SponsorsController extends BackendController
         $searchModel = new SponsorsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->setSort([
-            'defaultOrder' => ['id' => SORT_DESC ],
+            'defaultOrder' => ['id' => SORT_DESC],
         ]);
 
-    return $this->render('index', [
+        return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -94,9 +94,9 @@ class SponsorsController extends BackendController
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             Yii::$app->getSession()->setFlash('alert', [
-                'type' =>'success',
-                'body' =>  'Sponsors was successfuly created',
-                'title' =>'',
+                'type' => 'success',
+                'body' => 'Sponsors was successfuly created',
+                'title' => '',
             ]);
 
             if (!Yii::$app->request->isAjax) {
@@ -135,7 +135,7 @@ class SponsorsController extends BackendController
 
 
             if (!Yii::$app->request->isAjax) {
-                    return $this->redirect(['index']);
+                return $this->redirect(['index']);
             }
         }
         if (Yii::$app->request->isAjax) {
@@ -153,11 +153,11 @@ class SponsorsController extends BackendController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->deleteWithRelated();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
-    
+
     /**
      * Finds the Sponsors model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

@@ -18,6 +18,7 @@ $url = \yii\helpers\Url::to(['/helper/users-list']);
 /**
  * @var yii\web\View $this
  * @var backend\models\search\UserSearch $searchModel
+ * @var common\models\User $model
  * @var yii\data\ActiveDataProvider $dataProvider
  */
 
@@ -32,39 +33,100 @@ $search = "$('.search-button').click(function(){
 $this->registerJs($search);
 
 ?>
+<style>
+    .user-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .profile-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .profile-initial {
+        width: 40px;
+        height: 40px;
+        background: #f0f0f0;
+        color: #555;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .user-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .user-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .user-link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .user-email {
+        font-size: 12px;
+        color: #888;
+    }
+
+</style>
+<div class="d-flex align-items-center flex-wrap section_header justify-content-between gap-3">
+    <div class="section_header_right">
+        <h4 class="mb-0">
+        <?= Yii::t('backend', 'Customers List') ?>
+        </h4>
+    </div>
+</div>
 <div class="row mb-3">
     <div class="col-12 col-sm-4">
-        <div class="info-box custom-card statistics-card">
-            <div class="info-box-content">
-                <span class="info-box-text text-center text-muted"><?= Yii::t('backend', 'Total Customers') ?></span>
-                <span class="info-box-number text-center text-muted mb-0"><?= User::find()->where(['user_type' => User::USER_TYPE_CUSTOMER])->andFilterWhere(['>', 'id', 3])->count() ?></span>
-            </div>
+        <div class="stat-card p-4 bg-info-subtle">
+            <h6 class="text-muted"><img src="/img/Equalizer_blue.png" class="me-2"><?= Yii::t('backend', 'Total Customers') ?></h6>
+            <h3 class="fw-bold mb-3"><?= User::find()->where(['user_type' => User::USER_TYPE_CUSTOMER])->andFilterWhere(['>', 'id', 3])->count() ?></h3>
         </div>
     </div>
     <div class="col-12 col-sm-4">
-        <div class="info-box custom-card statistics-card">
-            <div class="info-box-content">
-                <span class="info-box-text text-center text-muted"><?= Yii::t('backend', 'Active Customers') ?></span>
-                <span class="info-box-number text-center text-muted mb-0"><?= User::find()->where(['user_type' => User::USER_TYPE_CUSTOMER, 'status' => User::STATUS_ACTIVE])->andFilterWhere(['>', 'id', 3])->count() ?></span>
-            </div>
+        <div class="stat-card p-4 bg-warning-subtle">
+            <h6 class="text-muted"><img src="/img/Equalizer_blue.png" class="me-2"><?= Yii::t('backend', 'Active Customers') ?></h6>
+            <h3 class="fw-bold mb-3"><?= User::find()->where(['user_type' => User::USER_TYPE_CUSTOMER, 'status' => User::STATUS_ACTIVE])->andFilterWhere(['>', 'id', 3])->count() ?></h3>
         </div>
     </div>
     <div class="col-12 col-sm-4">
-        <div class="info-box custom-card statistics-card">
-            <div class="info-box-content">
-                <span class="info-box-text text-center text-muted"><?= Yii::t('backend', 'Not Active Customers') ?></span>
-                <span class="info-box-number text-center text-muted mb-0"><?= User::find()->where(['user_type' => User::USER_TYPE_CUSTOMER, 'status' => User::STATUS_NOT_ACTIVE])->andFilterWhere(['>', 'id', 3])->count() ?></span>
-            </div>
+        <div class="stat-card p-4 bg-primary-subtle">
+            <h6 class="text-muted"><img src="/img/Equalizer_blue.png" class="me-2"><?= Yii::t('backend', 'Not Active Customers') ?></h6>
+            <h3 class="fw-bold mb-3"><?= User::find()->where(['user_type' => User::USER_TYPE_CUSTOMER, 'status' => User::STATUS_NOT_ACTIVE])->andFilterWhere(['>', 'id', 3])->count() ?></h3>
         </div>
     </div>
 
 </div>
-<div id="CARD" class="card">
-    <div class="card-header">
-        <h3><?= Yii::t('backend', 'Customers List') ?></h3>
-    </div>
+    
 
+<div class="card-border bg-gray mt-4 p-3">
 
     <div class="card-body p-0">
 
@@ -73,21 +135,21 @@ $this->registerJs($search);
             ['class' => 'yii\grid\SerialColumn'],
             ['attribute' => 'id', 'hidden' => true],
             [
-                'label' => Yii::t('backend', 'Full Name'),
+                'label' => Yii::t('backend', 'User'),
                 'attribute' => 'fullName',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return Html::a($model->userProfile['fullName'], ['/user/view?id=' . $model->id], ['target' => '_self']);
-                },
+                    $profileImage = $model->userProfile->getAvatar()
+                        ? Html::img($model->userProfile->getAvatar(), ['class' => 'profile-img'])
+                        : '<span class="profile-initial">' . strtoupper(mb_substr($model->userProfile['fullName'], 0, 1)) . '</span>';
 
-            ],
-
-            [
-                'label' => Yii::t('backend', 'Email'),
-                'attribute' => 'email',
-                'enableSorting' => false,
-                'value' => function ($model) {
-                    return !preg_match("/@testzone321/i", $model->email) ? $model->email : "-";
+                    return '<div class="user-info">
+                    <div class="user-avatar">' . $profileImage . '</div>
+                    <div class="user-details">
+                        <div class="user-name">' . Html::a($model->userProfile->getFullName(), ['/user/view', 'id' => $model->id], ['class' => 'user-link']) . '</div>
+                        <div class="user-email">' . Html::encode($model->email) . '</div>
+                    </div>
+                </div>';
                 },
             ],
             [
@@ -99,48 +161,20 @@ $this->registerJs($search);
             ],
 
             [
-                'attribute' => 'status',
+                'label' => Yii::t('backend', 'Email'),
+                'attribute' => 'email',
                 'enableSorting' => false,
-                'format' => 'raw',
-                'filter' => Html::activeDropDownList($searchModel, 'status', User::getStatuses(''), ['class' => 'form-control', 'prompt' => Yii::t('backend', 'Select Status')]),
-                'contentOptions' => ['style' => 'text-align: center;'],
-                'headerOptions' => ['style' => 'text-align: center;'],
                 'value' => function ($model) {
-                    $status = $model->usersStatuses()[$model->status];
-                    $action = $model->status === User::STATUS_ACTIVE ? Yii::t('backend', 'Deactivate') : Yii::t('backend', 'Activate');
-                    $confirmationMessage = Yii::t('backend', 'Are you sure you want to') . $action .  Yii::t('backend', '?');
-                    $confirmationTitle = Yii::t('backend',  'Confirmation');
-
-                    return Html::a($status, ['toggle-status', 'id' => $model->id], [
-                        'class' => 'status-toggle',
-                        'data' => [
-                            'confirm' => $confirmationMessage,
-                            'method' => 'post',
-                        ],
-
-                    ]);
+                    return !preg_match("/@testzone321/i", $model->email) ? $model->email : "-";
                 },
             ],
-
             [
-                'attribute' => 'created_at',
+                'label' => Yii::t('backend', 'Number of points'),
                 'enableSorting' => false,
-                'format' => 'datetime',
-                'filter' => DatePicker::widget([
-                    'model' => $searchModel,
-                    'attribute' => 'created_at',
-                    'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                    'pluginOptions' => [
-                        'format' => 'dd-mm-yyyy',
-                        'showMeridian' => true,
-                        'todayBtn' => false,
-                        'endDate' => '0d',
-                    ]
-                ]),
+                'value' => function ($model) {
+                    return $model->userProfile->points_num;
+                },
             ],
-
-
-
             [
                 'class' => \common\widgets\ActionColumn::class,
                 'template' => '{view} ',
@@ -174,7 +208,7 @@ $this->registerJs($search);
 
             // set a label for default menu
             'export' => [
-                'label' => Yii::t('backend','Page'),
+                'label' => Yii::t('backend', 'Page'),
                 'fontAwesome' => true,
             ],
             // your toolbar can include the additional full export menu
@@ -184,14 +218,14 @@ $this->registerJs($search);
                     'dataProvider' => $dataProvider,
                     'columns' => $gridColumn,
                     'target' => ExportMenu::TARGET_BLANK,
-                    'filename' => 'List of Customers-'. date('d-m-y'),
+                    'filename' => 'List of Customers-' . date('d-m-y'),
 
                     'fontAwesome' => true,
                     'dropdownOptions' => [
-                        'label' => Yii::t('backend','Full'),
+                        'label' => Yii::t('backend', 'Full'),
                         'class' => 'btn btn-default',
                         'itemsBefore' => [
-                            '<li class="dropdown-header">'.Yii::t('backend','Export All Data').'</li>',
+                            '<li class="dropdown-header">' . Yii::t('backend', 'Export All Data') . '</li>',
                         ],
                     ],
                     'exportConfig' => [
@@ -204,10 +238,10 @@ $this->registerJs($search);
             ],
             'exportConfig' => [
                 GridView::CSV => [
-                    'filename' => 'List of Customers-'. date('d-m-y')
+                    'filename' => 'List of Customers-' . date('d-m-y')
                 ],
                 GridView::EXCEL => [
-                    'filename' => 'List of Customers-'. date('d-m-y'),
+                    'filename' => 'List of Customers-' . date('d-m-y'),
                 ],
 
             ],
@@ -216,7 +250,7 @@ $this->registerJs($search);
 
         <div class="col-md-12 text-center" style="display: flex; justify-content: center;">
             <?php echo \yii\widgets\LinkPager::widget([
-                'pagination'=>$dataProvider->pagination,
+                'pagination' => $dataProvider->pagination,
                 'options' => ['class' => 'pagination']
             ]) ?>
         </div>
@@ -225,7 +259,6 @@ $this->registerJs($search);
     <div class="card-footer">
         <?php echo getDataProviderSummary($dataProvider) ?>
     </div>
+
 </div>
-
-
 

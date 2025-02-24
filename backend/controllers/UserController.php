@@ -69,10 +69,14 @@ class UserController extends BackendController
             $user_type = Yii::$app->session->get('userType', 0);
         }
 
-        $query = User::find()->where(['user_type' => $user_type]);
+        $query = User::find()->where(['user_type' => $user_type])
+            ->andWhere([ '>','id', 3]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => ['id' => SORT_DESC],
+            ],
         ]);
 
         $searchModel = new UserSearch();

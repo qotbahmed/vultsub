@@ -97,7 +97,8 @@
     "edofre/yii2-fullcalendar-scheduler": "^1.1",
     "npm-asset/momentjs": "^2.0",
     "endroid/qr-code": "^5.1",
-    "miloschuman/yii2-highcharts-widget": "^11.0"
+    "miloschuman/yii2-highcharts-widget": "^11.0",
+    "npm-asset/chart.js": "^4.4"
   },
   "require-dev": {
     "yiisoft/yii2-gii": "^2.0.0",

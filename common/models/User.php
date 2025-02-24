@@ -63,7 +63,7 @@ class User extends ActiveRecord implements IdentityInterface
     const EVENT_AFTER_SIGNUP = 'afterSignup';
     const EVENT_AFTER_LOGIN = 'afterLogin';
 
-    const USER_TYPE_CUSTOMER = 4; // Add this line
+    const USER_TYPE_CUSTOMER = 0; // Add this line
     public $user_role;
     /**
      * @var array

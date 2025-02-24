@@ -18,16 +18,7 @@ class ContentControllerMy extends MyRestUnAuthController
         return parent::beforeAction($action);
     }
 
-    public function actionTermsConditions()
-    {
-        $termsConditionsObj = PageResource::findOne(2);
 
-        if ($termsConditionsObj) {
-            return ResponseHelper::sendSuccessResponse($termsConditionsObj);
-        } else {
-            return ResponseHelper::sendFailedResponse(Yii::t('common', 'Not Found'), 404);
-        }
-    }
 
 
 }

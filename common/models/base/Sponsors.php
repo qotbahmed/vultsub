@@ -21,6 +21,7 @@ use mootensai\behaviors\UUIDBehavior;
  * @property string $base_url
  * @property string $created_at
  * @property string $updated_at
+ * @property \common\models\SponsorLog[] $logs
  */
 class Sponsors extends ActiveRecord
 {
@@ -49,7 +50,6 @@ class Sponsors extends ActiveRecord
         return [
             [['title'], 'required'],
             [['image'], 'safe'],
-
             [['title', 'path', 'base_url', ], 'string', 'max' => 255],
            [['created_at', 'updated_at'], 'safe'],
         ];
@@ -63,15 +63,9 @@ class Sponsors extends ActiveRecord
         return 'sponsors';
     }
 
-    /**
-     * 
-     * @return string
-     * overwrite function optimisticLock
-     * return string name of field are used to stored optimistic lock 
-     * 
-     */
-    public function optimisticLock() {
-        return 'lock';
+    public function getLogs()
+    {
+        return $this->hasMany(SponsorLog::class, ['sponsor_id' => 'id']);
     }
 
     /**

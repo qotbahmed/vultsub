@@ -604,7 +604,6 @@ CREATE TABLE `timeline_event` (
                                   `data` text,
                                   `created_at` int NOT NULL,
                                   `user_id` int DEFAULT NULL,
-                                  `academy_id` int DEFAULT NULL,
                                   PRIMARY KEY (`id`),
                                   KEY `idx_created_at` (`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
@@ -758,7 +757,6 @@ CREATE TABLE `user_profile` (
                                 `lng` varchar(255) DEFAULT NULL,
                                 `to_days` int DEFAULT NULL,
                                 `available_for_booking` tinyint DEFAULT '1' COMMENT '0 no 1 yes',
-                                `academy_id` bigint unsigned DEFAULT NULL,
                                 `reward` int DEFAULT NULL,
                                 `sport_id` int DEFAULT NULL,
                                 `days` varchar(255) DEFAULT NULL,
@@ -769,15 +767,16 @@ CREATE TABLE `user_profile` (
                                 UNIQUE KEY `identification_number` (`identification_number`),
                                 KEY `user_profile_ibfk_1` (`academy_id`),
                                 CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of user_profile
 -- ----------------------------
 BEGIN;
-INSERT INTO `user_profile` (`user_id`, `identification_number`, `firstname`, `middlename`, `lastname`, `avatar_path`, `avatar_base_url`, `locale`, `gender`, `mobile`, `new_phone`, `new_phone_verified`, `age`, `education_level`, `hour_rate`, `preferred_age_from`, `preferred_age_from_unit`, `preferred_age_to`, `preferred_age_to_unit`, `from_days`, `national_id_path`, `national_id_base_url`, `permit_path`, `permit_base_url`, `location_id`, `address`, `lat`, `lng`, `to_days`, `available_for_booking`, `academy_id`, `reward`, `sport_id`, `days`, `nationality`, `dob`, `subscription_id`) VALUES (1, NULL, 'Admin', NULL, 'User', NULL, NULL, 'en-US', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'profile/IMG_1686498968.jpg', 'http://nanystorage.bytones.co/source/', 'profile/IMG_1686505763.jpg', 'http://nanystorage.bytones.co/source/', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `user_profile` (`user_id`, `identification_number`, `firstname`, `middlename`, `lastname`, `avatar_path`, `avatar_base_url`, `locale`, `gender`, `mobile`, `new_phone`, `new_phone_verified`, `age`, `education_level`, `hour_rate`, `preferred_age_from`, `preferred_age_from_unit`, `preferred_age_to`, `preferred_age_to_unit`, `from_days`, `national_id_path`, `national_id_base_url`, `permit_path`, `permit_base_url`, `location_id`, `address`, `lat`, `lng`, `to_days`, `available_for_booking`, `academy_id`, `reward`, `sport_id`, `days`, `nationality`, `dob`, `subscription_id`) VALUES (2, NULL, '', NULL, '', NULL, NULL, 'en-US', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'profile/IMG_1686498968.jpg', 'http://nanystorage.bytones.co/source/', 'profile/IMG_1686505763.jpg', 'http://nanystorage.bytones.co/source/', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `user_profile` (`user_id`, `identification_number`, `firstname`, `middlename`, `lastname`, `avatar_path`, `avatar_base_url`, `locale`, `gender`, `mobile`, `new_phone`, `new_phone_verified`, `age`, `education_level`, `hour_rate`, `preferred_age_from`, `preferred_age_from_unit`, `preferred_age_to`, `preferred_age_to_unit`, `from_days`, `national_id_path`, `national_id_base_url`, `permit_path`, `permit_base_url`, `location_id`, `address`, `lat`, `lng`, `to_days`, `available_for_booking`, `academy_id`, `reward`, `sport_id`, `days`, `nationality`, `dob`, `subscription_id`) VALUES (3, NULL, 'Ahmed', NULL, 'GAd', NULL, NULL, 'en-US', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'profile/IMG_1686498968.jpg', 'http://nanystorage.bytones.co/source/', 'profile/IMG_1686505763.jpg', 'http://nanystorage.bytones.co/source/', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `user_profile` (`user_id`, `identification_number`, `firstname`, `middlename`, `lastname`, `avatar_path`, `avatar_base_url`, `locale`, `gender`, `mobile`, `new_phone`, `new_phone_verified`, `age`, `education_level`, `hour_rate`, `preferred_age_from`, `preferred_age_from_unit`, `preferred_age_to`, `preferred_age_to_unit`, `from_days`, `national_id_path`, `national_id_base_url`, `permit_path`, `permit_base_url`, `location_id`, `address`, `lat`, `lng`, `to_days`, `available_for_booking`, `reward`, `sport_id`, `days`, `nationality`, `dob`, `subscription_id`) VALUES (1, NULL, 'Admin', NULL, 'User', NULL, NULL, 'en-US', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'profile/IMG_1686498968.jpg', 'http://nanystorage.bytones.co/source/', 'profile/IMG_1686505763.jpg', 'http://nanystorage.bytones.co/source/', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `user_profile` (`user_id`, `identification_number`, `firstname`, `middlename`, `lastname`, `avatar_path`, `avatar_base_url`, `locale`, `gender`, `mobile`, `new_phone`, `new_phone_verified`, `age`, `education_level`, `hour_rate`, `preferred_age_from`, `preferred_age_from_unit`, `preferred_age_to`, `preferred_age_to_unit`, `from_days`, `national_id_path`, `national_id_base_url`, `permit_path`, `permit_base_url`, `location_id`, `address`, `lat`, `lng`, `to_days`, `available_for_booking`, `reward`, `sport_id`, `days`, `nationality`, `dob`, `subscription_id`) VALUES (2, NULL, '', NULL, '', NULL, NULL, 'en-US', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'profile/IMG_1686498968.jpg', 'http://nanystorage.bytones.co/source/', 'profile/IMG_1686505763.jpg', 'http://nanystorage.bytones.co/source/', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `user_profile` (`user_id`, `identification_number`, `firstname`, `middlename`, `lastname`, `avatar_path`, `avatar_base_url`, `locale`, `gender`, `mobile`, `new_phone`, `new_phone_verified`, `age`, `education_level`, `hour_rate`, `preferred_age_from`, `preferred_age_from_unit`, `preferred_age_to`, `preferred_age_to_unit`, `from_days`, `national_id_path`, `national_id_base_url`, `permit_path`, `permit_base_url`, `location_id`, `address`, `lat`, `lng`, `to_days`, `available_for_booking`, `reward`, `sport_id`, `days`, `nationality`, `dob`, `subscription_id`) VALUES (3, NULL, 'Ahmed', NULL, 'GAd', NULL, NULL, 'en-US', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'profile/IMG_1686498968.jpg', 'http://nanystorage.bytones.co/source/', 'profile/IMG_1686505763.jpg', 'http://nanystorage.bytones.co/source/', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL);
 COMMIT;
 
 -- ----------------------------

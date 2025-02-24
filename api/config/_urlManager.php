@@ -57,14 +57,25 @@ return [
 
                 ],
                 'pluralize' => false,
+            ],    [
+                'class' => 'yii\rest\UrlRule',
+                'controller' => 'points-logs',
+                'only' => ['index', 'options',
+                ],
+                'extraPatterns' => [
+                    'GET /' => 'index',
+                ],
+                'pluralize' => false,
             ],
 
             [
                 'class' => 'yii\rest\UrlRule',
                 'controller' => 'lookups',
-                'only' => ['country','business-sectors','company-sizes','sponsors'],
+                'only' => ['country','business-sectors','terms-conditions','company-sizes','sponsors','settings'],
                 'extraPatterns' => [
+                    'GET terms-conditions' => 'terms-conditions',
                     'GET sponsors' => 'sponsors',
+                    'GET settings' => 'settings',
                 ], 'pluralize' => false,
             ],
 
@@ -92,6 +103,13 @@ return [
 
                 ],
                 'pluralize' => false,
+            ],
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'content'
+                , 'only' => ['terms-conditions']
+                , 'extraPatterns' => [
+                'GET terms-conditions' => 'terms-conditions',
+            ]
+                , 'pluralize' => false,
             ],
 
 //            [

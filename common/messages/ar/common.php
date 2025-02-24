@@ -494,6 +494,23 @@ return [
     'Location' => 'الموقع',
     'Create  Announcement' => 'إضافة إعلان',
     'Image max 1 mega' => 'يُفضـل أن لا تتعدى الصورة 1 ميجا ',
-
-
+    'Please check your data and validate your email.' => 'يرجى التحقق من بياناتك وتأكيد بريدك الإلكتروني.',
+    'Your account is not active. Please activate your account.' => 'حسابك غير نشط. يرجى تفعيل حسابك.',
+    'Verify email for {name}' => 'تحقق من البريد الإلكتروني لـ {name}',
+    'Your account has been successfully activated.' => 'تم تفعيل حسابك بنجاح.',
+    'OTP not valid.' => 'رمز التحقق غير صحيح.',
+    'verify email code sent successfully.' => 'تم إرسال رمز التحقق إلى بريدك الإلكتروني بنجاح.',
+    'Please check the entered data' => 'يرجى التحقق من البيانات المدخلة.',
+    'Email reset password sent successfully' => 'تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني بنجاح.',
+    'OTP is valid.' => 'رمز التحقق صحيح.',
+    'Token not valid.' => 'الرمز غير صالح.',
+    'Your password has been reset successfully.' => 'تم إعادة تعيين كلمة المرور بنجاح.',
+    "Passwords don't match" => 'كلمات المرور غير متطابقة.',
+    "Invalid access" => "وصول غير صالح",
+    "Updated Successfully." => "تم التحديث بنجاح.",
+    "Missing required parameters" => "المعلمات المطلوبة مفقودة",
+    "Password Updated Successfully." => "تم تحديث كلمة المرور بنجاح.",
+    "You exceeded the max earned daily points." => "لقد تجاوزت الحد الأقصى للنقاط المكتسبة يوميًا.",
+    'Search' => 'بحث',
+    'Reset' => 'إعادة تعين'
 ];

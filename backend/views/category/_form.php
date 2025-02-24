@@ -12,9 +12,20 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="category-form">
+    <div class="d-flex align-items-center flex-wrap section_header justify-content-between gap-3">
+        <div class="section_header_right">
+            <span class="section_header_icon">
+                <span class="isax isax-location-add"></span>
+            </span>
+            <h4 class="mb-0">
+                إضافة فئه
+            </h4>
+        </div>
+       
+    </div>
     <?php
-    $this->beginContent('@backend/views/public/multi-lang.php');
-    $this->endContent();
+//    $this->beginContent('@backend/views/public/multi-lang.php');
+//    $this->endContent();
     ?>
     <?php $form = ActiveForm::begin([
         'action' => $model->isNewRecord ? Url::to(['create']) : Url::to(['update', 'id' => $model->id]),
@@ -31,7 +42,7 @@ use yii\widgets\ActiveForm;
                 <div class="col-md-12">   <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?> </div>
 
                 <div class="col-md-8">   <?= $form->field($model, 'name')->textInput(['maxlength' => true,
-                        'placeholder' => Yii::t('backend', 'Name')])->widget(MyMultiLanguageActiveField::className()) ?> </div>
+                        'placeholder' => Yii::t('backend', 'Name')]) //->widget(MyMultiLanguageActiveField::className()) ?> </div>
 
 
             </div>

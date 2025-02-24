@@ -14,9 +14,20 @@ use yii\helpers\ArrayHelper;
 ?>
 
 <div class="faq-form">
+    <div class="d-flex align-items-center flex-wrap section_header justify-content-between gap-3">
+        <div class="section_header_right">
+            <span class="section_header_icon">
+                <span class="isax isax-location-add"></span>
+            </span>
+            <h4 class="mb-0">
+                إضافة سؤال
+            </h4>
+        </div>
+       
+    </div>
     <?php
-    $this->beginContent('@backend/views/public/multi-lang.php');
-    $this->endContent();
+//    $this->beginContent('@backend/views/public/multi-lang.php');
+//    $this->endContent();
     ?>
 
     <?php $form = ActiveForm::begin([
@@ -33,9 +44,9 @@ use yii\helpers\ArrayHelper;
 
                 <div class="col-md-">   <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?> </div>
 
-                <div class="col-md-8">   <?= $form->field($model, 'question')->textInput(['maxlength' => true, 'placeholder' => Yii::t('backend', 'Question')]) ->widget(MyMultiLanguageActiveField::className()); ?> </div>
+                <div class="col-md-8">   <?= $form->field($model, 'question')->textInput(['maxlength' => true, 'placeholder' => Yii::t('backend', 'Question')]) // ->widget(MyMultiLanguageActiveField::className()); ?> </div>
 
-                <div class="col-md-12">   <?= $form->field($model, 'answer')->textarea(['rows' => 6])->widget(MyMultiLanguageActiveField::className());?> </div>
+                <div class="col-md-12">   <?= $form->field($model, 'answer')->textarea(['rows' => 6]) //->widget(MyMultiLanguageActiveField::className());?> </div>
 
 
                 <div class="col-md-4">
