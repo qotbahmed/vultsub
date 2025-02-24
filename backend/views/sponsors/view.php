@@ -17,7 +17,7 @@ $totalDonations = array_sum(array_column($model->logs, 'amount'));
 ?>
 <div class="sponsor-info border-bottom pb-3 mb-4">
     <h4 class="text-primary m-0">
-         <?= Html::encode($model->title) ?>
+         <?= Yii::t('backend', 'إدارة الرعاة').' / '. Html::encode($model->title) ?>
     </h4>
     <div class="text-muted small mt-2">
         <span class="mx-2">•</span>
