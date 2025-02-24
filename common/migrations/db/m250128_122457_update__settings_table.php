@@ -13,7 +13,7 @@ class m250128_122457_update__settings_table extends Migration
     public function safeUp()
     {
 
-        $this->addColumn('settings', 'points_earned_per_riyal', $this->integer());
+        $this->addColumn('settings', 'points_earned_per_riyal', $this->integer()->defaultValue(1));
 
 
 
