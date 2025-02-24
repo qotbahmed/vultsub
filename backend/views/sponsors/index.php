@@ -136,6 +136,21 @@ $percentageChange = $lastMonthSponsorshipAmount > 0
             </div>
         </div>
     </div>
+    <div class="col-md-6">
+        <div class="stat-card">
+            <div class="stat-content">
+                <span class="stat-title"><?= Yii::t('backend', 'Total Sponsors') ?></span>
+                <span class="stat-value"><?php                     $settings=  \backend\models\base\Settings::findOne(1);
+                   echo ( (float) $totalSponsorshipAmount / (float)$settings->points_earned_per_riyal) ?></span>
+                <span class="stat-compare">
+                    <?= Yii::t('backend', 'Comparison with last month') ?>
+                    <span class="stat-percent text-success">
+                        <i class="isax isax-arrow-up"></i> <?= $percentageChange ?>%
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
 </div>
 
 
