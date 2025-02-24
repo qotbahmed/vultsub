@@ -107,7 +107,7 @@ $percentageChange = $lastMonthSponsorshipAmount > 0
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="stat-card">
             <div class="stat-content">
                 <span class="stat-title"><?= Yii::t('backend', 'Total Donations') ?></span>
@@ -122,7 +122,7 @@ $percentageChange = $lastMonthSponsorshipAmount > 0
         </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="stat-card">
             <div class="stat-content">
                 <span class="stat-title"><?= Yii::t('backend', 'Total Sponsors') ?></span>
@@ -136,14 +136,14 @@ $percentageChange = $lastMonthSponsorshipAmount > 0
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="stat-card">
             <div class="stat-content">
-                <span class="stat-title"><?= Yii::t('backend', 'Total Sponsors') ?></span>
+                <span class="stat-title"><?= Yii::t('backend', 'اجمالي النقاط بالنظام') ?></span>
                 <span class="stat-value"><?php                     $settings=  \backend\models\base\Settings::findOne(1);
                    echo ( (float) $totalSponsorshipAmount / (float)$settings->points_earned_per_riyal) ?></span>
                 <span class="stat-compare">
-                    <?= Yii::t('backend', 'Comparison with last month') ?>
+                    <?= Yii::t('backend', 'مقارنة باخر شهر') ?>
                     <span class="stat-percent text-success">
                         <i class="isax isax-arrow-up"></i> <?= $percentageChange ?>%
                     </span>
