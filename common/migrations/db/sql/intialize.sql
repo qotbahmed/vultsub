@@ -768,8 +768,7 @@ CREATE TABLE `user_profile` (
                                 PRIMARY KEY (`user_id`),
                                 UNIQUE KEY `identification_number` (`identification_number`),
                                 KEY `user_profile_ibfk_1` (`academy_id`),
-                                CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                                CONSTRAINT `user_profile_ibfk_1` FOREIGN KEY (`academy_id`) REFERENCES `academies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                                CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
