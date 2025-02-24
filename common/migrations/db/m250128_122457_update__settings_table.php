@@ -15,10 +15,6 @@ class m250128_122457_update__settings_table extends Migration
 
         $this->addColumn('settings', 'points_earned_per_riyal', $this->integer()->defaultValue(1));
 
-
-
-
-
     }
 
     /**
