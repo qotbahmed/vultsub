@@ -538,11 +538,7 @@ CREATE TABLE `sms_log` (
                            PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- ----------------------------
--- Records of sms_log
--- ----------------------------
-BEGIN;
-COMMIT;
+
 
 -- ----------------------------
 -- Table structure for system_db_migration
@@ -608,11 +604,6 @@ CREATE TABLE `timeline_event` (
                                   KEY `idx_created_at` (`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- ----------------------------
--- Records of timeline_event
--- ----------------------------
-BEGIN;
-COMMIT;
 
 -- ----------------------------
 -- Table structure for translations_with_string
@@ -630,11 +621,7 @@ CREATE TABLE `translations_with_string` (
                                             KEY `table_name` (`table_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- ----------------------------
--- Records of translations_with_string
--- ----------------------------
-BEGIN;
-COMMIT;
+
 
 -- ----------------------------
 -- Table structure for translations_with_text
@@ -716,11 +703,7 @@ CREATE TABLE `user_languge` (
                                 CONSTRAINT `user_languge_ibfk_2` FOREIGN KEY (`lang_id`) REFERENCES `language` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin ROW_FORMAT=DYNAMIC;
 
--- ----------------------------
--- Records of user_languge
--- ----------------------------
-BEGIN;
-COMMIT;
+
 
 -- ----------------------------
 -- Table structure for user_profile
@@ -765,7 +748,9 @@ CREATE TABLE `user_profile` (
                                 `subscription_id` int DEFAULT NULL,
                                 PRIMARY KEY (`user_id`),
                                 UNIQUE KEY `identification_number` (`identification_number`),
-                                CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+
+                                CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
@@ -792,11 +777,6 @@ CREATE TABLE `user_skills` (
                                CONSTRAINT `user_skills_ibfk_2` FOREIGN KEY (`skill_id`) REFERENCES `skill` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- ----------------------------
--- Records of user_skills
--- ----------------------------
-BEGIN;
-COMMIT;
 
 -- ----------------------------
 -- Table structure for user_token
@@ -813,11 +793,7 @@ CREATE TABLE `user_token` (
                               PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- ----------------------------
--- Records of user_token
--- ----------------------------
-BEGIN;
-COMMIT;
+
 
 -- ----------------------------
 -- Table structure for widget_carousel
@@ -859,11 +835,6 @@ CREATE TABLE `widget_carousel_item` (
                                         CONSTRAINT `fk_item_carousel` FOREIGN KEY (`carousel_id`) REFERENCES `widget_carousel` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- ----------------------------
--- Records of widget_carousel_item
--- ----------------------------
-BEGIN;
-COMMIT;
 
 -- ----------------------------
 -- Table structure for widget_menu
@@ -878,11 +849,6 @@ CREATE TABLE `widget_menu` (
                                PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- ----------------------------
--- Records of widget_menu
--- ----------------------------
-BEGIN;
-COMMIT;
 
 -- ----------------------------
 -- Table structure for widget_text
@@ -900,12 +866,3 @@ CREATE TABLE `widget_text` (
                                KEY `idx_widget_text_key` (`key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 
--- ----------------------------
--- Records of widget_text
--- ----------------------------
-BEGIN;
-INSERT INTO `widget_text` (`id`, `key`, `title`, `body`, `status`, `created_at`, `updated_at`) VALUES (1, 'backend_welcome', 'Welcome to backend', '<p>Welcome to Yii2 Starter Kit Dashboard</p>', 1, 1648506903, 1648506903);
-INSERT INTO `widget_text` (`id`, `key`, `title`, `body`, `status`, `created_at`, `updated_at`) VALUES (2, 'ads-example', 'Google Ads Example Block', '<div class=\"lead\">\n                <script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script>\n                <ins class=\"adsbygoogle\"\n                     style=\"display:block\"\n                     data-ad-client=\"ca-pub-9505937224921657\"\n                     data-ad-slot=\"2264361777\"\n                     data-ad-format=\"auto\"></ins>\n                <script>\n                (adsbygoogle = window.adsbygoogle || []).push({});\n                </script>\n            </div>', 0, 1648506903, 1648506903);
-COMMIT;
-
-SET FOREIGN_KEY_CHECKS = 1;
