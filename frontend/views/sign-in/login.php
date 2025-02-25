@@ -1,115 +1,62 @@
 <?php
+\common\assets\LoginAsset::register($this);
+//\frontend\assets\LoginAsset::register($this);
 
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
-
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap4\ActiveForm */
-/* @var $model \backend\models\LoginForm */
+/* @var $model \academyadmin\models\LoginForm */
 
 $this->title = Yii::t('backend', 'قم بتسجيل الدخول');
+$this->params['breadcrumbs'][] = $this->title;
 $this->params['body-class'] = 'login-page';
+
+
+
 ?>
 
-<div class="d-flex align-items-center min-vh-100 w-100">
-    <div class="container-fluid">
-        <div class="row justify-content-center align-items-center vh-100">
+<div class="d-flex justify-content-center position-relative align-items-center min-vh-100 h-100 w-100">
+    <div class="overlay"></div>
+    <div style="max-width: 500px;" class="col-12 col-md-6 col-lg-5 mx-auto">
 
-            <!-- Right Side: Login Form -->
-            <div class="col-md-4 col-sm-12 vh-100">
-                <div class="p-5 d-flex flex-column  h-100">
-                    <div class="mb-4">
-                        <img src="/img/logo-h-gold.png" style="max-height: 60px;" alt="Logo">
-                    </div>
-                    <div class="my-auto">
-                        <p>مرحباً بك!</p>
-                        <h4 class="text-primary mb-5">
-                            <?= Yii::t('backend', 'قم بتسجيل الدخول') ?>
-                        </h4>
+        <?php foreach (Yii::$app->session->getAllFlashes() as $key => $message): ?>
+            <div class="alert alert-<?= $key ?> alert-dismissible" role="alert" style="background-color: white">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <?= $message ?>
+            </div>
+        <?php endforeach; ?>
 
-                        <!-- Flash Messages -->
-                        <?php foreach (Yii::$app->session->getAllFlashes() as $key => $message): ?>
-                            <div class="alert alert-<?= $key ?> alert-dismissible fade show" role="alert">
-                                <?= $message ?>
-                            </div>
-                        <?php endforeach; ?>
 
-                        <!-- Login Form -->
-                        <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-                            <div class="form-group">
-                                <?= $form->field($model, 'username', [
-                                    'inputOptions' => ['class' => 'form-control rounded-lg', 'placeholder' => Yii::t('backend', 'أدخل البريد الإلكتروني')],
-                                ])->label(Yii::t('backend', 'البريد الإلكتروني'), ['class' => 'font-weight-bold']) ?>
-                            </div>
-                            <div class="form-group position-relative">
-                                <?= $form->field($model, 'password', [
-                                    'inputOptions' => ['class' => 'form-control rounded-lg', 'placeholder' => Yii::t('backend', 'أدخل كلمة المرور')],
-                                ])->passwordInput()->label(Yii::t('backend', 'كلمة المرور'), ['class' => 'font-weight-bold']) ?>
-                                <i class="fa fa-eye-slash" id="togglePassword" style="position: absolute;left: 15px;bottom: 17px;cursor:pointer"></i>
-                            </div>
-
-                            <div class="form-group form-check d-flex justify-content-between align-items-center">
-                                <label class="form-check-label">
-                                    <?= Html::activeCheckbox($model, 'rememberMe', ['class' => 'form-check-input']) ?>
-                                    <?= Yii::t('backend', 'احفظ البريد الإلكتروني و كلمة المرور للمرة القادمة') ?>
-                                </label>
-                                <!-- <a href="#" class="text-primary small"> <?= Yii::t('backend', 'نسيت كلمة المرور؟') ?> </a> -->
-                            </div>
-
-                            <div class="form-group">
-                                <?= Html::submitButton(Yii::t('backend', 'تسجيل الدخول'), ['class' => 'btn btn-primary btn-block rounded-lg']) ?>
-                            </div>
-                        <?php ActiveForm::end(); ?>
-                    </div>
-                </div>
+        <div class="form-block ">
+            <div class="mb-4">
+                <img src="/img/logo-h-gold.png" style="max-height: 60px;" alt="Logo">
             </div>
 
-            <!-- Left Side: Illustration -->
-            <div class="col-md-8 d-none d-md-flex align-items-center justify-content-center">
-                <img src="/img/undraw_two_fact.png" alt="Login Illustration">
+            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+            <?php echo $form->errorSummary($model, ['class' => 'alertLogin']) ?>
+            <?php echo $form->field($model, 'identity', [
+                'inputTemplate' => '<div class="form-group first mb-2">{input}</div>',
+            ]) ?>
+            <?php echo $form->field($model, 'password', [
+                'inputTemplate' => '<div class="form-group last mb-3">{input}</div>',
+            ])->passwordInput() ?>
+            <div class="d-sm-flex mb-5 align-items-center">
+                <label class="control control--checkbox mb-3 mb-sm-0"><span class="caption">
+                        <?= yii::t('common', 'تذكرني') ?>
+                    </span>
+                    <input name="LoginForm[rememberMe]" value="1" type="checkbox" checked="checked" />
+                    <div class="control__indicator"></div>
+                </label>
             </div>
+
+            <input type="submit" value="<?= yii::t('common', 'تسجيل الدخول') ?>" class="btn btn-block btn-primary">
+            <?php ActiveForm::end() ?>
 
         </div>
     </div>
+
+
 </div>
-
-<style>
-    body {
-        font-family: 'Tajawal', sans-serif; /* Arabic-friendly font */
-        background: #f8f9fa;
-    }
-    .card {
-        background: #ffffff;
-        border-radius: 12px;
-    }
-    .btn-primary {
-        background: #4c82f7;
-        border: none;
-        padding: 12px;
-        font-size: 16px;
-    }
-    .form-control {
-        height: 50px;
-        font-size: 16px;
-        border-radius: 8px;
-    }
-</style>
-
-<?php
-
-$js = <<<JS
-    // Toggle Password Visibility
-    $('#togglePassword').on('click', function() {
-        $(this).toggleClass('fa-eye fa-eye-slash');
-        var input = $("#loginform-password");
-        if (input.attr('type') == 'password') {
-            input.attr('type', 'text');
-        } else {
-            input.attr('type', 'password');
-        }
-    });
-
-JS;
-$this->registerJs($js);
-
-?>
