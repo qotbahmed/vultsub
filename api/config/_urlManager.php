@@ -47,13 +47,14 @@ return [
             [
                 'class' => 'yii\rest\UrlRule',
                 'controller' => 'profile',
-                'only' => ['index', 'update', 'check-point', 'change-password', 'options',
+                'only' => ['index', 'update', 'check-point','delete', 'change-password', 'options',
                 ],
                 'extraPatterns' => [
                     'GET /' => 'index',
                     'PUT /' => 'update',
                     'PUT change-password' => 'change-password',
                     'PUT check-point' => 'check-point',
+                    'DELETE delete' => 'delete',
 
 
                 ],

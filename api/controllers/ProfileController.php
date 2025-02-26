@@ -2,6 +2,7 @@
 
 namespace api\controllers;
 
+use api\helpers\ProfileHelper;
 use backend\models\Settings;
 use common\models\PointsLogs;
 use common\models\User;
@@ -160,5 +161,12 @@ class ProfileController extends MyActiveController
             return ResponseHelper::sendFailedResponse($model->getFirstErrors());
         }
     }
+    public function actionDelete()
+    {
+        $user = User::find()->where(['id'=> \Yii::$app->user->getId() ])->andWhere(['!=', 'status', User::STATUS_DELETED])->one();
+
+        return ProfileHelper::instance()->Delete($user);
+    }
+
 
 }
