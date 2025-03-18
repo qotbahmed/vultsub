@@ -160,23 +160,21 @@ class UserController extends MyRestUnAuthController
         if ($user) {
             $token = UserToken::findOne(['user_id' => $user->id, 'type' => UserToken::TYPE_ACTIVATION]);
             if ($token) {
-
                 $token->updateAttributes(['otp' => UserToken::generateOtp(UserToken::OTP_LENGTH),'expire_at' => time() + Time::SECONDS_IN_AN_HOUR]);
             }else{
                 $token = UserToken::create($user->id, UserToken::TYPE_ACTIVATION, Time::SECONDS_IN_AN_HOUR,'1111',$user->email);
-
             }
 
             if ($user->save()) {
-//                \Yii::$app->commandBus->handle(new SendEmailCommand([
-//                    'to' => $user->email,
-//                    'subject' => Yii::t('common', 'Verify email for {name}', ['name' => $user->username]),
-//                    'view' => 'new-user-verify-email',
-//                    'params' => [
-//                        'user' => $user,
-//                        'token' => $token->token
-//                    ]
-//                ]));
+                \Yii::$app->commandBus->handle(new SendEmailCommand([
+                    'to' => $user->email,
+                    'subject' => Yii::t('common', 'Verify email for {name}', ['name' => $user->username]),
+                    'view' => 'new-user-verify-email',
+                    'params' => [
+                        'user' => $user,
+                        'token' => $token->token
+                    ]
+                ]));
                 $message = \Yii::t('common', 'verify email code sent successfully.');
                 return ResponseHelper::sendSuccessResponse($message);
             }
