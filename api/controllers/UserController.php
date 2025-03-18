@@ -72,9 +72,9 @@ class UserController extends MyRestUnAuthController
                 $email = env('ROBOT_EMAIL');
                 $token = UserToken::create($user->id, UserToken::TYPE_ACTIVATION, Time::SECONDS_IN_AN_HOUR,'1111',$model->email);
             }else{
-                $token = UserToken::create($user->id, UserToken::TYPE_ACTIVATION, Time::SECONDS_IN_AN_HOUR,'1111',$model->email);
+                $token = UserToken::create($user->id, UserToken::TYPE_ACTIVATION, Time::SECONDS_IN_AN_HOUR,null,$model->email);
                 $email= $user->email ;
-                $token = $token->token;
+                $token = $token->otp;
                 Yii::$app->commandBus->handle(new SendEmailCommand([
                     'to' => $user->email,
                     'subject' => Yii::t('common', 'Verify email for {name}', ['name' => $user->username]),
@@ -162,7 +162,7 @@ class UserController extends MyRestUnAuthController
             if ($token) {
                 $token->updateAttributes(['otp' => UserToken::generateOtp(UserToken::OTP_LENGTH),'expire_at' => time() + Time::SECONDS_IN_AN_HOUR]);
             }else{
-                $token = UserToken::create($user->id, UserToken::TYPE_ACTIVATION, Time::SECONDS_IN_AN_HOUR,'1111',$user->email);
+                $token = UserToken::create($user->id, UserToken::TYPE_ACTIVATION, Time::SECONDS_IN_AN_HOUR,null,$model->email);
             }
 
             if ($user->save()) {
@@ -172,7 +172,7 @@ class UserController extends MyRestUnAuthController
                     'view' => 'new-user-verify-email',
                     'params' => [
                         'user' => $user,
-                        'token' => $token->token
+                        'token' => $token->otp
                     ]
                 ]));
                 $message = \Yii::t('common', 'verify email code sent successfully.');
@@ -201,19 +201,19 @@ class UserController extends MyRestUnAuthController
             if ($token) {
                 $token->updateAttributes(['otp' => UserToken::generateOtp(UserToken::OTP_LENGTH),'expire_at' => time() + Time::SECONDS_IN_AN_HOUR]);
             }else{
-                $token = UserToken::create($user->id, UserToken::TYPE_PASSWORD_RESET, Time::SECONDS_IN_AN_HOUR,'1111',$model->email);
+                $token = UserToken::create($user->id, UserToken::TYPE_PASSWORD_RESET, Time::SECONDS_IN_AN_HOUR,null,$model->email);
             }
 
             if ($user->save()) {
-//                \Yii::$app->commandBus->handle(new SendEmailCommand([
-//                    'to' => $user->email,
-//                    'subject' => Yii::t('common', 'Password reset for {name}', ['name' => $user->username]),
-//                    'view' => 'password-reset-token',
-//                    'params' => [
-//                        'user' => $user,
-//                        'token' => $token->token
-//                    ]
-//                ]));
+                \Yii::$app->commandBus->handle(new SendEmailCommand([
+                    'to' => $user->email,
+                    'subject' => Yii::t('common', 'Password reset for {name}', ['name' => $user->username]),
+                    'view' => 'password-reset-token',
+                    'params' => [
+                        'user' => $user,
+                        'token' => $token->otp
+                    ]
+                ]));
                 $message = \Yii::t('common', 'Email reset password sent successfully');
                 return ResponseHelper::sendSuccessResponse($message);
             }
