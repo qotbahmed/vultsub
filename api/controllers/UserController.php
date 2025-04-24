@@ -42,7 +42,6 @@ class UserController extends MyRestUnAuthController
             }
             $valid_password = Yii::$app->getSecurity()->validatePassword($params['password'], $user->password_hash);
             if ($valid_password) {
-                $user->access_token = Yii::$app->getSecurity()->generateRandomString(40);
                 $user->logged_at = time();
                 $user->save(false);
                 $data = ['token' => $user->access_token, 'profile' => $user];
