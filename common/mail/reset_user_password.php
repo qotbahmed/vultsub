@@ -557,68 +557,9 @@ use kartik\helpers\Html;
 
                        
 
-                          <a href="https://us06web.zoom.us/j/85121932508" style="
-                          -webkit-text-size-adjust: none;
-                          text-decoration: none;
-                          display: inline-block;
-                          color: #ffffff;
-                          background-color: #6A8DC7;
-                          border-radius: 4px;
-                          -webkit-border-radius: 4px;
-                          -moz-border-radius: 4px;
-                          width: 94%;
-                          border-top: 1px solid #6A8DC7;
-                          border-right: 1px solid #6A8DC7;
-                          border-bottom: 1px solid #6A8DC7;
-                          border-left: 1px solid #6A8DC7;
-                          padding: 8px 0;
-                          font-family: Cairo, Helvetica, Trebuchet MS,
-                            Lucida Grande, Lucida Sans Unicode, Lucida Sans,
-                            Tahoma, sans-serif;
-                          text-align: center;
-                          mso-border-alt: none;
-                          word-break: keep-all;
-                        "
-                             target="_blank"><span style="
-                            padding-left: 50px;
-                            padding-right: 50px;
-                            font-size: 16px;
-                            display: inline-block;
-                            letter-spacing: undefined;
-                          ">Primary Action</span></a>
+
 
                                                     
-                          <a href="https://us06web.zoom.us/j/85121932508" style="
-                          -webkit-text-size-adjust: none;
-                          text-decoration: none;
-                          display: inline-block;
-                          color: #241C15;
-                          background-color: #fff;
-                          margin-top: 20px;
-                          border-radius: 4px;
-                          -webkit-border-radius: 4px;
-                          -moz-border-radius: 4px;
-                          width: 94%;
-                          border: 2px solid #E9E9E9;
-                          border-top: 2px solid #E9E9E9;
-                          border-right: 2px solid #E9E9E9;
-                          border-bottom: 2px solid #E9E9E9;
-                          border-left: 2px solid #E9E9E9;
-                          padding: 8px 0;
-                          font-family: Cairo, Helvetica, Trebuchet MS,
-                            Lucida Grande, Lucida Sans Unicode, Lucida Sans,
-                            Tahoma, sans-serif;
-                          text-align: center;
-                          mso-border-alt: none;
-                          word-break: keep-all;
-                          "
-                             target="_blank"><span style="
-                            padding-left: 50px;
-                            padding-right: 50px;
-                            font-size: 16px;
-                            display: inline-block;
-                            letter-spacing: undefined;
-                          ">Primary Action</span></a>
 
                       </div>
                     </div>
