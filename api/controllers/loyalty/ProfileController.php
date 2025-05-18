@@ -21,7 +21,7 @@ use yii\base\InvalidParamException;
 class ProfileController extends MyRestUnAuthController
 {
 
-    public function actionProfile()
+    public function actionIndex()
     {
         $params = \Yii::$app->request->get();
 

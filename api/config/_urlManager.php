@@ -66,7 +66,7 @@ return [
                 'only' => ['decrease-points','profile', 'options',
                 ],
                 'extraPatterns' => [
-                    'GET profile' => 'profile',
+                    'GET /' => 'index',
                     'POST decrease-points' => 'decrease-points',
                 ],
                 'pluralize' => false,
