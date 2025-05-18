@@ -59,7 +59,19 @@ return [
 
                 ],
                 'pluralize' => false,
-            ],    [
+            ],
+            [
+                'class' => 'yii\rest\UrlRule',
+                'controller' => 'loyalty/profile',
+                'only' => ['decrease-points','profile', 'options',
+                ],
+                'extraPatterns' => [
+                    'GET profile' => 'profile',
+                    'POST decrease-points' => 'decrease-points',
+                ],
+                'pluralize' => false,
+            ],
+            [
                 'class' => 'yii\rest\UrlRule',
                 'controller' => 'points-logs',
                 'only' => ['index', 'options',
