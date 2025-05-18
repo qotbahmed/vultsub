@@ -63,7 +63,7 @@ return [
             [
                 'class' => 'yii\rest\UrlRule',
                 'controller' => 'loyalty/profile',
-                'only' => ['decrease-points','profile', 'options',
+                'only' => ['decrease-points','index', 'options',
                 ],
                 'extraPatterns' => [
                     'GET /' => 'index',
