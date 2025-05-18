@@ -36,7 +36,7 @@ class ProfileController extends MyRestUnAuthController
         }
     }
 
-    public function actionDecrasePoints()
+    public function actionDecreasePoints()
     {
         $params = \Yii::$app->request->post();
         $points = $params['points'] ?? 0;
