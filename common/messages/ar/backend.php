@@ -700,6 +700,9 @@ return [
     'this week' => 'هذا الأسبوع',
     'Student Management' => 'ادارة الطلاب',
     'Number of points' => 'عدد النقاط',
-
+    'This record was not found.' => 'لم يتم العثور على هذا السجل.',
+    'Unable to save bookmark. Please try again.' => 'تعذّر حفظ العلامة المرجعية. الرجاء المحاولة مرة أخرى.',
+    'Unable to update bookmark. Please try again.' => 'تعذّر تحديث العلامة المرجعية. الرجاء المحاولة مرة أخرى.',
+    'Record deleted successfully.'               => 'تم حذف السجل بنجاح.',
 
 ];

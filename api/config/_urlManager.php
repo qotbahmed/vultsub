@@ -46,6 +46,17 @@ return [
 
             [
                 'class' => 'yii\rest\UrlRule',
+                'controller' => 'bookmark',
+                'only' => ['index', 'update', 'view','create','delete','create-list', 'options',
+                ],
+                'extraPatterns' => [
+                    'POST create-list' => 'create-list',
+
+                ],
+                'pluralize' => false,
+            ],
+            [
+                'class' => 'yii\rest\UrlRule',
                 'controller' => 'profile',
                 'only' => ['index', 'update', 'check-point','delete', 'change-password', 'options',
                 ],
