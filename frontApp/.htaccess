@@ -1,0 +1,24 @@
+# ───── Enable MultiViews (optional) ──────────────────────────────────────
+# this alone will let you request /foo and serve foo.html
+# but it won’t handle uppercase .HTML automatically
+Options +MultiViews
+
+# ───── Ensure Apache knows .HTML is html ─────────────────────────────────
+AddType text/html .HTML
+
+# ───── Or, for more precise control, use mod_rewrite ─────────────────────
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # 1) If request doesn’t map to an existing file or directory…
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # 2) …but a .html version exists, serve that
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    RewriteRule ^(.+)$ $1.html [L]
+
+    # 3) Otherwise, if an uppercase .HTML exists, serve that
+    RewriteCond %{REQUEST_FILENAME}.HTML -f
+    RewriteRule ^(.+)$ $1.HTML [L]
+</IfModule>
