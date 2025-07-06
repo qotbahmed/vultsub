@@ -115,6 +115,7 @@ class UserProfile extends ActiveRecord
             'address' => Yii::t('common', 'Address'),
             'middlename' => Yii::t('backend', 'Middlename'),
             'lastname' => Yii::t('backend', 'Lastname'),
+            'whatsapp_number' => Yii::t('backend', 'Whatsapp Number'),
             'locale' => Yii::t('backend', 'Locale'),
             'picture' => Yii::t('backend', 'Picture'),
             'gender' => Yii::t('backend', 'Gender'),

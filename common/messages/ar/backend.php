@@ -699,6 +699,7 @@ return [
     'Time & Date' => 'وقت و تاريخ التبرع',
     'this week' => 'هذا الأسبوع',
     'Contact Us' => 'تواصل معنا',
+    'Whatsapp Number' => 'رقم الواتس اب',
     'Student Management' => 'ادارة الطلاب',
     'Number of points' => 'عدد النقاط',
     'This record was not found.' => 'لم يتم العثور على هذا السجل.',

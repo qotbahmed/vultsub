@@ -37,7 +37,9 @@ $this->title = Yii::t('backend', 'Edit profile')
                 </div>
 
 
-
+<br>
+<hr>
+<br>
 
                 <!-- Contact Us Card -->
                 <div class="card">
