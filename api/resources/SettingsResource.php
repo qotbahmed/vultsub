@@ -11,6 +11,7 @@ class SettingsResource extends Settings
     {
         return [
             'email',
+            'whatsapp',
             'points_per_second',
             'daily_points',
             'reading_points_delay',

@@ -698,6 +698,7 @@ return [
     'Donation Amount' => 'مبلغ التبرع',
     'Time & Date' => 'وقت و تاريخ التبرع',
     'this week' => 'هذا الأسبوع',
+    'Contact Us' => 'تواصل معنا',
     'Student Management' => 'ادارة الطلاب',
     'Number of points' => 'عدد النقاط',
     'This record was not found.' => 'لم يتم العثور على هذا السجل.',

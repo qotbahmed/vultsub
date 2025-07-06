@@ -39,6 +39,25 @@ $this->title = Yii::t('backend', 'Edit profile')
 
 
 
+                <!-- Contact Us Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5><?= Yii::t('backend', 'Contact Us') ?></h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <?php
+                                // WhatsApp Number field (you must add the property to UserProfile)
+                                echo $form->field($model, 'whatsapp_number')->textInput([
+                                    'maxlength' => 20,
+                                    'placeholder' => Yii::t('backend', 'e.g., +966512345678')
+                                ])
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <?php //echo $form->field($model, 'middlename')->textInput(['maxlength' => 255]) ?>
 
