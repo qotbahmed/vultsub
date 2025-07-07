@@ -58,7 +58,8 @@ class SettingsController extends BackendController
      * @return mixed
      */
     public function actionIndex($tab = 'point')
-    {
+    {    $post = Yii::$app->request->post();
+
         // Load models
         $settingsModel = isset($_SESSION['MenuV']) && $_SESSION['MenuV'] == 'dry' ? $this->findModel(2) : $this->findModel(1);
         $profileModel = Yii::$app->user->identity->userProfile;
@@ -92,9 +93,15 @@ class SettingsController extends BackendController
 
         elseif ($tab === 'privacy' && $profileModel->load(Yii::$app->request->post()) && $userModel->load(Yii::$app->request->post())) {
 
+            $settingsModel = Settings::findOne(1);
+            $settingsModel->whatsapp = $post['UserProfile']['whatsapp_number'] ?? null;
+            $settingsModel->email = $post['UserProfile']['email_contact'] ?? null;
+
             // Save User model (email)
             if ($userModel->validate() && $userModel->save(false)) {
                 if ($profileModel->save()) {
+                    $settingsModel->save(false);
+
                     Yii::$app->session->setFlash('alert', [
                         'type' => 'success',
                         'body' => Yii::t('backend', 'تم حفظ الملف الشخصي بنجاح'),
