@@ -94,8 +94,7 @@ class SettingsController extends BackendController
 
         elseif ($tab === 'privacy' && $profileModel->load(Yii::$app->request->post()) && $userModel->load(Yii::$app->request->post())) {
 
-            $settingsModel->whatsapp = $profileModel->whatsapp_number;
-            $settingsModel->email = $profileModel->email_contact;
+
 
             // Save User model (email)
             if ($userModel->validate() && $userModel->save(false)) {
