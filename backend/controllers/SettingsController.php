@@ -92,7 +92,7 @@ class SettingsController extends BackendController
             }
         }
 
-        elseif ($tab === 'privacy' && $profileModel->load(Yii::$app->request->post()) && $userModel->load(Yii::$app->request->post())) {
+        elseif ($tab === 'privacy' && $profileModel->load(Yii::$app->request->post())&& $settingsModel->loadAll(Yii::$app->request->post()) $userModel->load(Yii::$app->request->post())) {
 
 
 
