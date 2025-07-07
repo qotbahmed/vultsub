@@ -57,6 +57,15 @@ $this->title = Yii::t('backend', 'Edit profile')
                                 ])
                                 ?>
                             </div>
+                            <div class="col-6">
+                                <?php
+                                // WhatsApp Number field (you must add the property to UserProfile)
+                                echo $form->field($model, 'email_contact')->textInput([
+                                    'maxlength' => 20,
+                                    'placeholder' => Yii::t('backend', 'e.g., email@mail.com')
+                                ])
+                                ?>
+                            </div>
                         </div>
                     </div>
                 </div>

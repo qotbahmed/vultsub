@@ -55,6 +55,7 @@ class UserProfile extends ActiveRecord
     const GENDER_FEMALE = 2;
     public $picture;
     public $whatsapp_number;
+    public $email_contact;
 
 
     /**
@@ -98,7 +99,7 @@ class UserProfile extends ActiveRecord
             [['new_phone', 'age', 'hour_rate'], 'number'],
             [['dob'], 'date', 'format' => 'php:Y-m-d'], // Add dob
             [['picture', 'avatar_path', 'avatar_base_url', 'national_id_path', 'national_id_base_url', 'permit_path', 'permit_base_url', 'to_days'
-                ,'whatsapp_number', 'location_id', 'address', 'lat', 'lng', 'days','surah'], 'safe'],
+                ,'whatsapp_number','email_contact', 'location_id', 'address', 'lat', 'lng', 'days','surah'], 'safe'],
        
          [['identification_number'], 'integer'],
          
@@ -116,6 +117,7 @@ class UserProfile extends ActiveRecord
             'middlename' => Yii::t('backend', 'Middlename'),
             'lastname' => Yii::t('backend', 'Lastname'),
             'whatsapp_number' => Yii::t('backend', 'Whatsapp Number'),
+            'email_contact' => Yii::t('backend', 'Email'),
             'locale' => Yii::t('backend', 'Locale'),
             'picture' => Yii::t('backend', 'Picture'),
             'gender' => Yii::t('backend', 'Gender'),

@@ -190,7 +190,8 @@ class SettingsController extends BackendController
         if ($model->load($_POST) && $model->save()) {
             #whatsapp_number take it from the post, add it to the settings
             $settings = Settings::findOne(1);
-            $settings->whatsapp = $model->whatsapp_number;
+            $settings->whatsapp = $_POST['whatsapp_number'];
+            $settings->email = $_POST['email_contact'];
             $settings->save(false);
             Yii::$app->session->setFlash('alert', [
                 'options' => ['class' => 'alert-success'],
