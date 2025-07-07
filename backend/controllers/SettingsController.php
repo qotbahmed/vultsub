@@ -64,6 +64,7 @@ class SettingsController extends BackendController
         $settingsModel = isset($_SESSION['MenuV']) && $_SESSION['MenuV'] == 'dry' ? $this->findModel(2) : $this->findModel(1);
         $profileModel = Yii::$app->user->identity->userProfile;
         $userModel = Yii::$app->user->identity; // Load User model
+
         $accountModel = new AccountForm();
 
         // Handle form submission based on the active tab
@@ -93,7 +94,6 @@ class SettingsController extends BackendController
 
         elseif ($tab === 'privacy' && $profileModel->load(Yii::$app->request->post()) && $userModel->load(Yii::$app->request->post())) {
 
-            $settingsModel = Settings::find()->one();
             $settingsModel->whatsapp = $profileModel->whatsapp_number;
             $settingsModel->email = $profileModel->email_contact;
 

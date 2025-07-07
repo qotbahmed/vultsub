@@ -57,6 +57,8 @@ class Settings extends ActiveRecord
     public function attributeLabels()
     {
         return [
+            'whatsapp_number' => Yii::t('backend', 'Whatsapp Number'),
+            'email_contact' => Yii::t('backend', 'Email'),
             'id' => Yii::t('backend', 'ID'),
             'website_title' => Yii::t('backend', 'Website Title'),
             'phone' => Yii::t('backend', 'Phone'),

@@ -37,7 +37,7 @@ $tab = Yii::$app->request->get('tab', 'general');
         if ($tab == 'point') {
             echo $this->render('_point', ['model' => $settingsModel]);
         } elseif ($tab == 'privacy') {
-            echo $this->render('_privacy', ['model' => $profileModel]);
+            echo $this->render('_privacy', ['model' => $profileModel,'settingsModel'=>$settingsModel]);
         } elseif ($tab == 'account') {
             echo $this->render('_account', ['model' => $accountModel]);
         }
