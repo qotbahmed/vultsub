@@ -218,7 +218,7 @@ $percentageChange = $lastMonthSponsorshipAmount > 0
                     ;
 
 
-                        return (array_sum($amounts))/  $settings->points_earned_per_riyal . ' نقطة ';
+                        return (array_sum($amounts))/  $settings->points_earned_per_riyal ;
                     }
 
                     return 0;                },
