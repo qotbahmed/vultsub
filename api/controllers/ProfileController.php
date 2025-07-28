@@ -96,7 +96,7 @@ class ProfileController extends MyActiveController
                 ]);
             }
 
-            $earned_time = $valid_pages * $settings->reading_points_delay;
+            $earned_time = $valid_pages ;
             $earned_points = $earned_time * $settings->points_per_second;
 
             $new_total_points = $todayPoints + $earned_points;

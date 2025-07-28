@@ -10,14 +10,12 @@ use yii\helpers\Html;
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
-                    <?= $form->field($model, 'points_per_second')->textInput(['maxlength' => true, 'placeholder' => Yii::t('backend', 'نقاط في الثانية')]) ?>
+                    <?= $form->field($model, 'points_per_second')->textInput(['maxlength' => true, 'placeholder' => Yii::t('backend', 'قيمة النقاط المحصلة لكل صفحة (x نقاط)')]) ?>
                 </div>
                 <div class="col-md-6">
-                    <?= $form->field($model, 'reading_points_delay')->textInput(['maxlength' => true, 'placeholder' => Yii::t('backend', 'تأخير نقاط القراءة')]) ?>
+                    <?= $form->field($model, 'reading_points_delay')->textInput(['maxlength' => true, 'placeholder' => Yii::t('backend', 'الحد الادني من الوقت للقضاء في الصفحة (x ثواني)')]) ?>
                 </div>
-                <div class="col-md-6">
-                    <?= $form->field($model, 'daily_points')->textInput(['maxlength' => true, 'placeholder' => Yii::t('backend', 'النقاط اليومية')]) ?>
-                </div>
+
 
                 <div class="col-md-6">
                     <?= $form->field($model, 'max_daily_points_per_user')->textInput(['maxlength' => true, 'placeholder' => Yii::t('backend', 'الحد الأقصى للنقاط اليومية لكل مستخدم')]) ?>

@@ -40,9 +40,9 @@ a {
   height: calc(100vh - 122px);
 }
 
-.nav-sidebar > .nav-item {
-  margin-bottom: 12px;
-}
+/*.nav-sidebar > .nav-item {*/
+/*  margin-bottom: 12px;*/
+/*}*/
 
 .nav-pills .nav-link {
   color: #000 !important;

@@ -96,8 +96,7 @@ $logEntries[] = [
                         ],
                         'data' => [
                             'widget' => 'treeview',
-                            'accordion' => 'false'
-                        ],
+                            'accordion' => 'true'                        ],
                         'role' => 'menu',
                     ],
                     'items' => require __DIR__ . '/menu/Menu.php',
@@ -200,7 +199,7 @@ $logEntries[] = [
 
     <!-- footer -->
     <footer class="main-footer <?php echo $keyStorage->get('adminlte.footer-small-text') ? 'text-sm' : null ?>">
-        <strong>&copy; Zakr <?php echo date('Y') ?></strong>
+        <strong>&copy; Zekr <?php echo date('Y') ?></strong>
     </footer>
     <!-- /footer -->
 
@@ -413,5 +412,15 @@ $logEntries[] = [
     .dropdown-item:hover {
         background: #f0f0f0;
     }
+    .submenu {
+        display: none;
+    }
+
+    .has-submenu.open > .submenu {
+        display: block;
+    }
 
 </style>
+
+
+

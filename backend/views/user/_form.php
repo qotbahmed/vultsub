@@ -9,10 +9,8 @@ use common\models\UserProfile;
 /* @var $this yii\web\View */
 /* @var $model backend\models\UserForm */
 /* @var $form yii\bootstrap4\ActiveForm */
-/* @var $roles yii\rbac\Role[] */
 /* @var $permissions yii\rbac\Permission[] */
 
-$model->roles =Yii::$app->session->get('UserRole');
 
 ?>
 

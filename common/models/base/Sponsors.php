@@ -48,7 +48,7 @@ class Sponsors extends ActiveRecord
     public function rules()
     {
         return [
-            [['title'], 'required'],
+            [['title','image'], 'required'],
             [['image'], 'safe'],
             [['title', 'path', 'base_url', ], 'string', 'max' => 255],
            [['created_at', 'updated_at'], 'safe'],

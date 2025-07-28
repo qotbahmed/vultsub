@@ -107,7 +107,6 @@ class UserController extends BackendController
         $profile = new UserProfile();
         $profile->locale = 'en-US';
         $model->status = User::STATUS_ACTIVE;
-        $model->country_code = $model->country_code ?? 'EG';
         $model->scenario = 'create';
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -136,7 +135,6 @@ class UserController extends BackendController
         return $this->render('create', [
             'model' => $model,
             'profile' => $profile,
-            'roles' => ArrayHelper::map(Yii::$app->authManager->getRoles(), 'name', 'name'),
         ]);
     }
 
@@ -148,7 +146,6 @@ class UserController extends BackendController
         $model->setModel($this->findModel($id));
         $profile = $model->getModel()->userProfile;
 
-        $model->country_code = $model->country_code ?? 'EG';
 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -168,7 +165,6 @@ class UserController extends BackendController
         return $this->render('update', [
             'model' => $model,
             'profile' => $profile,
-            'roles' => ArrayHelper::map(Yii::$app->authManager->getRoles(), 'name', 'name'),
 
         ]);
     }

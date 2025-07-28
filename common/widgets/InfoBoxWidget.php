@@ -36,10 +36,7 @@ class InfoBoxWidget extends Widget
     private function getTitel()
     {
         return [
-            User::USER_TYPE_PLAYER => Yii::t('backend', 'Players'),
-            User::USER_TYPE_PARENT => Yii::t('backend', 'Parent'),
             User::USER_TYPE_ACADEMY_ADMIN => Yii::t('backend', 'Academy Admin'),
-            User::USER_TYPE_TRAINER => Yii::t('backend', 'Trainer'),
         ];    }
 
     private function renderInfoBox($userCount)
