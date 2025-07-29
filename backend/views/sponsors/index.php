@@ -215,7 +215,7 @@ $percentageChange = $lastMonthSponsorshipAmount > 0
                     if ($model->logs) {
                         $amounts = array_column($model->logs, 'amount');
                       $settings=  \backend\models\base\Settings::findOne(1);
-                    ;
+
 
 
                         return (array_sum($amounts))/  $settings->points_earned_per_riyal ;
