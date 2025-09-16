@@ -3,7 +3,7 @@
 use yii\db\Migration;
 
 /**
- * Class m250124_193247_edittoken
+ * Class m250128_122457_update__settings_table
  */
 class m250128_122457_update__settings_table extends Migration
 {
@@ -22,9 +22,7 @@ class m250128_122457_update__settings_table extends Migration
      */
     public function safeDown()
     {
-        echo "m250128_122445_add_email_user_token_table..php cannot be reverted.\n";
-
-        return false;
+        $this->dropColumn('settings', 'points_earned_per_riyal');
     }
 
     /*

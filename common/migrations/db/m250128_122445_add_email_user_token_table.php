@@ -3,7 +3,7 @@
 use yii\db\Migration;
 
 /**
- * Class m250124_193247_edittoken
+ * Class m250128_122445_add_email_user_token_table
  */
 class m250128_122445_add_email_user_token_table extends Migration
 {
@@ -29,9 +29,8 @@ ADD COLUMN `email` varchar(255) NULL AFTER `otp`;
      */
     public function safeDown()
     {
-        echo "m250128_122445_add_email_user_token_table..php cannot be reverted.\n";
-
-        return false;
+        $this->dropColumn('user_token', 'email');
+        $this->dropColumn('user_token', 'otp');
     }
 
     /*

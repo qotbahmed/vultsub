@@ -1,0 +1,31 @@
+RewriteEngine On
+
+# Redirect academy subdomain to academies index
+RewriteCond %{HTTP_HOST} ^academy\.vult\.localhost$ [NC]
+RewriteRule ^$ /backend/academies-index.php [L]
+
+# Handle Yii2 application
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php
+
+# Legacy redirects for backward compatibility
+RewriteRule ^sign-in/?$ /login [L,R=301]
+RewriteRule ^register/?$ /register [L,R=301]
+RewriteRule ^logout/?$ /logout [L,R=301]
+
+# API routes
+RewriteRule ^api/?$ /api [L,R=301]
+
+# Backend routes
+RewriteRule ^backend/?$ /backend/academies-index.php [L]
+RewriteRule ^backend/academies/?$ /backend/academies-index.php [L]
+RewriteRule ^backend/requests/?$ /backend/academy-requests.php [L]
+RewriteRule ^backend/subscriptions/?$ /backend/subscription-management.php [L]
+RewriteRule ^backend/analytics/?$ /backend/business-analytics.php [L]
+
+# Trial dashboard
+RewriteRule ^trial-dashboard/?$ /trial-dashboard [L,R=301]
+
+# Default route
+RewriteRule ^$ /index.php [L]

@@ -20,7 +20,8 @@ use trntv\filekit\behaviors\UploadBehavior;
  * @property integer $id
  * @property string $username
  * @property string $password_hash
- * @property string $email
+ * @property string $password_reset_token
+ * @property string $verification_token
  * @property string $auth_key
  * @property string $access_token
  * @property string $oauth_client
@@ -30,6 +31,22 @@ use trntv\filekit\behaviors\UploadBehavior;
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $logged_at
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $phone
+ * @property boolean $is_trial
+ * @property string $trial_ends_at
+ * @property integer $academy_id
+ * @property string $subdomain
+ * @property string $academy_name
+ * @property integer $branches_count
+ * @property string $subscription_status
+ * @property string $subscription_ends_at
+ * @property string $stripe_customer_id
+ * @property string $stripe_subscription_id
+ * @property integer $plan_id
+ * @property boolean $email_verified
+ * @property string $email_verified_at
  * @property integer $mobile
  * @property string $rate_average
  * @property integer $user_type
@@ -39,6 +56,8 @@ use trntv\filekit\behaviors\UploadBehavior;
  * @property array $files
  *
  * @property \common\models\UserProfile $userProfile
+ * @property integer $trial_started_at
+ * @property integer $trial_expires_at
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -189,7 +208,7 @@ class User extends ActiveRecord implements IdentityInterface
                     'oauth_client', 'oauth_client_user_id', 'email', 'username', '!status'
                 ],
                 'create' => [
-                    'username', 'email', 'password', 'mobile', 'status'
+                    'username', 'email', 'password', 'mobile', 'status', 'first_name', 'last_name', 'academy_name', 'subdomain', 'phone', 'branches_count'
                 ]
             ]
         );
@@ -202,9 +221,16 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
 
-            [['username', 'email', 'mobile'], 'unique'],
+            [['username', 'email', 'mobile', 'subdomain'], 'unique'],
             ['username', 'string', 'min' => 2, 'message' => 'يجب أن لا يقل اسم المدير عن حرفين.'],
             [['mobile'], 'match', 'pattern' => '/^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$/'],
+            [['first_name', 'last_name', 'academy_name', 'subdomain'], 'required'],
+            [['first_name', 'last_name', 'academy_name', 'subdomain'], 'string', 'max' => 255],
+            [['phone'], 'string', 'max' => 255],
+            [['branches_count', 'plan_id', 'academy_id'], 'integer'],
+            [['is_trial', 'email_verified'], 'boolean'],
+            [['subscription_status'], 'string', 'max' => 50],
+            [['trial_ends_at', 'subscription_ends_at', 'email_verified_at'], 'safe'],
 
             ['status', 'default', 'value' => self::STATUS_NOT_ACTIVE],
             ['approval', 'default', 'value' => self::APPROVAL_NOT_ACTIVE],
@@ -574,6 +600,68 @@ class User extends ActiveRecord implements IdentityInterface
         return $role->itemName;
     }
 
+    /**
+     * Check if user is on trial
+     * @return bool
+     */
+    public function isTrial()
+    {
+        return $this->trial_expires_at && $this->trial_expires_at > time();
+    }
 
+    /**
+     * Check if trial has expired
+     * @return bool
+     */
+    public function isTrialExpired()
+    {
+        return $this->trial_expires_at && $this->trial_expires_at <= time();
+    }
+
+    /**
+     * Get remaining trial days
+     * @return int
+     */
+    public function getTrialDaysLeft()
+    {
+        if (!$this->trial_expires_at) {
+            return 0;
+        }
+        
+        $daysLeft = ceil(($this->trial_expires_at - time()) / (24 * 60 * 60));
+        return max(0, $daysLeft);
+    }
+
+    /**
+     * Find user by email
+     * @param string $email
+     * @return static|null
+     */
+    public static function findByEmail($email)
+    {
+        return static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
+    }
+
+    /**
+     * Start trial period for user
+     * @param int $days Number of trial days (default 7)
+     * @return bool
+     */
+    public function startTrial($days = 7)
+    {
+        $this->trial_started_at = time();
+        $this->trial_expires_at = time() + ($days * 24 * 60 * 60);
+        return $this->save();
+    }
+
+    /**
+     * End trial period for user
+     * @return bool
+     */
+    public function endTrial()
+    {
+        $this->trial_expires_at = time();
+        return $this->save();
+    }
 
 }

@@ -1,0 +1,164 @@
+$opacities: (0.1,
+  0.20,
+  0.25,
+  0.5,
+  0.75,
+  1);
+
+
+// Mixin to generate classes for text-, bg-, and btn- with opacity
+@mixin generate-utility-classes($colors, $opacities) {
+
+  @each $name,
+  $color in $colors {
+    @each $opacity in $opacities {
+      $rgba-color: rgba($color, $opacity);
+      $opacity-percentage: $opacity * 100;
+
+      // Generate text color classes
+      .text-#{$name}-#{$opacity-percentage} {
+        color: #{$rgba-color} !important;
+      }
+
+      // Generate background color classes
+      .bg-#{$name}-#{$opacity-percentage} {
+        background-color: #{$rgba-color} !important;
+      }
+
+      // Generate button color classes
+      .btn-#{$name}-#{$opacity-percentage} {
+        background-color: #{$rgba-color};
+        border-color: #{$rgba-color};
+        color: #fff;
+
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: rgba($color, $opacity + 0.1);
+          border-color: rgba($color, $opacity + 0.1);
+        }
+      }
+    }
+  }
+}
+
+// Usage of the mixin
+@include generate-utility-classes($theme-colors, $opacities);
+
+
+
+
+@mixin button-opacity-variant($color, $color-hover: $color, $active-background: $color, $active-border: $color) {
+  color: $color;
+  border-color: rgba($color: $color, $alpha: .5);
+  background-color: rgba($color: $active-background, $alpha: .1);
+
+
+  @include hover() {
+    color: $color-hover;
+    background-color: rgba($color: $active-background, $alpha: .18);
+    border-color: rgba($color: $active-border, $alpha: .7);
+  }
+
+  &:focus,
+  &.focus {
+    background-color: rgba($color: $active-background, $alpha: .18);
+    border-color: rgba($color: $active-border, $alpha: .7);
+  }
+
+  &.disabled,
+  &:disabled {
+    color: $color;
+    background-color: transparent;
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show>&.dropdown-toggle {
+    color: $color-hover;
+    background-color: rgba($color: $active-background, $alpha: .18);
+    border-color: rgba($color: $active-border, $alpha: .7);
+
+    &:focus {
+      @if $enable-shadows and $btn-active-box-shadow !=none {
+        @include box-shadow($btn-active-box-shadow, 0 0 0 $btn-focus-width rgba($color, .5));
+      }
+
+      @else {
+        // Avoid using mixin so we can pass custom focus shadow properly
+        box-shadow: 0 0 0 $btn-focus-width rgba($color, .5);
+      }
+    }
+  }
+}
+
+@each $color,
+$value in $theme-colors {
+  .btn-opacity-#{$color} {
+    @include button-opacity-variant($value);
+  }
+}
+
+
+
+// Mixin to generate custom gutter classes
+@mixin generate-gutters($sizes: ()) {
+  @each $size, $value in $sizes {
+
+    // Generate g-* classes for both x and y axes
+    .g-#{$size} {
+      margin-right: -#{$value / 2};
+      margin-left: -#{$value / 2};
+
+      &.row {
+        margin-right: 0;
+        margin-left: 0;
+      }
+
+      &.row > .col,
+      &.row > [class*="col-"] {
+        padding-right: #{$value / 2};
+        padding-left: #{$value / 2};
+        padding-top: #{$value / 2};
+        padding-bottom: #{$value / 2};
+      }
+    }
+
+    // Generate gx-* classes for horizontal gutters only
+    .gx-#{$size} {
+      margin-right: -#{$value / 2};
+      margin-left: -#{$value / 2};
+
+      &.row {
+        margin-right: 0;
+        margin-left: 0;
+      }
+
+      &.row > .col,
+      &.row > [class*="col-"] {
+        padding-right: #{$value / 2};
+        padding-left: #{$value / 2};
+      }
+    }
+
+    // Generate gy-* classes for vertical gutters only
+    .gy-#{$size} {
+      &.row > .col,
+      &.row > [class*="col-"] {
+        padding-top: #{$value / 2};
+        padding-bottom: #{$value / 2};
+      }
+    }
+  }
+}
+
+
+// Define the sizes and gutter values
+$gutter-sizes: (1: 0.25rem,
+  2: 0.5rem,
+  3: 1rem,
+  4: 1.5rem,
+  5: 3rem);
+
+// Generate the gutter classes
+@include generate-gutters($gutter-sizes);

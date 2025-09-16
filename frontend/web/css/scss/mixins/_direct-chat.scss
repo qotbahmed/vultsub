@@ -1,0 +1,21 @@
+//
+// Mixins: Direct Chat
+//
+
+// Direct Chat Variant
+@mixin direct-chat-variant($bg-color, $color: #fff) {
+  .right > .direct-chat-text {
+    background: $bg-color;
+    border-color: $bg-color;
+    color: color-yiq($bg-color);
+
+    &::after,
+    &::before {
+      @if($isRTL ==true){
+        border-right-color: $bg-color;
+      }@else{
+        border-left-color: $bg-color;
+      }
+    }
+  }
+}

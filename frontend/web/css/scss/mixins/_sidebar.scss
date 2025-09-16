@@ -1,0 +1,204 @@
+//
+// Mixins: Sidebar
+//
+
+// Sidebar Color
+@mixin sidebar-color($color) {
+  .nav-sidebar > .nav-item:not(.has-treeview) {
+    & > .nav-link.active {
+      background-color: $color;
+      color: color-yiq($color);
+    }
+  }
+}
+
+// Sidebar Mini Breakpoints
+@mixin sidebar-mini-breakpoint() {
+  // A fix for text overflow while transitioning from sidebar mini to full sidebar
+  .nav-sidebar,
+  .nav-sidebar > .nav-header,
+  .nav-sidebar .nav-link {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  // When the sidebar is collapsed...
+  &.sidebar-collapse {
+    .d-hidden-mini {
+      display: none;
+    }
+
+    // Apply the new margins to the main content and footer
+    .content-wrapper,
+    .main-footer,
+    .main-header {
+      @if($isRTL ==true){
+        margin-right: $sidebar-mini-width !important;
+      }@else{
+        margin-left: $sidebar-mini-width !important;
+      }
+    }
+
+    // Make the sidebar headers
+    .nav-sidebar .nav-header {
+      display: none;
+    }
+
+    .nav-sidebar .nav-link p {
+      width: 0;
+    }
+
+    .sidebar .user-panel > .info,
+    .nav-sidebar .nav-link p,
+    .brand-text {
+      @if($isRTL ==true){
+        margin-right: -10px;
+      }@else{
+        margin-left: -10px;
+      }
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .logo-xl {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .logo-xs {
+      display: inline-block;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    // Modify the sidebar to shrink instead of disappearing
+    .main-sidebar {
+      overflow-x: hidden;
+      box-shadow: 0 0 3px #dfdfdf;
+      &,
+      &::before {
+        @if($isRTL ==true){
+          margin-right: 0;
+        }@else{
+          margin-left: 0;
+        }
+        width: $sidebar-mini-width;
+      }
+
+      .user-panel {
+        .image {
+          float: none;
+        }
+      }
+
+      &:hover,
+      &.sidebar-focused {
+        width: $sidebar-width;
+
+        .nav-sidebar.nav-child-indent .nav-treeview {
+          @if($isRTL ==true){
+            padding-right: 1rem;
+          }@else{
+            padding-left: 1rem;
+          }
+        }
+
+        .brand-link {
+          width: $sidebar-width;
+        }
+
+        .user-panel {
+          @if($isRTL ==true){
+            text-align: right;
+          }@else{
+            text-align: left;
+          }
+
+          .image {
+            @if($isRTL ==true){
+              float: right;
+            }@else{
+              float: left;
+            }
+          }
+        }
+
+        .user-panel > .info,
+        .nav-sidebar .nav-link p,
+        .brand-text,
+        .logo-xl {
+          display: inline-block;
+          @if($isRTL ==true){
+            margin-right: 0;
+          }@else{
+            margin-left: 0;
+          }
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .nav-flat {
+          .nav-icon {
+            @if($isRTL ==true){
+              margin-right: 0;
+            }@else{
+              margin-left: 0;
+            }
+          }
+
+          .nav-treeview {
+            .nav-icon {
+              @if($isRTL ==true){
+                margin-right: -.2rem;
+              }@else{
+                margin-left: -.2rem;
+              }
+            }
+          }
+        }
+
+        .logo-xs {
+          opacity: 0;
+          visibility: hidden;
+        }
+
+        .brand-image {
+          @if($isRTL ==true){
+            margin-left: .5rem;
+          }@else{
+            margin-right: .5rem;
+          }
+        }
+
+        // Make the sidebar links, menus, labels, badges
+        // and angle icons disappear
+        .sidebar-form,
+        .user-panel > .info {
+          display: block !important;
+          -webkit-transform: translateZ(0);
+        }
+
+        .nav-sidebar > .nav-item > .nav-link > span {
+          display: inline-block !important;
+        }
+      }
+    }
+
+    // Make an element visible only when sidebar mini is active
+    .visible-sidebar-mini {
+      display: block !important;
+    }
+
+    &.layout-fixed {
+      .main-sidebar:hover {
+        .brand-link {
+          width: $sidebar-width;
+        }
+      }
+
+      .brand-link {
+        width: $sidebar-mini-width;
+      }
+    }
+  }
+}
