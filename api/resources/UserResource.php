@@ -32,18 +32,8 @@ class UserResource extends \common\models\User
             'picture' => function () {
                 return $this->userProfile->getAvatar();
             },
-            'surah' => function () {
-                return $this->userProfile->surah;
-            },
-            'ayah_num' => function () {
-                return $this->userProfile->ayah_num;
-            },
-            'points_num' => function () {
-                return $this->userProfile->points_num;
-            },
-            'page_num' => function () {
-                return $this->userProfile->page_num;
-            },
+
+
             'joined_at' => function () {
                 return date('Y-m-d', $this->created_at);
             },

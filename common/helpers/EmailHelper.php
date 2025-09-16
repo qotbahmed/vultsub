@@ -33,10 +33,10 @@ class EmailHelper
     public function Send($mail_template = 'general')
     {
        // $to = $this->toEmail;
-        $to = 'mohamed.amer2050@gmail.com';
+        $to = 'test@gmail.com';
         //check environment
         if (YII_ENV_DEV ) {
-         //   $to = env('SEND_TO_EMAIL', 'mohamed.amer2050@gmail.com');
+         //   $to = env('SEND_TO_EMAIL', 'test@gmail.com');
         }
 
         try {
@@ -67,7 +67,7 @@ class EmailHelper
         $this->Send('general');
     }
 
-    public function SendNewInvitation($model,$to= 'mohamed.amer2050@gmail.com')
+    public function SendNewInvitation($model,$to= 'test@gmail.com')
     {
         $title = 'Your friend Invites you to join';
         $this->params = ['model' => $model];

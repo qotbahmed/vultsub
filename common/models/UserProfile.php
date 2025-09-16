@@ -21,11 +21,7 @@ use yii\helpers\ArrayHelper;
  * @property string $avatar_path
  * @property string $avatar_base_url
  * @property string $locale
- * @property string $surah
  * @property integer $gender
- * @property integer $ayah_num
- * @property integer $points_num
- * @property integer $page_num
  * @property string $mobile
  * @property string $new_phone
  * @property integer $new_phone_verified
@@ -90,7 +86,7 @@ class UserProfile extends ActiveRecord
         return [
             [['user_id'], 'required'],
             [['user_id', 'gender', 'new_phone_verified', 'to_days', 'from_days', 'preferred_age_to_unit', 'preferred_age_to', 'preferred_age_from_unit',
-              'preferred_age_from', 'education_level', 'reward', 'sport_id','ayah_num','points_num','page_num', 'subscription_id'], 'integer'],
+              'preferred_age_from', 'education_level', 'reward',], 'integer'],
         
 
             [['gender'], 'in', 'range' => [NULL, self::GENDER_FEMALE, self::GENDER_MALE]],
@@ -99,7 +95,7 @@ class UserProfile extends ActiveRecord
             [['new_phone', 'age', 'hour_rate'], 'number'],
             [['dob'], 'date', 'format' => 'php:Y-m-d'], // Add dob
             [['picture', 'avatar_path', 'avatar_base_url', 'national_id_path', 'national_id_base_url', 'permit_path', 'permit_base_url', 'to_days'
-                ,'whatsapp_number','email_contact', 'location_id', 'address', 'lat', 'lng', 'days','surah'], 'safe'],
+                ,'whatsapp_number','email_contact', 'location_id', 'address', 'lat', 'lng', 'days'], 'safe'],
        
          [['identification_number'], 'integer'],
          

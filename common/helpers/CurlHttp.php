@@ -30,7 +30,7 @@ class CurlHttp
 
     public function makePaymentRequest($data)
     {                
-        $serverKey = 'SMJNLNR6DG-J6WRD69LWW-WKN6T29JKK';
+        $serverKey = '';
         $url = 'https://secure.clickpay.com.sa/payment/request';
 
         $curl = new Curl();
@@ -54,7 +54,7 @@ class CurlHttp
 
     public function getPaymentStatus($data)
     {                
-        $serverKey = 'SMJNLNR6DG-J6WRD69LWW-WKN6T29JKK';
+        $serverKey = '';
         $url = 'https://secure.clickpay.com.sa/payment/query';
 
         $curl = new Curl();
@@ -78,7 +78,7 @@ class CurlHttp
 
     public function makeRefund($data)
     {                
-        $serverKey = 'SMJNLNR6DG-J6WRD69LWW-WKN6T29JKK';
+        $serverKey = '';
         $url = 'https://secure.clickpay.com.sa/payment/request';
 
         $curl = new Curl();
