@@ -1,0 +1,30 @@
+RewriteEngine On
+
+# Redirect academy subdomain to academies index
+RewriteCond %{HTTP_HOST} ^academy\.vult\.localhost$ [NC]
+RewriteRule ^$ /backend/academies-index.php [L]
+
+# Redirect sign-in to login
+RewriteRule ^sign-in/?$ /sign-in/login.php [L]
+
+# Redirect register to registration
+RewriteRule ^register/?$ /sign-in/register.php [L]
+
+# Redirect logout
+RewriteRule ^logout/?$ /sign-in/logout.php [L]
+
+# API routes
+RewriteRule ^api/?$ /api/index.php [L]
+
+# Backend routes
+RewriteRule ^backend/?$ /backend/academies-index.php [L]
+RewriteRule ^backend/academies/?$ /backend/academies-index.php [L]
+RewriteRule ^backend/requests/?$ /backend/academy-requests.php [L]
+RewriteRule ^backend/subscriptions/?$ /backend/subscription-management.php [L]
+RewriteRule ^backend/analytics/?$ /backend/business-analytics.php [L]
+
+# Trial dashboard
+RewriteRule ^trial-dashboard/?$ /trial-dashboard/index.php [L]
+
+# Default route
+RewriteRule ^$ /index.php [L]

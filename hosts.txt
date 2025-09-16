@@ -1,0 +1,9 @@
+# Vult SaaS Platform - Add these to your /etc/hosts file
+127.0.0.1 vult-saas.localhost
+127.0.0.1 app.vult-saas.localhost
+127.0.0.1 api.vult-saas.localhost
+127.0.0.1 admin.vult-saas.localhost
+127.0.0.1 demo-academy.vult-saas.localhost
+127.0.0.1 elite-sports.vult-saas.localhost
+127.0.0.1 future-champions.vult-saas.localhost
+127.0.0.1 stars-club.vult-saas.localhost
