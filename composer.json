@@ -1,0 +1,76 @@
+{
+    "name": "vult/saas-platform",
+    "description": "Vult SaaS Platform for Sports Academy Management",
+    "keywords": ["yii2", "saas", "academy", "sports", "management"],
+    "homepage": "https://vult.com",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/vult/saas-platform/issues",
+        "source": "https://github.com/vult/saas-platform"
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.4.0",
+        "ext-intl": "*",
+        "ext-gd": "*",
+        "yiisoft/yii2": "^2.0.13",
+        "yiisoft/yii2-bootstrap4": "^2.0.0",
+        "yiisoft/yii2-swiftmailer": "^2.1",
+        "yiisoft/yii2-jui": "^2.0.0",
+        "yiisoft/yii2-redis": "^2.0.0",
+        "yiisoft/yii2-httpclient": "^2.0.0",
+        "yiisoft/yii2-authclient": "^2.2.0"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "^2.1.0",
+        "yiisoft/yii2-gii": "^2.1.0"
+    },
+    "config": {
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "enabled": false
+        },
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "common\\": "common/",
+            "frontend\\": "frontend/",
+            "backend\\": "backend/",
+            "console\\": "console/",
+            "api\\": "api/",
+            "academy\\": "academy/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "common\\tests\\": "common/tests/",
+            "frontend\\tests\\": "frontend/tests/",
+            "backend\\tests\\": "backend/tests/",
+            "api\\tests\\": "api/tests/",
+            "academy\\tests\\": "academy/tests/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "yii\\composer\\Installer::postCreateProject"
+        ]
+    },
+    "extra": {
+        "yii\\composer\\Installer::postCreateProject": [
+            "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ]
+    }
+}

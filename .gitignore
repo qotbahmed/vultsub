@@ -1,0 +1,59 @@
+# Environment
+/.env
+/.env.local
+/.env.production
+
+# Composer
+/vendor
+composer.phar
+
+# Node modules
+node_modules
+npm-debug.log
+yarn-error.log
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+/runtime/logs/*
+*.log
+
+# Cache
+/runtime/cache/*
+/frontend/runtime/cache/*
+/backend/runtime/cache/*
+
+# Assets
+/web/assets/*
+/frontend/web/assets/*
+/backend/web/assets/*
+
+# Database
+*.sqlite
+*.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Backup files
+*.bak
+*.backup
+
+# Docker
+.docker/
+
+# Testing
+/tests/codeception/_output/*
+/tests/codeception/_support/_generated/*
+/tests/codeception/unit/_generated/*
+/tests/codeception/functional/_generated/*
+/tests/codeception/acceptance/_generated/*

@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  web:
+    image: php:8.0-apache
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - ./vhosts:/etc/apache2/sites-available
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+    command: >
+      bash -c "
+      a2enmod rewrite &&
+      a2ensite vult-saas.localhost.conf &&
+      a2ensite app.vult-saas.localhost.conf &&
+      a2ensite api.vult-saas.localhost.conf &&
+      a2ensite admin.vult-saas.localhost.conf &&
+      apache2-foreground
+      "
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: vult_saas
+      MYSQL_USER: vult
+      MYSQL_PASSWORD: vult123
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
