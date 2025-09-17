@@ -191,25 +191,25 @@ $this->title = 'إدارة اللاعبين - Vult';
         <div class="row mb-4">
             <div class="col-md-3">
                 <div class="stats-card">
-                    <h3 class="mb-1">150</h3>
+                    <h3 class="mb-1"><?= $stats['total_players'] ?></h3>
                     <p class="mb-0">إجمالي اللاعبين</p>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stats-card">
-                    <h3 class="mb-1">120</h3>
+                    <h3 class="mb-1"><?= $stats['active_players'] ?></h3>
                     <p class="mb-0">لاعب نشط</p>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stats-card">
-                    <h3 class="mb-1">25</h3>
+                    <h3 class="mb-1"><?= $stats['new_players'] ?></h3>
                     <p class="mb-0">لاعب جديد</p>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stats-card">
-                    <h3 class="mb-1">85%</h3>
+                    <h3 class="mb-1"><?= number_format($stats['average_attendance'], 1) ?>%</h3>
                     <p class="mb-0">معدل الحضور</p>
                 </div>
             </div>
@@ -238,161 +238,78 @@ $this->title = 'إدارة اللاعبين - Vult';
 
             <!-- Players List -->
             <div class="row" id="playersList">
-                <!-- Player Card 1 -->
-                <div class="col-md-6 col-lg-4 player-item" data-status="active">
-                    <div class="player-card">
-                        <div class="row align-items-center">
-                            <div class="col-3">
-                                <div class="player-avatar">
-                                    أ
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <h6 class="mb-1 fw-bold">أحمد محمد</h6>
-                                <p class="mb-1 text-muted small">كرة القدم</p>
-                                <span class="status-badge status-active">نشط</span>
-                            </div>
-                            <div class="col-3 text-end">
-                                <div class="dropdown">
-                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>تعديل</a></li>
-                                        <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>عرض التفاصيل</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash me-2"></i>حذف</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-6">
-                                <small class="text-muted">العمر: 18 سنة</small>
-                            </div>
-                            <div class="col-6 text-end">
-                                <small class="text-muted">معدل الحضور: 90%</small>
-                            </div>
+                <?php if (empty($dataProvider->getModels())): ?>
+                    <div class="col-12 text-center py-5">
+                        <div class="empty-state">
+                            <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">لا يوجد لاعبين بعد</h5>
+                            <p class="text-muted">ابدأ بإضافة لاعبين جدد إلى الأكاديمية</p>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPlayerModal">
+                                <i class="fas fa-plus me-2"></i>إضافة أول لاعب
+                            </button>
                         </div>
                     </div>
-                </div>
-
-                <!-- Player Card 2 -->
-                <div class="col-md-6 col-lg-4 player-item" data-status="active">
-                    <div class="player-card">
-                        <div class="row align-items-center">
-                            <div class="col-3">
-                                <div class="player-avatar">
-                                    س
+                <?php else: ?>
+                    <?php foreach ($dataProvider->getModels() as $player): ?>
+                        <?php
+                        $age = $player->date_of_birth ? floor((time() - strtotime($player->date_of_birth)) / 31556926) : 'غير محدد';
+                        $statusClass = 'status-inactive';
+                        $statusText = 'غير نشط';
+                        
+                        switch($player->status) {
+                            case 'active':
+                                $statusClass = 'status-active';
+                                $statusText = 'نشط';
+                                break;
+                            case 'inactive':
+                                $statusClass = 'status-inactive';
+                                $statusText = 'غير نشط';
+                                break;
+                            case 'suspended':
+                                $statusClass = 'status-pending';
+                                $statusText = 'معلق';
+                                break;
+                        }
+                        ?>
+                        <div class="col-md-6 col-lg-4 player-item" data-status="<?= $player->status ?>">
+                            <div class="player-card">
+                                <div class="row align-items-center">
+                                    <div class="col-3">
+                                        <div class="player-avatar">
+                                            <?= strtoupper(substr($player->name, 0, 1)) ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="mb-1 fw-bold"><?= Html::encode($player->name) ?></h6>
+                                        <p class="mb-1 text-muted small"><?= Html::encode($player->sport) ?></p>
+                                        <span class="status-badge <?= $statusClass ?>"><?= $statusText ?></span>
+                                    </div>
+                                    <div class="col-3 text-end">
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#" onclick="editPlayer(<?= $player->id ?>)"><i class="fas fa-edit me-2"></i>تعديل</a></li>
+                                                <li><a class="dropdown-item" href="#" onclick="viewPlayer(<?= $player->id ?>)"><i class="fas fa-eye me-2"></i>عرض التفاصيل</a></li>
+                                                <li><hr class="dropdown-divider"></li>
+                                                <li><a class="dropdown-item text-danger" href="<?= Url::to(['delete-player', 'id' => $player->id]) ?>" onclick="return confirm('هل أنت متأكد من حذف هذا اللاعب؟')"><i class="fas fa-trash me-2"></i>حذف</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <h6 class="mb-1 fw-bold">سارة أحمد</h6>
-                                <p class="mb-1 text-muted small">كرة السلة</p>
-                                <span class="status-badge status-active">نشط</span>
-                            </div>
-                            <div class="col-3 text-end">
-                                <div class="dropdown">
-                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>تعديل</a></li>
-                                        <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>عرض التفاصيل</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash me-2"></i>حذف</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-6">
-                                <small class="text-muted">العمر: 16 سنة</small>
-                            </div>
-                            <div class="col-6 text-end">
-                                <small class="text-muted">معدل الحضور: 85%</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Player Card 3 -->
-                <div class="col-md-6 col-lg-4 player-item" data-status="new">
-                    <div class="player-card">
-                        <div class="row align-items-center">
-                            <div class="col-3">
-                                <div class="player-avatar">
-                                    م
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <h6 class="mb-1 fw-bold">محمد علي</h6>
-                                <p class="mb-1 text-muted small">التنس</p>
-                                <span class="status-badge status-pending">جديد</span>
-                            </div>
-                            <div class="col-3 text-end">
-                                <div class="dropdown">
-                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>تعديل</a></li>
-                                        <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>عرض التفاصيل</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash me-2"></i>حذف</a></li>
-                                    </ul>
+                                <div class="row mt-3">
+                                    <div class="col-6">
+                                        <small class="text-muted">العمر: <?= $age ?> سنة</small>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <small class="text-muted">المستوى: <?= Html::encode($player->level) ?></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-6">
-                                <small class="text-muted">العمر: 14 سنة</small>
-                            </div>
-                            <div class="col-6 text-end">
-                                <small class="text-muted">معدل الحضور: 75%</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Player Card 4 -->
-                <div class="col-md-6 col-lg-4 player-item" data-status="inactive">
-                    <div class="player-card">
-                        <div class="row align-items-center">
-                            <div class="col-3">
-                                <div class="player-avatar">
-                                    ف
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <h6 class="mb-1 fw-bold">فاطمة حسن</h6>
-                                <p class="mb-1 text-muted small">السباحة</p>
-                                <span class="status-badge status-inactive">غير نشط</span>
-                            </div>
-                            <div class="col-3 text-end">
-                                <div class="dropdown">
-                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>تعديل</a></li>
-                                        <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>عرض التفاصيل</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash me-2"></i>حذف</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-6">
-                                <small class="text-muted">العمر: 17 سنة</small>
-                            </div>
-                            <div class="col-6 text-end">
-                                <small class="text-muted">معدل الحضور: 60%</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -408,53 +325,44 @@ $this->title = 'إدارة اللاعبين - Vult';
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">الاسم الأول</label>
-                                <input type="text" class="form-control" placeholder="أدخل الاسم الأول">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">الاسم الأخير</label>
-                                <input type="text" class="form-control" placeholder="أدخل الاسم الأخير">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">تاريخ الميلاد</label>
-                                <input type="date" class="form-control">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">رقم الهاتف</label>
-                                <input type="tel" class="form-control" placeholder="أدخل رقم الهاتف">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">الرياضة</label>
-                                <select class="form-select">
-                                    <option>اختر الرياضة</option>
-                                    <option>كرة القدم</option>
-                                    <option>كرة السلة</option>
-                                    <option>التنس</option>
-                                    <option>السباحة</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">الجنسية</label>
-                                <input type="text" class="form-control" placeholder="أدخل الجنسية">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">العنوان</label>
-                            <textarea class="form-control" rows="3" placeholder="أدخل العنوان"></textarea>
-                        </div>
-                    </form>
+                <div class="modal-body" id="playerModalBody">
+                    <!-- Content will be loaded via AJAX -->
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
-                    <button type="button" class="btn btn-primary">إضافة اللاعب</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Player Modal -->
+    <div class="modal fade" id="editPlayerModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-edit me-2"></i>
+                        تعديل بيانات اللاعب
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="editPlayerModalBody">
+                    <!-- Content will be loaded via AJAX -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Player Modal -->
+    <div class="modal fade" id="viewPlayerModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-eye me-2"></i>
+                        تفاصيل اللاعب
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="viewPlayerModalBody">
+                    <!-- Content will be loaded via AJAX -->
                 </div>
             </div>
         </div>
@@ -496,6 +404,88 @@ $this->title = 'إدارة اللاعبين - Vult';
                     player.style.display = 'none';
                 }
             });
+        });
+
+        // Load add player form
+        document.getElementById('addPlayerModal').addEventListener('show.bs.modal', function() {
+            loadPlayerForm('<?= Url::to(['create-player']) ?>', 'playerModalBody');
+        });
+
+        // Load edit player form
+        function editPlayer(playerId) {
+            loadPlayerForm('<?= Url::to(['update-player']) ?>?id=' + playerId, 'editPlayerModalBody');
+            var editModal = new bootstrap.Modal(document.getElementById('editPlayerModal'));
+            editModal.show();
+        }
+
+        // Load view player details
+        function viewPlayer(playerId) {
+            console.log('Loading player view for ID:', playerId);
+            loadPlayerView('<?= Url::to(['view-player']) ?>?id=' + playerId, 'viewPlayerModalBody');
+            var viewModal = new bootstrap.Modal(document.getElementById('viewPlayerModal'));
+            viewModal.show();
+        }
+
+        // Load player form via AJAX
+        function loadPlayerForm(url, containerId) {
+            fetch(url)
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById(containerId).innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Error loading form:', error);
+                    document.getElementById(containerId).innerHTML = '<div class="alert alert-danger">حدث خطأ في تحميل النموذج</div>';
+                });
+        }
+
+        // Load player view via AJAX
+        function loadPlayerView(url, containerId) {
+            console.log('Loading player view from URL:', url);
+            fetch(url)
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    if (!response.ok) {
+                        throw new Error('HTTP ' + response.status + ': ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    console.log('Player view loaded successfully');
+                    document.getElementById(containerId).innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Error loading player view:', error);
+                    document.getElementById(containerId).innerHTML = '<div class="alert alert-danger"><h5><i class="fas fa-exclamation-triangle me-2"></i>خطأ في تحميل التفاصيل</h5><p>' + error.message + '</p><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button></div>';
+                });
+        }
+
+        // Handle form submission
+        document.addEventListener('submit', function(e) {
+            if (e.target.id === 'player-form') {
+                e.preventDefault();
+                
+                const formData = new FormData(e.target);
+                const url = e.target.action || '<?= Url::to(['create-player']) ?>';
+                
+                fetch(url, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        // Handle validation errors
+                        console.error('Validation errors:', data);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    location.reload(); // Fallback to page reload
+                });
+            }
         });
     </script>
 </body>

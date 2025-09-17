@@ -27,6 +27,12 @@ return [
         'admin-dashboard' => 'dashboard/admin-dashboard',
         'academy-management' => 'dashboard/academy-management',
         'players-management' => 'dashboard/players-management',
+        'create-player' => 'dashboard/create-player',
+        'update-player' => 'dashboard/update-player',
+        'delete-player' => 'dashboard/delete-player',
+        'view-player' => 'dashboard/view-player',
+        'debug-player' => 'dashboard/debug-player',
+        'debug-trial' => 'dashboard/debug-trial',
 
         // API routes
         'api' => 'api/index',

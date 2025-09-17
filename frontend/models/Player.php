@@ -36,14 +36,25 @@ class Player extends ActiveRecord
     public function rules()
     {
         return [
-            [['academy_id', 'name', 'email', 'phone', 'date_of_birth', 'sport'], 'required'],
+            [['name', 'email', 'phone', 'date_of_birth', 'sport'], 'required'],
             [['academy_id'], 'integer'],
             [['date_of_birth', 'created_at', 'updated_at'], 'safe'],
             [['name', 'email', 'phone', 'sport', 'level', 'status'], 'string', 'max' => 255],
             [['email'], 'email'],
             [['status'], 'default', 'value' => 'active'],
             [['level'], 'default', 'value' => 'beginner'],
+            [['academy_id'], 'default', 'value' => 1], // Temporary default for testing
         ];
+    }
+    
+    /**
+     * Scenarios for different operations
+     */
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['update'] = ['name', 'email', 'phone', 'date_of_birth', 'sport', 'level', 'status'];
+        return $scenarios;
     }
 
     /**
@@ -72,10 +83,11 @@ class Player extends ActiveRecord
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
+            $now = date('Y-m-d H:i:s');
             if ($insert) {
-                $this->created_at = date('Y-m-d H:i:s');
+                $this->created_at = $now;
             }
-            $this->updated_at = date('Y-m-d H:i:s');
+            $this->updated_at = $now;
             return true;
         }
         return false;
@@ -86,6 +98,6 @@ class Player extends ActiveRecord
      */
     public function getAcademy()
     {
-        return $this->hasOne(Academy::class, ['id' => 'academy_id']);
+        return $this->hasOne(\common\models\Academy::class, ['id' => 'academy_id']);
     }
 }
