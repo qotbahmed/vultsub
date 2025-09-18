@@ -27,7 +27,7 @@ class SignInController extends BackendController
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'logout' => ['post']
+                    'logout' => ['get', 'post']
                 ]
             ]
         ];
