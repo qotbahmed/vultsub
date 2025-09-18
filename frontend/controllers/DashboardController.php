@@ -12,6 +12,7 @@ use common\models\User;
 use common\models\AcademyRequest;
 use frontend\models\Player;
 use frontend\models\PlayerSearch;
+use common\services\AttendanceRateService;
 
 /**
  * Dashboard controller for authenticated users
@@ -132,6 +133,10 @@ class DashboardController extends Controller
                 ->andWhere(['>=', 'created_at', date('Y-m-d', strtotime('-30 days'))])->count(),
             'average_attendance' => $this->calculateAverageAttendance($user->academy_id),
         ];
+        
+        // Get detailed attendance statistics
+        $attendanceStats = AttendanceRateService::getAcademyAttendanceStats($user->academy_id);
+        $stats['attendance_stats'] = $attendanceStats;
         
         // Get recent players
         $recentPlayers = Player::find()
@@ -386,9 +391,13 @@ class DashboardController extends Controller
      */
     protected function calculateAverageAttendance($academyId)
     {
-        // This is a placeholder - you would implement actual attendance calculation
-        // based on your attendance tracking system
-        return 85.5; // Return percentage
+        try {
+            $attendanceStats = AttendanceRateService::getAcademyAttendanceStats($academyId);
+            return $attendanceStats['average_attendance_rate'];
+        } catch (\Exception $e) {
+            Yii::error('Error calculating average attendance: ' . $e->getMessage(), __METHOD__);
+            return 0.0;
+        }
     }
     
     /**

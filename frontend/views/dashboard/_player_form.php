@@ -98,7 +98,9 @@ $form = ActiveForm::begin([
 <?php endif; ?>
 
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+    <button type="button" class="btn btn-secondary" id="cancel-btn" data-bs-dismiss="modal">
+        <i class="fas fa-times me-2"></i>إلغاء
+    </button>
     <?= Html::submitButton($model->isNewRecord ? 'إضافة اللاعب' : 'حفظ التغييرات', [
         'class' => 'btn btn-primary',
         'name' => 'submit-button',
@@ -217,6 +219,74 @@ $(document).ready(function() {
         $('#form-errors').hide();
         $('#form-success').hide();
     });
+    
+    // Handle cancel button click
+    $('#cancel-btn').on('click', function() {
+        // Reset form to original state
+        resetForm();
+        
+        // Hide any error/success messages
+        $('#form-errors').hide();
+        $('#form-success').hide();
+        
+        // Reset submit button state
+        $('#submit-btn').prop('disabled', false).text($('#submit-btn').text());
+        
+        // Clear any validation errors
+        $('.form-control, .form-select').removeClass('is-invalid');
+        $('.invalid-feedback').remove();
+        
+        console.log('Form cancelled and reset');
+    });
+    
+    // Handle modal close events
+    $('.modal').on('hidden.bs.modal', function() {
+        // Reset form when modal is closed
+        resetForm();
+        
+        // Hide messages
+        $('#form-errors').hide();
+        $('#form-success').hide();
+        
+        console.log('Modal closed, form reset');
+    });
+    
+    // Handle escape key press
+    $(document).on('keydown', function(e) {
+        if (e.key === 'Escape' && $('.modal.show').length > 0) {
+            // Reset form when escape is pressed
+            resetForm();
+            $('#form-errors').hide();
+            $('#form-success').hide();
+        }
+    });
+    
+    // Function to reset form to original state
+    function resetForm() {
+        // Reset form fields to their original values
+        var form = $('#player-form');
+        form[0].reset();
+        
+        // Clear any custom validation states
+        $('.form-control, .form-select').removeClass('is-invalid is-valid');
+        $('.invalid-feedback, .valid-feedback').remove();
+        
+        // Reset submit button
+        var submitBtn = $('#submit-btn');
+        submitBtn.prop('disabled', false);
+        
+        // Reset button text based on form type
+        if (form.find('input[name="Player[id]"]').length > 0) {
+            submitBtn.text('حفظ التغييرات');
+        } else {
+            submitBtn.text('إضافة اللاعب');
+        }
+        
+        // Clear any AJAX loading states
+        submitBtn.find('.fa-spinner').remove();
+        
+        console.log('Form reset to original state');
+    }
 });
 </script>
 
@@ -250,5 +320,41 @@ $(document).ready(function() {
 .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, #6c757d, #495057);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(108, 117, 125, 0.4);
+    color: white;
+}
+
+#cancel-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+#cancel-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+#cancel-btn:hover:before {
+    left: 100%;
 }
 </style>

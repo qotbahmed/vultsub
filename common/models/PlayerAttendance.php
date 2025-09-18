@@ -180,14 +180,101 @@ class PlayerAttendance extends \yii\db\ActiveRecord
             throw $e;
         }
     }
-       public function afterSave($insert, $changedAttributes)
+    public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
         if ($insert && $this->sub_details_id) {
             $subscriptionDetails = $this->subscriptionDetails;
             if ($subscriptionDetails) {
-               
+                // Update player attendance rate after saving attendance record
+                \common\services\AttendanceRateService::updatePlayerAttendanceRate(
+                    $this->player_id, 
+                    $this->subscription_id, 
+                    $this->sub_details_id
+                );
             }
         }
+    }
+    
+    /**
+     * Calculate attendance rate for this player
+     * 
+     * @param string|null $startDate
+     * @param string|null $endDate
+     * @return float
+     */
+    public function calculateAttendanceRate($startDate = null, $endDate = null)
+    {
+        return \common\services\AttendanceRateService::calculatePlayerAttendanceRate(
+            $this->player_id,
+            $this->subscription_id,
+            $this->sub_details_id,
+            $startDate,
+            $endDate
+        );
+    }
+    
+    /**
+     * Get attendance statistics for this player
+     * 
+     * @param string|null $startDate
+     * @param string|null $endDate
+     * @return array
+     */
+    public function getAttendanceStats($startDate = null, $endDate = null)
+    {
+        return \common\services\AttendanceRateService::getPlayerAttendanceStats(
+            $this->player_id,
+            $this->subscription_id,
+            $this->sub_details_id,
+            $startDate,
+            $endDate
+        );
+    }
+    
+    /**
+     * Mark attendance for this player
+     * 
+     * @param int $attendStatus (1 = attended, 0 = absent)
+     * @return bool
+     */
+    public function markAttendance($attendStatus = 1)
+    {
+        $this->attend_status = $attendStatus;
+        $this->attend_date = date('Y-m-d');
+        $this->created_at = date('Y-m-d H:i:s');
+        
+        return $this->save();
+    }
+    
+    /**
+     * Get attendance rate percentage with formatting
+     * 
+     * @return string
+     */
+    public function getFormattedAttendanceRate()
+    {
+        $rate = $this->calculateAttendanceRate();
+        return number_format($rate, 1) . '%';
+    }
+    
+    /**
+     * Check if player attended this class
+     * 
+     * @return bool
+     */
+    public function isAttended()
+    {
+        return $this->attend_status == 1;
+    }
+    
+    /**
+     * Get attendance status text
+     * 
+     * @return string
+     */
+    public function getAttendanceStatusText()
+    {
+        return $this->isAttended() ? 'حضر' : 'غاب';
     }
 }

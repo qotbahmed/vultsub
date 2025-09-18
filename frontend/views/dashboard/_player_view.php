@@ -130,7 +130,9 @@ $age = $model->date_of_birth ? floor((time() - strtotime($model->date_of_birth))
     <div class="row mt-4">
         <div class="col-12">
             <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">إغلاق</button>
+                <button type="button" class="btn btn-secondary me-2" id="close-view-btn" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-2"></i>إغلاق
+                </button>
                 <a href="<?= Url::to(['update-player', 'id' => $model->id]) ?>" 
                    class="btn btn-primary me-2" 
                    data-bs-toggle="modal" 
@@ -197,3 +199,63 @@ $age = $model->date_of_birth ? floor((time() - strtotime($model->date_of_birth))
     font-weight: 600;
 }
 </style>
+
+<script>
+$(document).ready(function() {
+    // Handle close button click
+    $('#close-view-btn').on('click', function() {
+        console.log('Player view modal closed');
+        
+        // Reset any form states if needed
+        $('.modal').find('form').each(function() {
+            this.reset();
+        });
+        
+        // Clear any validation states
+        $('.form-control, .form-select').removeClass('is-invalid is-valid');
+        $('.invalid-feedback, .valid-feedback').remove();
+        
+        // Hide any error/success messages
+        $('.alert').hide();
+    });
+    
+    // Handle modal close events
+    $('.modal').on('hidden.bs.modal', function() {
+        console.log('Player view modal hidden');
+        
+        // Reset any form states
+        $('.modal').find('form').each(function() {
+            this.reset();
+        });
+        
+        // Clear validation states
+        $('.form-control, .form-select').removeClass('is-invalid is-valid');
+        $('.invalid-feedback, .valid-feedback').remove();
+        
+        // Hide messages
+        $('.alert').hide();
+    });
+    
+    // Handle escape key press
+    $(document).on('keydown', function(e) {
+        if (e.key === 'Escape' && $('.modal.show').length > 0) {
+            console.log('Escape key pressed, closing modal');
+            
+            // Close the modal
+            $('.modal.show').modal('hide');
+            
+            // Reset form states
+            $('.modal').find('form').each(function() {
+                this.reset();
+            });
+            
+            // Clear validation states
+            $('.form-control, .form-select').removeClass('is-invalid is-valid');
+            $('.invalid-feedback, .valid-feedback').remove();
+            
+            // Hide messages
+            $('.alert').hide();
+        }
+    });
+});
+</script>
